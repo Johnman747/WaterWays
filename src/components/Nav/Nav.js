@@ -1,33 +1,28 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import LogOutButton from '../LogOutButton/LogOutButton';
+import searchIcon from '../Images/Search.png'
+import Addicon from '../Images/AddIcon.png'
+import PersonIcon from '../Images/PersonIcon.png'
 import './Nav.css';
 
 const Nav = (props) => (
   <div className="nav">
-    {/* <Link to="/home">
-      <h2 className="nav-title">Water Ways</h2>
-    </Link> */}
     <div className="nav-right">
       <Link className="nav-link" to="/about">
         {/* Show this link if they are logged in or not,
         but call this link 'Home' if they are logged in,
         and call this link 'Login / Register' if they are not */}
-        Search
+        {/* <img className="navbarIcon" src={searchIconBlue}/> */}
+        <img className="navbarIcon1" src={searchIcon} alt="search"/>
       </Link>
       {/* Show the link to the info page and the logout button if the user is logged in */}
-      {/* {props.user.id && (
-        <> */}
           <Link className="nav-link" to="/info">
-            Add Src
+            <img className="navbarIcon2" src={Addicon} alt="add water source"/>
           </Link>
-          {/* <LogOutButton className="nav-link"/> */}
-        {/* </>
-      )} */}
       {/* Always show this link since the about page is not protected */}
       <Link className="nav-link" to="/home">
-        Account
+        <img className="navbarIcon3" src={PersonIcon} alt="account"/>
       </Link>
     </div>
   </div>

@@ -39,3 +39,17 @@ color: white;
 .nav-right {
 float: right;
 }
+
+.navbarIcon1{
+  height: 40px;
+  margin: -15px;
+}
+.navbarIcon2{
+  height: 40px;
+  margin: -18px;
+}
+
+.navbarIcon3{
+  height: 40px;
+  margin: -18px;
+}
