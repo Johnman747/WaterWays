@@ -11,7 +11,7 @@ CREATE TABLE "user" (
     "password" VARCHAR (1000) NOT NULL,
     "admin_level" INTEGER NOT NULL
 );
-Table "locations" {
+CREATE Table "locations" {
   "id" SERIAL PRIMARY KEY,
   "name" varchar(120)
   "address" varchar(1000)
@@ -28,7 +28,7 @@ Table "locations" {
   "photo_primary" varchar,
   "description" varchar
 }
-Table "activity_log" {
+CREATE Table "activity_log" {
   "id" SERIAL PRIMARY KEY,
   "user_id" INT references "user".id,
   "location_id" INT references "locations".id,
@@ -36,14 +36,14 @@ Table "activity_log" {
   "issue_type" varchar
 }
 
-Table "Photos" {
+CREATE Table "Photos" {
   "id" SERIAL PRIMARY KEY,
   "user_id" INT references "user".id,
   "location_id" INT references "locations".id,
   "photo_img_string" varchar
 }
 
-Table "reviews" {
+CREATE Table "reviews" {
   "id" SERIAL PRIMARY KEY,
   "user_id" INT references "user".id,
   "location_id" INT references "locations".id,
