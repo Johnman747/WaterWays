@@ -1,4 +1,4 @@
-const SingleLocationReducer = (state = {}, action) => {
+const SingleLocationReducer = (state = [], action) => {
     switch (action.type) {
       case 'GET_SINGLE_LOCATION':
         return action.payload;

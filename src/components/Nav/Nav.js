@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import searchIcon from '../Images/Search.png'
-import Addicon from '../Images/AddIcon.png'
-import PersonIcon from '../Images/PersonIcon.png'
+import searchIcon from '../Icons/Search.png'
+import Addicon from '../Icons/AddIcon.png'
+import PersonIcon from '../Icons/PersonIcon.png'
 import './Nav.css';
 
 const Nav = (props) => (
