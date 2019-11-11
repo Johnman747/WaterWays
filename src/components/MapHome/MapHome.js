@@ -25,7 +25,6 @@ class MapHome extends Component {
     return(
         <Router>
             <div className="mapHomeComponent">
-                <AddPage />
                 <LoadScript
                     id="script-loader"
                     googleMapsApiKey={process.env.REACT_APP_GOOGLE_KEY}
