@@ -17,7 +17,7 @@ const Nav = (props) => (
         <img className="navbarIcon1" src={searchIcon} alt="search"/>
       </Link>
       {/* Show the link to the info page and the logout button if the user is logged in */}
-          <Link className="nav-link" to="/info">
+          <Link className="nav-link" to="/add">
             <img className="navbarIcon2" src={Addicon} alt="add water source"/>
           </Link>
       {/* Always show this link since the about page is not protected */}
