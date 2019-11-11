@@ -60,13 +60,13 @@ router.post('/', (req, res) => {
                     location.campground_access,
                     location.free_flowing,
                     location.artesian_well,
-                    location.photo_primary.image,
+                    location.photo.image,
                     location.description
                 ]
     queryText = `INSERT INTO "locations"
     (name,address,latitude,longitude,created_by,free,
         spigot,trail_access,road_access,campground_access,
-        free_flowing,artesian_well,photo_primary,decription)
+        free_flowing,artesian_well,photo_primary,description)
     VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14)`;
 
     pool.query(queryText,values)
