@@ -17,7 +17,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/:id', (req, res) => {
-    let queryText = `SELECT * FROM "location" WHERE id=$1;`;
+    let queryText = `SELECT * FROM "locations" WHERE id=$1;`;
     pool.query(queryText, [req.params.id])
     .then((result) => {
         res.send(result.rows)

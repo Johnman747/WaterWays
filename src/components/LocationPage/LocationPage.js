@@ -21,7 +21,7 @@ class LocationPage extends Component {
     }
 
     getInfo = () => {
-        this.props.dispatch({ type: 'FETCH_SINGLELOCATION', payload: this.props.match.params.id })
+        this.props.dispatch({ type: 'FETCH_SINGLE_LOCATION', payload: this.props.match.params.id })
     }
 
     BackButton = ( ) =>{
