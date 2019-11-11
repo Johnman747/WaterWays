@@ -6,6 +6,7 @@ import {
     GoogleMap,
     LoadScript,
 } from '@react-google-maps/api';
+import AddPage from '../AddPage/AddPage';
 
 class MapHome extends Component {
     
@@ -14,7 +15,8 @@ class MapHome extends Component {
     return(
         <Router>
             <div className="mapHomeComponent">
-                <LoadScript
+                <AddPage />
+                {/* <LoadScript
                     id="script-loader"
                     googleMapsApiKey={process.env.REACT_APP_GOOGLE_KEY}
                     >
@@ -32,7 +34,7 @@ class MapHome extends Component {
                     >
 
                     </GoogleMap>
-                </LoadScript>
+                </LoadScript> */}
             </div>
         </Router>
     )
