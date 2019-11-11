@@ -10,7 +10,7 @@ function* fetchSingleLocation(action) {
     };
     console.log(action.payload);
     
-    const response = yield axios.get(`/api/answer/${action.payload}`, config);
+    const response = yield axios.get(`/api/single-location/${action.payload}`, config);
 
     // now that the session has given us a child object
     yield put({ type: 'GET_SINGLELOCATION', payload: response.data });
