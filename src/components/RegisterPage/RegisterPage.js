@@ -76,8 +76,6 @@ class RegisterPage extends Component {
                 onChange={this.handleInputChangeFor('username')}
               />
             </label>
-          </div>
-          <div>
             <label htmlFor="password">
               Password:
               <input
@@ -97,6 +95,8 @@ class RegisterPage extends Component {
             />
           </div>
         </form>
+        <br></br>
+        
         <center>
           <button
             type="button"
