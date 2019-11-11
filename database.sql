@@ -18,14 +18,14 @@ CREATE TABLE "locations" (
   "latitude" float8,
   "longitude" float8,
   "created_by" INTEGER references "user",
-  "free_true" boolean,
-  "spickett" boolean,
+  "free" boolean,
+  "spigot" boolean,
   "trail_access" boolean,
   "road_access" boolean,
   "campground_access" boolean,
-  "free _flowing" boolean,
+  "free_flowing" boolean,
   "artesian_well" boolean,
-  "photo_primary" varchar,
+  "photo" varchar,
   "description" varchar
 );
 CREATE Table "activity_log" (
