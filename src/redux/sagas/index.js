@@ -2,9 +2,9 @@ import { all } from 'redux-saga/effects';
 import loginSaga from './loginSaga';
 import registrationSaga from './registrationSaga';
 import userSaga from './userSaga';
-import SingleLocationSaga from './SingleLocationSaga';
+// import SingleLocationSaga from './SingleLocationSaga';
 import locationsSaga from './locationsSaga';
-import DeleteLocationSaga from './deleteLocationSaga';
+// import DeleteLocationSaga from './deleteLocationSaga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -18,8 +18,8 @@ export default function* rootSaga() {
     loginSaga(),
     registrationSaga(),
     userSaga(),
-    SingleLocationSaga(),
+    //SingleLocationSaga(),
     locationsSaga(),
-    DeleteLocationSaga(),
+    //DeleteLocationSaga(),
   ]);
 }

@@ -1,9 +1,7 @@
 const SingleLocationReducer = (state = {}, action) => {
     switch (action.type) {
-      case 'GET_SINGLELOCATION':
+      case 'GET_SINGLE_LOCATION':
         return action.payload;
-      case 'CLEAR_SINGLELOCATION':
-        return {};
       default:
         return state;
     }
