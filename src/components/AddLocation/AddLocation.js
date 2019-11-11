@@ -17,8 +17,9 @@ class AddLocation extends Component{
       campground_access : false,
       free_flowing : false,
       artesian_well : false,
+      RV: false,
       photo : '',
-      description : ''
+      description : '',
       }
     }
 
@@ -44,8 +45,7 @@ class AddLocation extends Component{
     addNewLocation = event => {
         event.preventDefault();
         console.log('booyah')
-        // this.props.dispatch({ type: 'POST_LOCATIONS', payload: this.state.locationToAdd})
-        // this.props.history.push('/');
+        this.props.dispatch({ type: 'POST_LOCATIONS', payload: this.state.locationToAdd})
     } // end addNewLocation
 
     render(){
@@ -61,33 +61,49 @@ class AddLocation extends Component{
         <label>Longitude</label><br/>
         <input onChange={(event)=>this.handleChange(event, 'longitude')}></input>
         <label>Free To Fill?</label><br/>
-        <select defaultValue='true' onChange={(event)=>this.handleChange(event, 'free_true')}>
+        <select defaultValue='false' onChange={(event)=>this.handleChange(event, 'free')}>
             <option value='true' selected='selected'>Yes</option>
             <option value='false' selected='selected'>No</option>
         </select><br/>
         <label>Spigot Available?</label><br/>
-        <select defaultValue='true' onChange={(event)=>this.handleChange(event, 'spigot')}>
+        <select defaultValue='false' onChange={(event)=>this.handleChange(event, 'spigot')}>
             <option value='true' selected='selected'>Yes</option>
             <option value='false' selected='selected'>No</option>
         </select><br/>
         <label>Trail Access?</label><br/>
-        <select defaultValue='true' onChange={(event)=>this.handleChange(event, 'trail_access')}>
+        <select defaultValue='false' onChange={(event)=>this.handleChange(event, 'trail_access')}>
             <option value='true' selected='selected'>Yes</option>
             <option value='false' selected='selected'>No</option>
         </select><br/>
         <label>Road Access</label><br/>
-        <input onChange={(event)=>this.handleChange(event, 'road_access')}></input>
+        <select defaultValue='false' onChange={(event)=>this.handleChange(event, 'road_access')}>
+            <option value='true' selected='selected'>Yes</option>
+            <option value='false' selected='selected'>No</option>
+        </select><br/>
         <label>Campground Access</label><br/>
-        <input onChange={(event)=>this.handleChange(event, 'campground_access')}></input>
+        <select defaultValue='false' onChange={(event)=>this.handleChange(event, 'campground_access')}>
+            <option value='true' selected='selected'>Yes</option>
+            <option value='false' selected='selected'>No</option>
+        </select><br/>
         <label>Free FLowing</label><br/>
-        <input onChange={(event)=>this.handleChange(event, 'free_flowing ')}></input>
+        <select defaultValue='false' onChange={(event)=>this.handleChange(event, 'free_falling')}>
+            <option value='true' selected='selected'>Yes</option>
+            <option value='false' selected='selected'>No</option>
+        </select><br/>
         <label>Artesian</label><br/>
-        <input onChange={(event)=>this.handleChange(event, 'artesian_well')}></input>
+        <select defaultValue='false' onChange={(event)=>this.handleChange(event, 'artesian_well')}>
+            <option value='true' selected='selected'>Yes</option>
+            <option value='false' selected='selected'>No</option>
+        </select><br/>
+        <label>RV Access</label><br/>
+        <select defaultValue='false' onChange={(event)=>this.handleChange(event, 'RV')}>
+            <option value='true' selected='selected'>Yes</option>
+            <option value='false' selected='selected'>No</option>
+        </select><br/>
         <label>
           <UploadImage  setImage={this.handleImage}/>
         </label>
         <br/>
-        <button>Working on component</button>
         <label>Description</label><br/>
         <input onChange={(event)=>this.handleChange(event, 'description')}></input>
         <button className='addLocationSubmit'>Submit</button>
