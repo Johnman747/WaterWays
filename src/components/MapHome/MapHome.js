@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { HashRouter as Router } from 'react-router-dom';
+import { HashRouter as Router, withRouter } from 'react-router-dom';
+import MapMarkers from '../MapMarkers/MapMarkers';
 
 import {
     GoogleMap,
@@ -10,12 +11,20 @@ import AddPage from '../AddLocation/AddLocation';
 
 class MapHome extends Component {
     
-    
+    // Mounts getLocation on pageload.
+    componentDidMount() {
+        this.getLocations();
+    } // end componentDidMount
+
+    // Calls locations to be passed down to MapMarkers component
+    getLocations = () => {
+        this.props.dispatch({ type: 'FETCH_LOCATIONS' })
+    } // end getLocations
+
     render() {
     return(
         <Router>
             <div className="mapHomeComponent">
-                <AddPage />
                 <LoadScript
                     id="script-loader"
                     googleMapsApiKey={process.env.REACT_APP_GOOGLE_KEY}
@@ -23,7 +32,7 @@ class MapHome extends Component {
                     <GoogleMap
                         className="mainMap"
                         mapContainerStyle={{
-                            height: "100vh",
+                            height: "89.5vh",
                             width: "auto"
                         }}
                         zoom={10}
@@ -32,7 +41,11 @@ class MapHome extends Component {
                             lng: -93.2685388,
                         }}
                     >
-
+                        {this.props.reduxStore.locationsReducer.map((location) => {
+                            return (
+                                <MapMarkers location={location} />
+                            )
+                        })}
                     </GoogleMap>
                 </LoadScript>
             </div>
@@ -44,4 +57,4 @@ class MapHome extends Component {
 const mapStateToProps = (reduxStore) => ({
     reduxStore
 });
-export default connect(mapStateToProps)(MapHome);
+export default withRouter(connect(mapStateToProps)(MapHome));
