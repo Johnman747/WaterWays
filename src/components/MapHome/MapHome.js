@@ -16,7 +16,7 @@ class MapHome extends Component {
         <Router>
             <div className="mapHomeComponent">
                 <AddPage />
-                {/* <LoadScript
+                <LoadScript
                     id="script-loader"
                     googleMapsApiKey={process.env.REACT_APP_GOOGLE_KEY}
                     >
@@ -34,7 +34,7 @@ class MapHome extends Component {
                     >
 
                     </GoogleMap>
-                </LoadScript> */}
+                </LoadScript>
             </div>
         </Router>
     )

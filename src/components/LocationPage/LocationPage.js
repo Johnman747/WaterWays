@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import {withRouter} from 'react-router-dom';
 import "./LocationPage.css"
 import FreeIcon from '../Icons/FreeIcon.png';
 import PaidIcon from '../Icons/PaidIcon.png';
@@ -9,6 +10,7 @@ import RV from '../Icons/RvIcon.png';
 import Tent from '../Icons/TentIcon.png';
 import Well from '../Icons/ArtesianWellIcon.png';
 import Trail from '../Icons/TrailSource.png';
+import BackIcon from '../Icons/backArrowWhite.png'
 
 class LocationPage extends Component {
     state = {
@@ -19,7 +21,11 @@ class LocationPage extends Component {
     }
 
     getInfo = () => {
-        this.props.dispatch({ type: 'FETCH_SINGLELOCATION', payload: this.props.match.params.id })
+        this.props.dispatch({ type: 'FETCH_SINGLE_LOCATION', payload: this.props.match.params.id })
+    }
+
+    BackButton = ( ) =>{
+        this.props.history.push('/MapHome')
     }
 
     render() {
@@ -27,6 +33,7 @@ class LocationPage extends Component {
             <>
                 {this.props.reduxStore.SingleLocationReducer.map(location =>
                     <div key={location.id}>
+                        <img onClick={this.BackButton} className="backIcon" src={BackIcon} alt="Back Icon"/>
                         <img alt="Location Photo"/>
                         <h1>{location.name}</h1>
                         <h3>{location.address}</h3>
@@ -80,4 +87,4 @@ const mapStateToProps = reduxStore => ({
     reduxStore
 });
 
-export default connect(mapStateToProps)(LocationPage);
+export default withRouter(connect(mapStateToProps)(LocationPage));
