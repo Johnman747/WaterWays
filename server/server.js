@@ -11,9 +11,8 @@ const passport = require('./strategies/user.strategy');
 // Route includes
 const userRouter = require('./routes/user.router');
 const locationRouter = require('./routes/locations.router');
-
 // Body parser middleware
-app.use(bodyParser.json());
+app.use(bodyParser.json({limit: '1 gb'}));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Passport Session Configuration //

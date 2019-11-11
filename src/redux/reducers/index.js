@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 import errors from './errorsReducer';
 import loginMode from './loginModeReducer';
 import user from './userReducer';
+import SingleLocationReducer from './SingleLocationReducer'
 import locationsReducer from './locationsReducer';
 
 // rootReducer is the primary reducer for our entire project
@@ -13,7 +14,8 @@ import locationsReducer from './locationsReducer';
 const rootReducer = combineReducers({
   errors, // contains registrationMessage and loginMessage
   loginMode, // will have a value of 'login' or 'registration' to control which screen is shown
-  user,
+  user, // will have an id and username if someone is logged in
+  SingleLocationReducer,//will have iformation pertaining to single location water source.
   locationsReducer, // will have an id and username if someone is logged in
 });
 

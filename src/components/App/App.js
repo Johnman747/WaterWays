@@ -17,8 +17,10 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
 import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
 import InfoPage from '../InfoPage/InfoPage';
+import LocationPage from '../LocationPage/LocationPage';
 
 import './App.css';
+import AddLocation from '../AddLocation/AddLocation';
 
 class App extends Component {
   componentDidMount () {
@@ -40,6 +42,11 @@ class App extends Component {
               path="/about"
               component={AboutPage}
             />
+             <Route
+              exact
+              path="/addlocation"
+              component={AddLocation}
+            />
             {/* For protected routes, the view could show one of several things on the same route.
             Visiting localhost:3000/home will show the UserPage if the user is logged in.
             If the user is not logged in, the ProtectedRoute will show the 'Login' or 'Register' page.
@@ -53,9 +60,14 @@ class App extends Component {
             they will see the info page instead. */}
             <ProtectedRoute
               exact
-              path="/info"
-              component={InfoPage}
+              path="/add"
+              component={AddLocation}
             />
+            <ProtectedRoute
+              exact
+              path="/location/:id"
+              render={({match})=> <LocationPage match={match}/>}
+              />
             {/* This is the main Map component. */}
             <ProtectedRoute
               exact
