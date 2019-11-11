@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 
-// worker Saga: will be fired on "FETCH_QESTION" actions
+// worker Saga: will be fired on "FETCH_SINGLELOCATION" actions
 function* fetchSingleLocation(action) {
   try {
     const config = {
@@ -12,7 +12,6 @@ function* fetchSingleLocation(action) {
     
     const response = yield axios.get(`/api/single-location/${action.payload}`, config);
 
-    // now that the session has given us a child object
     yield put({ type: 'GET_SINGLELOCATION', payload: response.data });
     console.log(response.data);
   } catch (error) {
