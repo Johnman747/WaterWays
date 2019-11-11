@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
-
+import UploadImage from './UploadImage'
 
 class AddLocation extends Component{
     state = {
@@ -32,6 +31,15 @@ class AddLocation extends Component{
         });
         console.log(this.state.locationToAdd)
     } // end handleChange
+
+    handleImage = (imageUrl) =>{
+      this.setState({
+        locationToAdd:{
+          ...this.state.locationToAdd,
+          photo: imageUrl
+        }
+      })
+    }
 
     addNewLocation = event => {
         event.preventDefault();
@@ -75,7 +83,10 @@ class AddLocation extends Component{
         <input onChange={(event)=>this.handleChange(event, 'free_flowing ')}></input>
         <label>Artesian</label><br/>
         <input onChange={(event)=>this.handleChange(event, 'artesian_well')}></input>
-        <label>Photo</label><br/>
+        <label>
+          <UploadImage  setImage={this.handleImage}/>
+        </label>
+        <br/>
         <button>Working on component</button>
         <label>Description</label><br/>
         <input onChange={(event)=>this.handleChange(event, 'description')}></input>
