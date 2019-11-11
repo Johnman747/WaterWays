@@ -9,7 +9,7 @@ import './Nav.css';
 const Nav = (props) => (
   <div className="nav">
     <div className="nav-right">
-      <Link className="nav-link" to="/about">
+      <Link className="nav-link" to="/MapHome">
         {/* Show this link if they are logged in or not,
         but call this link 'Home' if they are logged in,
         and call this link 'Login / Register' if they are not */}

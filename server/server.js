@@ -10,9 +10,7 @@ const passport = require('./strategies/user.strategy');
 
 // Route includes
 const userRouter = require('./routes/user.router');
-const singleLocationRouter = require('./routes/singleLocation.router');
 const locationRouter = require('./routes/locations.router');
-const deleteLocation = require('./routes/DeleteLocation');
 // Body parser middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -26,9 +24,7 @@ app.use(passport.session());
 
 /* Routes */
 app.use('/api/user', userRouter);
-app.use('/api/single-location', singleLocationRouter);
 app.use('/api/locations', locationRouter);
-app.use('/api/delete', deleteLocation);
 
 // Serve static files
 app.use(express.static('build'));
