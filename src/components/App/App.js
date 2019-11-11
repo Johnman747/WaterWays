@@ -17,6 +17,7 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
 import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
 import InfoPage from '../InfoPage/InfoPage';
+import LocationPage from '../LocationPage/LocationPage';
 
 import './App.css';
 
@@ -56,6 +57,11 @@ class App extends Component {
               path="/info"
               component={InfoPage}
             />
+            <ProtectedRoute
+              exact
+              path="/location/:id"
+              render={({match})=> <LocationPage match={match}/>}
+              />
             {/* This is the main Map component. */}
             <ProtectedRoute
               exact
