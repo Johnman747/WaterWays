@@ -46,33 +46,30 @@ router.get('/:id', (req, res) => {
  * POST route template
  */
 router.post('/', (req, res) => {
-    let name = req.body.name
-    let address = req.body.address
-    let lat = req.body.lattitude
-    let long = req.body.longitude
-    let created = req.body.created_by
-    let cost = req.body.free_true
-    let spigot = req.body.spickett
-    let trail = req.body.trail_access
-    let road = req.body.road_access
-    let camp = req.body.campground_access
-    let free_flowing = req.body.free_flowing
-    let artesian = req.body.artesian_well
-    let photo = req.body.photo_primary
-    let description = req.body.description
-
+    const location = req.body;
+    const values =[
+                    location.name,
+                    location.address,
+                    location.latitude,
+                    location.longitude,
+                    location.created_by,
+                    location.free,
+                    location.spigot,
+                    location.trail_access,
+                    location.road_access,
+                    location.campground_access,
+                    location.free_flowing,
+                    location.artesian_well,
+                    location.photo_primary.image,
+                    location.description
+                ]
     queryText = `INSERT INTO "locations"
-    (name,address,latittude,longitude,created_by,free_true,
-        spickett,trail_access,road_access,campground_access,
-        free_flowing,artisian_well,photo_primary,decription)
+    (name,address,latitude,longitude,created_by,free,
+        spigot,trail_access,road_access,campground_access,
+        free_flowing,artesian_well,photo_primary,decription)
     VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14)`;
 
-    pool.query(queryText,
-         [name,address,
-            lat,long,created,
-            cost,spigot,trail,
-            road,camp,free_flowing,
-        artesian, photo, description])
+    pool.query(queryText,values)
         .then((result) => {
         console.log(result)
         }).catch((error) =>{
