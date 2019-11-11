@@ -19,6 +19,7 @@ import UserPage from '../UserPage/UserPage';
 import InfoPage from '../InfoPage/InfoPage';
 
 import './App.css';
+import AddLocation from '../AddLocation/AddLocation';
 
 class App extends Component {
   componentDidMount () {
@@ -53,8 +54,8 @@ class App extends Component {
             they will see the info page instead. */}
             <ProtectedRoute
               exact
-              path="/info"
-              component={InfoPage}
+              path="/add"
+              component={AddLocation}
             />
             {/* This is the main Map component. */}
             <ProtectedRoute
