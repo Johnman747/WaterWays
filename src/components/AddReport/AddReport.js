@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
-
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import NativeSelect from '@material-ui/core/NativeSelect';
+import Input from '@material-ui/core/Input';
 
 class AddReport extends Component{
 
@@ -35,18 +37,29 @@ class AddReport extends Component{
                 <form onSubmit={this.addNewReport}>
                     <h1>Report</h1>
                     <label>Select the reason for reporting</label><br/>
-                    <select onChange={(event)=>{this.handleChange(event, 'issue_type')}}>
-                        <option selected value='Choose One'>Choose One</option>
+                    <NativeSelect
+                        value={this.state.issue_type}
+                        onChange={(event)=>{this.handleChange(event, 'issue_type')}}
+                    >
                         <option value='Health Concerns'>Health Concerns</option>
                         <option value='Location Closed'>Location Closed</option>
                         <option value='Location Damaged/Vandalized'>Location Damaged/Vandalized</option>
                         <option value='Dry'>Dry</option>
                         <option value='Problem Resolved'>Problem Resolved</option>
                         <option value='Other'>Other</option>
-                    </select><br/>
+                    </NativeSelect><br/>
                     <label>Reason</label>
-                    <input onChange={(event)=>{this.handleChange(event, 'issue_comment')}}></input><br/>
-                    <button>Submit</button>
+                    <TextField
+                        onChange={(event)=>{this.handleChange(event, 'issue_comment')}}
+                        id="outlined-textarea"
+                        label="Description"
+                        multiline
+                        margin="normal"
+                        variant="filled"
+                    /><br/>
+                    <Button variant="contained" color="primary">
+                    Submit
+                    </Button>
                 </form>
             </div>
         )
