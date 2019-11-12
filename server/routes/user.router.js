@@ -6,6 +6,34 @@ const userStrategy = require('../strategies/user.strategy');
 
 const router = express.Router();
 
+// ---- GET ALL USERS ---- //
+// GET all users from database
+router.get('/all', rejectUnauthenticated, (req, res) => {
+  console.log('/user GET route');
+  let queryText = 'SELECT * FROM "user" ORDER BY "username" ASC;';
+  pool.query(queryText).then(results => {
+      // res.sendStatus(200);
+      res.send(results.rows)
+  }).catch( error => {
+      console.log('Error making GET request (Server)', error);
+      res.sendStatus(500);
+  })
+}); // end GET all users
+
+// ---- DELETE USER ---- //
+// Delete Users fromt the database 
+router.delete('/all/:id', rejectUnauthenticated, (req, res) => {
+  let queryText = 'DELETE FROM "user" WHERE id = $1;';
+  pool.query(queryText, [req.params.id])
+  .then( (result) => {
+    console.log('Delete Success', result);
+    res.sendStatus(200);
+  }).catch( error => {
+    console.log('Error in DELTE user request', error);
+    res.sendStatus(500);
+  })
+})
+
 // Handles Ajax request for user information if user is authenticated
 router.get('/', rejectUnauthenticated, (req, res) => {
   // Send back user object from the session (previously queried from the database)
