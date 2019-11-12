@@ -31,6 +31,25 @@ router.get('/report/:id', (req,res) =>{
         res.sendStatus(500);
     })
 });
+router.post('/', (req,res) =>{
+    let report = req.body;
+    let queryText = `
+    INSERT INTO "activity_log"(user_id,location_id,issue_comment,issue_type)
+    VALUES($1,$2,$3,$4)`
+    let values = [
+            report.user_id,
+            report.locatation_id,
+            report.issue_comment,
+            report.issue_type
+    ]
+    pool.query(queryText,values)
+    .then((result) =>{
+        console.log(result);
+        res.sendStatus(201)
+    }).catch((error) =>{
+        console.log(error);
+    })
+})
 
 router.delete('/report/:id', (req,res) =>{
     let queryText = `DELETE FROM "activity_log" WHERE "id"=$1;`;
