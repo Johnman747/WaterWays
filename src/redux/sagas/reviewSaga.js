@@ -23,7 +23,7 @@ function* deleteReview(action){
             headers: { 'Content-Type': 'application/json' },
             withCredentials: true,
           };
-
+          //action payload MUST be the id of the REVIEW no location
           const response = yield axios.delete(`/api/reviews/${action.payload}`, config);
           console.log(response);
           this.fetchReviews();

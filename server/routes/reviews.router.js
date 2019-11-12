@@ -21,7 +21,15 @@ router.get('/:id', (req, res) => {
 });
 
 router.delete('/:id', (req,res) =>{
-    let queryText = ``
+    let queryText = `DELETE FROM "reviews" WHERE "id"=$1;`;
+    console.log(req.params.id);
+    pool.query(queryText, [req.params.id])
+    .then(() =>{
+        res.sendStatus(200)
+    }).catch((error) =>{
+        console.log(error);
+        res.sendStatus(500);
+    })
 })
 
 module.exports = router;
