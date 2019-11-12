@@ -21,6 +21,7 @@ import LocationPage from '../LocationPage/LocationPage';
 
 import './App.css';
 import AddLocation from '../AddLocation/AddLocation';
+import AddReport from '../AddReport/AddReport';
 
 class App extends Component {
   componentDidMount () {
@@ -46,6 +47,11 @@ class App extends Component {
               exact
               path="/addlocation"
               component={AddLocation}
+            />
+            <Route
+              exact
+              path="/addreport"
+              component={AddReport}
             />
             {/* For protected routes, the view could show one of several things on the same route.
             Visiting localhost:3000/home will show the UserPage if the user is logged in.
