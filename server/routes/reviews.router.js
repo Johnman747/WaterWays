@@ -20,4 +20,8 @@ router.get('/:id', (req, res) => {
 
 });
 
+router.delete('/:id', (req,res) =>{
+    let queryText = ``
+})
+
 module.exports = router;
