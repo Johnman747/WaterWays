@@ -10,12 +10,12 @@ import {connect} from 'react-redux';
 
 class AboutPage extends Component{
   componentDidMount(){
-    this.props.dispatch({type:'FETCH_LOCATIONS'});
+    // this.props.dispatch({type:'FETCH_LOCATIONS'});
     this.props.dispatch({type:'FETCH_REVIEWS'});
   }
   render(){
     return(
-      <p>{JSON.stringify(this.props.reduxStore.reviewsReducer.review_score_of_five)}</p>
+      <p>{JSON.stringify(this.props.reduxStore.reviewsReducer)}</p>
     )
   }
 }

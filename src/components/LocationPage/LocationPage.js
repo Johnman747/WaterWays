@@ -18,6 +18,7 @@ class LocationPage extends Component {
 
     componentDidMount() {
         this.getInfo();
+        this.props.dispatch({type: 'FETCH_REVIEWS', payload: this.props.match.params.id});
     }
 
     getInfo = () => {
@@ -40,6 +41,7 @@ class LocationPage extends Component {
                         <p>{location.description}</p>
                         <h3>Details</h3>
                         <h3>Star Rating</h3>
+                        <p>{JSON.stringify(this.props.reduxStore.reviewsReducer)}</p>
                         {location.free?
                         <img className="icon" src={FreeIcon} alt="Free Icon"/>
                         :
