@@ -9,6 +9,7 @@ import {
 import {connect} from 'react-redux';
 // ---- Connect Pages to App.js ---- //
 import MapHome from '../MapHome/MapHome';
+import ModerateUser from '../ModerateUser/ModerateUser';
 import Nav from '../Nav/Nav';
 import Footer from '../Footer/Footer';
 
@@ -73,6 +74,12 @@ class App extends Component {
               exact
               path="/MapHome"
               component={MapHome}
+            />
+            {/* This is the main Moderate Users component. */}
+            <ProtectedRoute
+              exact
+              path="/ModerateUser"
+              component={ModerateUser}
             />
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />
