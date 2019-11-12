@@ -41,18 +41,11 @@ class LocationPage extends Component {
                         <p>{location.description}</p>
                         <h3>Details</h3>
                         <h3>Star Rating</h3>
-<<<<<<< HEAD
-                        {location.free ?
-                            <img className="icon" src={FreeIcon} alt="Free Icon" />
-                            :
-                            <img className="icon" src={PaidIcon} alt="Paid Icon" />
-=======
                         <p>{JSON.stringify(this.props.reduxStore.reviewsReducer)}</p>
                         {location.free?
                         <img className="icon" src={FreeIcon} alt="Free Icon"/>
                         :
                         <img className="icon" src={PaidIcon} alt="Paid Icon"/>
->>>>>>> master
                         }
                         {location.spigot ?
                             <img className="icon" src={Spigot} alt="Spigot Icon" />
