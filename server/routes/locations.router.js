@@ -7,7 +7,7 @@ const rejectUnauthenticated = require('../modules/authentication-middleware')
  * GET route template
  */
 router.get('/', (req, res) => {
-    queryText = `SELECT * FROM "locations";`;
+    queryText = `SELECT * FROM "locations" ORDER BY "approve" ASC;`;
     pool.query(queryText).then((result)=>{
         // console.log(result.rows);
         res.send(result.rows);
@@ -68,7 +68,7 @@ router.post('/', (req, res) => {
         spigot,trail_access,road_access,campground_access,
         free_flowing,artesian_well,photo_primary,description)
     VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14)`;
-
+    
     pool.query(queryText,values)
         .then((result) => {
         console.log(result)

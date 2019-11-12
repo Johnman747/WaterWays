@@ -16,24 +16,26 @@ router.get('/',(req, res) => {
     })
 });
 
-// router.delete('/:id', rejectUnauthenticated, (req, res) => { 
-//     const location = req.body; 
-//     console.log('in delete', location) 
-//         const query = `DELETE FROM "locations" WHERE "id"=$1;`;
-//         pool.query(query, [req.params.id]).then(() => {
-//             res.sendStatus(200);
-//         }).catch((error) => {
-//             console.log('ERROR with DELETE ', error);
+router.delete('/:id', (req, res) => { 
+    const location = req.body; 
+    console.log('in delete', location) 
+        const query = `DELETE FROM "Photos" WHERE "id"=$1;`;
+        pool.query(query, [req.params.id]).then(() => {
+            res.sendStatus(200);
+        }).catch((error) => {
+            console.log('ERROR with DELETE ', error);
 
-//             res.sendStatus(500);
-//         })
-// });
+            res.sendStatus(500);
+        })
+});
 
 /**
  * POST route template
  */
 router.post('/',(req, res) => {
     const photo = req.body;
+    console.log(photo);
+    
     const values =[
                     req.user.id,
                     photo.id,

@@ -9,6 +9,9 @@ import {
   Marker,
 } from '@react-google-maps/api';
 
+
+
+
 class AddLocation extends Component {
   state = {
     locationToAdd: {
@@ -72,6 +75,16 @@ class AddLocation extends Component {
     })
   }
 
+  setMarker = (e)=>{
+
+    this.setState({
+      locationToAdd:{
+        ...this.state.locationToAdd,
+        latitude: e.lat,
+        longitude: e.lng
+      }
+    })
+  }
   render() {
     return (
       <>
@@ -101,7 +114,7 @@ class AddLocation extends Component {
         }
         {this.state.step === 1 &&
           <>
-          <h1>Add Tags</h1>
+            <h1>Add Tags</h1>
             <label>Free To Fill?</label><br />
             <select defaultValue='false' onChange={(event) => this.handleChange(event, 'free')}>
               <option value='true' selected='selected'>Yes</option>
@@ -146,15 +159,38 @@ class AddLocation extends Component {
         }
         {this.state.step === 2 &&
           <>
-          <h1>Add Address</h1>
-            <label>Address</label><br />
-            <input onChange={(event) => this.handleChange(event, 'address')}></input><br />
-            <label>Latittude</label><br />
-            <input onChange={(event) => this.handleChange(event, 'latitude')}></input><br />
-            <label>Longitude</label><br />
-            <input onChange={(event) => this.handleChange(event, 'longitude')}></input><br />
-            <br />
-            <button className='addLocationSubmit'>Submit</button>
+            <h1>Add Address</h1>
+            <div className="mapAddComponet">
+              <LoadScript
+                id="script-loader"
+                googleMapsApiKey={process.env.REACT_APP_GOOGLE_KEY}
+              >
+                <GoogleMap
+                  className="mainMap"
+                  mapContainerStyle={{
+                    height: "50vh",
+                    width: "auto"
+                  }}
+                  zoom={15}
+                  center={{
+                    lat: 44.9746234,
+                    lng: -93.2685388,
+                  }}
+                  onClick={(e)=> this.setMarker(e.latLng.toJSON())}
+                  >
+                  <Marker
+                  draggable
+                    position={{
+                      lat:this.state.locationToAdd.latitude,
+                      lng:this.state.locationToAdd.longitude
+                    }}
+                    onDragEnd={(e)=> this.setMarker(e.latLng.toJSON())}
+                    />
+                </GoogleMap>
+              </LoadScript>
+            </div>
+            {/* <label>Address</label><br />
+            <input onChange={(event) => this.handleChange(event, 'address')}></input><br /> */}
           </>
         }
         <Stepper handleNext={this.handleNext} handleBack={this.handleBack} handleReset={this.handleReset} handleSubmit={this.addNewLocation} />
