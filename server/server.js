@@ -11,7 +11,11 @@ const passport = require('./strategies/user.strategy');
 // Route includes
 const userRouter = require('./routes/user.router');
 const locationRouter = require('./routes/locations.router');
+<<<<<<< HEAD
+const photoRouter = require('./routes/Photos.router');
+=======
 const reviewRouter = require('./routes/reviews.router');
+>>>>>>> master
 // Body parser middleware
 app.use(bodyParser.json({limit: '1 gb'}));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -26,7 +30,11 @@ app.use(passport.session());
 /* Routes */
 app.use('/api/user', userRouter);
 app.use('/api/locations', locationRouter);
+<<<<<<< HEAD
+app.use('/api/photo', photoRouter);
+=======
 app.use('/api/reviews', reviewRouter);
+>>>>>>> master
 
 // Serve static files
 app.use(express.static('build'));

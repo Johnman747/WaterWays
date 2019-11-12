@@ -1,10 +1,23 @@
 import React, {Component} from 'react';
+import AddImage from '../AddImage/AddImage'
 import {withRouter} from 'react-router-dom';
 
 class MenuModal extends Component {
     state = { 
-        isOpen: false 
+        isOpen: false,
+        Image:{
+            photo:'',
+            id:this.props.locationInfo,
+        }  
     };
+    handlePhoto = (imageUrl) =>{
+        this.setState({
+          Image:{
+            ...this.state.Image,
+            photo: imageUrl
+          }
+        })
+      }
 
     handle_Modal = () =>{
         this.setState({
@@ -25,11 +38,11 @@ class MenuModal extends Component {
     return (
         <div>
             {
-                showContent == true ? 
+                showContent === true ? 
                 <div>
                     <button onClick={this.handle_Resolve_Report}>Resolve/Report a Problem</button>
                     <button onClick={this.handle_Review}>Leave a Review</button>
-                    <button onClick={this.handle_AddImage}>Add an Image</button>
+                    <AddImage setPhoto={this.handlePhoto}/>
                 </div>
                 :
                 (null)
