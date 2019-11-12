@@ -8,6 +8,8 @@ import {
   Marker,
 } from '@react-google-maps/api';
 
+import './AddLocation.css'
+
 class AddLocation extends Component {
   state = {
     locationToAdd: {
@@ -83,7 +85,7 @@ class AddLocation extends Component {
   }
   render() {
     return (
-      <>
+      <div className="AddLocation">
         {this.state.step === 0 &&
           <>
             <h1>Add Locations</h1>
@@ -179,7 +181,7 @@ class AddLocation extends Component {
           </>
         }
         <Stepper handleNext={this.handleNext} handleBack={this.handleBack} handleReset={this.handleReset} handleSubmit={this.addNewLocation} />
-      </>
+      </div>
     )
   }
 }

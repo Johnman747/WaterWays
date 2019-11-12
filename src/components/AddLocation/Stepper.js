@@ -5,10 +5,12 @@ import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import { MobileStepper } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
     root: {
-        width: '90%',
+        width: '100%',
+        backgroundColor: '#80B8E4',
     },
     backButton: {
         marginRight: theme.spacing(1),
@@ -17,6 +19,9 @@ const useStyles = makeStyles(theme => ({
         marginTop: theme.spacing(1),
         marginBottom: theme.spacing(1),
     },
+    Dots:{
+        backgroundColor: '#80B8E4',
+    }
 }));
 
 function getSteps() {
@@ -60,7 +65,16 @@ export default function HorizontalLabelPositionBelowStepper(props) {
     };
 
     return (
-        <div className={classes.root}>
+        <div className={classes.root} className="Stepper">
+            <div className="StepDots">
+            <MobileStepper
+                variant="dots"
+                steps={3}
+                position="static"
+                activeStep={activeStep}
+                className={classes.Dots}
+            />
+            </div>
             <div>
                 {activeStep === steps.length ? (
                     <div>
@@ -85,13 +99,6 @@ export default function HorizontalLabelPositionBelowStepper(props) {
                         </div>
                     )}
             </div>
-            <Stepper activeStep={activeStep} alternativeLabel>
-                {steps.map(label => (
-                    <Step key={label}>
-                        <StepLabel>{label}</StepLabel>
-                    </Step>
-                ))}
-            </Stepper>
         </div>
     );
 }
