@@ -3,7 +3,11 @@ import { connect } from 'react-redux';
 import UploadImage from './UploadImage';
 import Stepper from './Stepper';
 import TextField from '@material-ui/core/TextField';
-
+import {
+  GoogleMap,
+  LoadScript,
+  Marker,
+} from '@react-google-maps/api';
 
 class AddLocation extends Component {
   state = {
