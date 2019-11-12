@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import UploadImage from './UploadImage';
 import Stepper from './Stepper';
-import TextField from '@material-ui/core/TextField';
+import TextField from '@material-ui/core/TextField/TextField';
 import {
   GoogleMap,
   LoadScript,
@@ -41,7 +41,7 @@ class AddLocation extends Component {
         [propertyName]: event.target.value,
       }
     });
-    console.log(this.state.locationToAdd)
+    console.log(this.state.locationToAdd.free)
   } // end handleChange
 
   handleImage = (imageUrl) => {
@@ -117,42 +117,42 @@ class AddLocation extends Component {
             <h1>Add Tags</h1>
             <label>Free To Fill?</label><br />
             <select defaultValue='false' onChange={(event) => this.handleChange(event, 'free')}>
-              <option value='true' selected='selected'>Yes</option>
+              <option value='true'>Yes</option>
               <option value='false' selected='selected'>No</option>
             </select><br />
             <label>Spigot Available?</label><br />
             <select defaultValue='false' onChange={(event) => this.handleChange(event, 'spigot')}>
-              <option value='true' selected='selected'>Yes</option>
+              <option value='true'>Yes</option>
               <option value='false' selected='selected'>No</option>
             </select><br />
             <label>Trail Access?</label><br />
             <select defaultValue='false' onChange={(event) => this.handleChange(event, 'trail_access')}>
-              <option value='true' selected='selected'>Yes</option>
+              <option value='true'>Yes</option>
               <option value='false' selected='selected'>No</option>
             </select><br />
             <label>Road Access</label><br />
             <select defaultValue='false' onChange={(event) => this.handleChange(event, 'road_access')}>
-              <option value='true' selected='selected'>Yes</option>
+              <option value='true'>Yes</option>
               <option value='false' selected='selected'>No</option>
             </select><br />
             <label>Campground Access</label><br />
             <select defaultValue='false' onChange={(event) => this.handleChange(event, 'campground_access')}>
-              <option value='true' selected='selected'>Yes</option>
+              <option value='true'>Yes</option>
               <option value='false' selected='selected'>No</option>
             </select><br />
             <label>Free FLowing</label><br />
-            <select defaultValue='false' onChange={(event) => this.handleChange(event, 'free_falling')}>
-              <option value='true' selected='selected'>Yes</option>
+            <select defaultValue='false' onChange={(event) => this.handleChange(event, 'free_flowing')}>
+              <option value='true'>Yes</option>
               <option value='false' selected='selected'>No</option>
             </select><br />
             <label>Artesian</label><br />
             <select defaultValue='false' onChange={(event) => this.handleChange(event, 'artesian_well')}>
-              <option value='true' selected='selected'>Yes</option>
+              <option value='true'>Yes</option>
               <option value='false' selected='selected'>No</option>
             </select><br />
             <label>RV Access</label><br />
             <select defaultValue='false' onChange={(event) => this.handleChange(event, 'RV')}>
-              <option value='true' selected='selected'>Yes</option>
+              <option value='true'>Yes</option>
               <option value='false' selected='selected'>No</option>
             </select>
           </>
