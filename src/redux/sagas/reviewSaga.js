@@ -34,6 +34,20 @@ function* fetchSingleReview(action) {
     }
   }
 
+  function* addReview(action) {
+    try {
+      const config = {
+        headers: { 'Content-Type': 'application/json' },
+        withCredentials: true,
+      };
+      const response = yield axios.post('/api/reviews', action.payload, config);
+      console.log(response);
+      this.fetchLocations();
+    } catch(error) {
+      console.log('locations post request failed', error);
+    }
+  }
+
 function* deleteReview(action){
     try{
         const config = {
@@ -53,6 +67,7 @@ function* reviewSaga(){
     yield takeLatest('FETCH_REVIEWS', fetchReviews);
     yield takeLatest('DELETE_REVIEW', deleteReview);
     yield takeLatest('FETCH_SINGLE_REVIEW', fetchSingleReview);
+    yield takeLatest('ADD_REVIEW', addReview);
 }
 
 export default reviewSaga;
