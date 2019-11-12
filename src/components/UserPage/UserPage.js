@@ -1,26 +1,40 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { HashRouter as Router, withRouter } from 'react-router-dom';
+
 import LogOutButton from '../LogOutButton/LogOutButton';
 
-// this could also be written with destructuring parameters as:
-// const UserPage = ({ user }) => (
-// and then instead of `props.user.username` you could use `user.username`
-const UserPage = (props) => (
-  <div>
-    <h1 id="welcome">
-      Welcome, { props.user.username }!
-    </h1>
-    <p>Your ID is: {props.user.id}</p>
-    <LogOutButton className="log-in" />
-  </div>
-);
+class UserPage extends Component {
 
-// Instead of taking everything from state, we just want the user info.
-// if you wanted you could write this code like this:
-// const mapStateToProps = ({user}) => ({ user });
-const mapStateToProps = state => ({
-  user: state.user,
+  componentDidMount() {
+    this.props.dispatch({ type: 'FETCH_USER' })
+  }
+
+  render() {
+    return (
+      <Router>
+        <div className="userPage">
+          <h1>Water Ways</h1>
+          <h2>User Information</h2>
+          <p>User ID: {this.props.reduxStore.user.id}</p>
+          <p>Username: {this.props.reduxStore.user.username}</p>
+          <p>First Name: {this.props.reduxStore.user.first_name}</p>
+          <p>Last Name: {this.props.reduxStore.user.last_name}</p>
+          <p>Email: </p>
+          <br />
+          <button onClick={()=>this.props.history.push('/LocationApprove')}>Location Approval</button>
+          <br />
+          <br />
+          <button onClick={()=>this.props.history.push('/ModerateUser')}>Moderate Users</button>
+          <br />
+          <br />
+          <LogOutButton className="log-in" />
+        </div>
+      </Router>
+    )
+  }
+}
+const mapStateToProps = (reduxStore) => ({
+  reduxStore
 });
-
-// this allows us to use <App /> in index.js
-export default connect(mapStateToProps)(UserPage);
+export default withRouter(connect(mapStateToProps)(UserPage));
