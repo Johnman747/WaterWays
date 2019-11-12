@@ -4,7 +4,6 @@ import registrationSaga from './registrationSaga';
 import userSaga from './userSaga';
 // import SingleLocationSaga from './SingleLocationSaga';
 import locationsSaga from './locationsSaga';
-import allUserSaga from './allUserSaga';
 // import DeleteLocationSaga from './deleteLocationSaga';
 
 // rootSaga is the primary saga.
@@ -16,7 +15,6 @@ import allUserSaga from './allUserSaga';
 // and login triggers setting the user
 export default function* rootSaga() {
   yield all([
-    allUserSaga(),
     loginSaga(),
     registrationSaga(),
     userSaga(),
