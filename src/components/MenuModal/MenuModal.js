@@ -4,20 +4,8 @@ import {withRouter} from 'react-router-dom';
 
 class MenuModal extends Component {
     state = { 
-        isOpen: false,
-        Image:{
-            photo:'',
-            id:this.props.locationInfo,
-        }  
+        isOpen: false, 
     };
-    handlePhoto = (imageUrl) =>{
-        this.setState({
-          Image:{
-            ...this.state.Image,
-            photo: imageUrl
-          }
-        })
-      }
 
     handle_Modal = () =>{
         this.setState({
@@ -30,9 +18,7 @@ class MenuModal extends Component {
     handle_Review = () =>{
         this.history.push()
     }
-    handle_AddImage = () =>{
-        this.history.push()
-    }
+
   render() {
       const showContent = this.state.isOpen;
     return (
@@ -42,7 +28,7 @@ class MenuModal extends Component {
                 <div>
                     <button onClick={this.handle_Resolve_Report}>Resolve/Report a Problem</button>
                     <button onClick={this.handle_Review}>Leave a Review</button>
-                    <AddImage setPhoto={this.handlePhoto}/>
+                    <AddImage locationId={this.props.locationInfo}/>
                 </div>
                 :
                 (null)

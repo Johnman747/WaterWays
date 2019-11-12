@@ -19,8 +19,41 @@ router.get('/:id', (req, res) => {
         });
 
 });
+router.post('/', (req,res) =>{
+    let review = req.body;
+    let queryText = `
+    INSERT INTO "reviews"(user_id,location_id,comment,review_score_of_five)
+    VALUES($1,$2,$3,$4)`
+    let values = [
+            review.user_id,
+            review.locatation_id,
+            review.comment,
+            review.review_score_of_five
+    ]
+    pool.query(queryText,values)
+    .then((result) =>{
+        console.log(result);
+        res.sendStatus(201)
+    }).catch((error) =>{
+        console.log(error);
+    })
+})
 
-router.delete('/:id', (req,res) =>{
+router.get('/review/:id', (req,res) =>{
+    let queryText = `SELECT * FROM "reviews" WHERE "id"=$1;`;
+    pool.query(queryText, [req.params.id])
+    .then((result) =>{
+        console.log('server results XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX', result.rows);
+        res.send(result.rows);
+    }).catch((error)=>{
+        console.log(error);
+        res.sendStatus(500);
+    })
+});
+
+
+
+router.delete('/review/:id', (req,res) =>{
     let queryText = `DELETE FROM "reviews" WHERE "id"=$1;`;
     console.log(req.params.id);
     pool.query(queryText, [req.params.id])

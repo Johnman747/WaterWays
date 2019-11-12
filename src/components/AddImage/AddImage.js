@@ -1,23 +1,32 @@
 import React, { Component } from 'react'
+import UploadImage from '../AddLocation/UploadImage'
+import { connect } from 'react-redux';
 
 class AddImage extends Component{
-    
-    onchange = (event) =>{
-        let image = event.target.files;
-        let reader = new FileReader();
-    
-        reader.readAsDataURL(image[0]);
-        reader.onload = (event) =>{
-          const formData = {image: event.target.result}
-          this.props.setPhoto(formData);
-        }
-      }
+  state={
+      photo:'',
+      id:this.props.locationId,
+  }
+  handleImage = (imageUrl) => {
+    this.setState({
+        photo: imageUrl
+    })
+  }
+
+  handle_AddImage = () =>{
+    this.props.dispatch({ type: 'POST_IMAGE', payload: this.state })
+}
+
     render(){
         return(
             <div>
-            <input type="file" name="image" onChange={(event) => this.onchange(event)}/>
+            <UploadImage setImage={this.handleImage} />
+            <button onClick={this.handle_AddImage}>submit</button>
             </div>
         )
     }
 }
-export default AddImage;
+const mapStateToProps = (reduxStore) => ({
+  reduxStore
+});
+export default connect(mapStateToProps)(AddImage);
