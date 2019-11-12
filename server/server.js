@@ -12,8 +12,7 @@ const passport = require('./strategies/user.strategy');
 const userRouter = require('./routes/user.router');
 const locationRouter = require('./routes/locations.router');
 
-const reviewRouter = require('./routes/reviews.router');
-const photoRoute = require('./routes/Photos.router');
+const photoRouter = require('./routes/Photos.router');
 const reviewRouter = require('./routes/reviews.router');
 const reportsRouter = require('./routes/reports.router');
 

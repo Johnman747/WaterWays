@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {
   HashRouter as Router,
   Route,
@@ -6,9 +6,11 @@ import {
   Switch,
 } from 'react-router-dom';
 
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 // ---- Connect Pages to App.js ---- //
 import MapHome from '../MapHome/MapHome';
+import ModerateLocation from '../ModerateLocation/ModerateLocation';
+import ModerateSingleLocation from '../ModerateSingleLocation/ModerateSingleLocation';
 import ModerateUser from '../ModerateUser/ModerateUser';
 import Nav from '../Nav/Nav';
 import Footer from '../Footer/Footer';
@@ -26,15 +28,15 @@ import './App.css';
 
 
 class App extends Component {
-  componentDidMount () {
-    this.props.dispatch({type: 'FETCH_USER'})
+  componentDidMount() {
+    this.props.dispatch({ type: 'FETCH_USER' })
   }
 
   render() {
     return (
       <Router>
         <div>
-        <Nav />
+          <Nav />
           <Switch>
             {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
             <Redirect exact from="/" to="/home" />
@@ -45,7 +47,7 @@ class App extends Component {
               path="/about"
               component={AboutPage}
             />
-             <Route
+            <Route
               exact
               path="/addlocation"
               component={AddLocation}
@@ -74,13 +76,25 @@ class App extends Component {
             <ProtectedRoute
               exact
               path="/location/:id"
-              render={({match})=> <LocationPage match={match}/>}
-              />
+              render={({ match }) => <LocationPage match={match} />}
+            />
             {/* This is the main Map component. */}
             <ProtectedRoute
               exact
               path="/MapHome"
               component={MapHome}
+            />
+            {/* This is the main Moderate Locations component. */}
+            <ProtectedRoute
+              exact
+              path="/ModerateLocation"
+              component={ModerateLocation}
+            />
+            {/* This is the main Moderate Single Locations component. */}
+            <ProtectedRoute
+              exact
+              path="/ModerateSingleLocation/:id"
+              component={ModerateSingleLocation}
             />
             {/* This is the main Moderate Users component. */}
             <ProtectedRoute
@@ -94,7 +108,8 @@ class App extends Component {
           <Footer />
         </div>
       </Router>
-  )}
+    )
+  }
 }
 
 export default connect()(App);
