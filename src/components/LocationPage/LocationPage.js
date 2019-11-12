@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {withRouter} from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import "./LocationPage.css"
 import FreeIcon from '../Icons/FreeIcon.png';
 import PaidIcon from '../Icons/PaidIcon.png';
@@ -11,7 +11,7 @@ import Tent from '../Icons/TentIcon.png';
 import Well from '../Icons/ArtesianWellIcon.png';
 import Trail from '../Icons/TrailSource.png';
 import BackIcon from '../Icons/backArrowWhite.png'
-
+import MenuModal from '../MenuModal/MenuModal'
 class LocationPage extends Component {
     state = {
         report_id: 1
@@ -28,7 +28,7 @@ class LocationPage extends Component {
         this.props.dispatch({ type: 'FETCH_SINGLE_LOCATION', payload: this.props.match.params.id })
     }
 
-    BackButton = ( ) =>{
+    BackButton = () => {
         this.props.history.push('/MapHome')
     }
 
@@ -37,8 +37,8 @@ class LocationPage extends Component {
             <>
                 {this.props.reduxStore.SingleLocationReducer.map(location =>
                     <div key={location.id}>
-                        <img onClick={this.BackButton} className="backIcon" src={BackIcon} alt="Back Icon"/>
-                        <img alt="Location Photo"/>
+                        <img onClick={this.BackButton} className="backIcon" src={BackIcon} alt="Back Icon" />
+                        <img alt="Location Photo" />
                         <h1>{location.name}</h1>
                         <h3>{location.address}</h3>
                         <p>{location.description}</p>
@@ -52,42 +52,40 @@ class LocationPage extends Component {
                         :
                         <img className="icon" src={PaidIcon} alt="Paid Icon"/>
                         }
-                        {location.spigot?
-                        <img className="icon" src={Spigot} alt="Spigot Icon"/>
-                        :
-                        ""
+                        {location.spigot ?
+                            <img className="icon" src={Spigot} alt="Spigot Icon" />
+                            :
+                            ""
                         }
-                        {location.free_flowing?
-                        <img className="icon" src={FreeFlow} alt="Free Flow Icon"/>
-                        :
-                        ""
+                        {location.free_flowing ?
+                            <img className="icon" src={FreeFlow} alt="Free Flow Icon" />
+                            :
+                            ""
                         }
-                        {location.trail_access?
-                        <img className="icon" src={Trail} alt="Trail Access Icon"/>
-                        :
-                        ""
+                        {location.trail_access ?
+                            <img className="icon" src={Trail} alt="Trail Access Icon" />
+                            :
+                            ""
                         }
-                        {location.RV_Station?
-                        <img className="icon" src={RV} alt="RV Station Icon"/>
-                        :
-                        ""
+                        {location.RV_Station ?
+                            <img className="icon" src={RV} alt="RV Station Icon" />
+                            :
+                            ""
                         }
-                        {location.campground_access?
-                        <img className="icon" src={Tent} alt="Campground Access Icon"/>
-                        :
-                        ""
+                        {location.campground_access ?
+                            <img className="icon" src={Tent} alt="Campground Access Icon" />
+                            :
+                            ""
                         }
-                        {location.artesian_well?
-                        <img className="icon" src={Well} alt="Artesian Well Icon"/>
-                        :
-                        ""
+                        {location.artesian_well ?
+                            <img className="icon" src={Well} alt="Artesian Well Icon" />
+                            :
+                            ""
                         }
-                        <h3>Reports</h3>
-                        <p>{JSON.stringify(this.props.reduxStore.reportsReducer)}</p>
-                        <p>SINGLE</p>
-                        <p>{JSON.stringify(this.props.reduxStore.singleReport)}</p>
-                    </div>
 
+                        <MenuModal locationInfo={location.id} />
+
+                    </div>
                 )}
             </>
         )
