@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import UploadImage from './UploadImage';
 import Stepper from './Stepper';
+import TextField from '@material-ui/core/TextField';
+
 
 class AddLocation extends Component {
   state = {
@@ -72,11 +74,22 @@ class AddLocation extends Component {
         {this.state.step === 0 &&
           <>
             <h1>Add Locations</h1>
-            <label>Name</label><br />
-            <input onChange={(event) => this.handleChange(event, 'name')}></input>
-            <br />
-            <label>Description</label><br />
-            <input onChange={(event) => this.handleChange(event, 'description')}></input>
+            <TextField
+              id="filled-name"
+              label="Name"
+              value={this.state.name}
+              onChange={(event) => this.handleChange(event, 'name')}
+              margin="normal"
+              variant="filled"
+            /><br />
+            <TextField
+              id="filled-name"
+              label="Description"
+              value={this.state.name}
+              onChange={(event) => this.handleChange(event, 'description')}
+              margin="normal"
+              variant="filled"
+            /><br />
             <label>
               <UploadImage setImage={this.handleImage} />
             </label>
