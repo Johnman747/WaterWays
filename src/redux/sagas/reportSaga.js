@@ -31,13 +31,29 @@ function* fetchSingleReport(action) {
     } catch (error) {
       console.log('single location get request failed', error);
     }
-  }
+}
+
+function* deleteReport(action){
+    try{
+        const config = {
+            headers: { 'Content-Type': 'application/json' },
+            withCredentials: true,
+          };
+          //action payload MUST be the id of the REVIEW no location
+          const response = yield axios.delete(`/api/reports/report/${action.payload}`, config);
+          console.log(response);
+          this.fetchReports();
+    }catch(error){
+        console.log(error);
+    }
+}
 
 
 
 function* reviewSaga(){
     yield takeLatest('FETCH_REPORTS', fetchReports);
-    yield takeLatest('FETCH_SINGLE_REPORT', fetchSingleReport)
+    yield takeLatest('FETCH_SINGLE_REPORT', fetchSingleReport);
+    yield takeLatest('DELETE_REPORT', deleteReport);
 }
 
 export default reviewSaga;

@@ -17,6 +17,23 @@ function* fetchReviews(action){
     }
 }
 
+function* fetchSingleReview(action) {
+    try {
+      const config = {
+        headers: { 'Content-Type': 'application/json' },
+        withCredentials: true,
+      };
+      console.log(action.payload);
+      
+      const response = yield axios.get(`/api/reviews/review/${action.payload}`, config);
+      console.log('single review XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX',response.data);
+      yield put({ type: 'SET_SINGLE_REVIEW', payload: response.data });
+      
+    } catch (error) {
+      console.log('single location get request failed', error);
+    }
+  }
+
 function* deleteReview(action){
     try{
         const config = {
@@ -24,7 +41,7 @@ function* deleteReview(action){
             withCredentials: true,
           };
           //action payload MUST be the id of the REVIEW no location
-          const response = yield axios.delete(`/api/reviews/${action.payload}`, config);
+          const response = yield axios.delete(`/api/reviews/review/${action.payload}`, config);
           console.log(response);
           this.fetchReviews();
     }catch(error){
@@ -35,6 +52,7 @@ function* deleteReview(action){
 function* reviewSaga(){
     yield takeLatest('FETCH_REVIEWS', fetchReviews);
     yield takeLatest('DELETE_REVIEW', deleteReview);
+    yield takeLatest('FETCH_SINGLE_REVIEW', fetchSingleReview);
 }
 
 export default reviewSaga;

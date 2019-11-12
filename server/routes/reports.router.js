@@ -30,6 +30,18 @@ router.get('/report/:id', (req,res) =>{
         console.log(error);
         res.sendStatus(500);
     })
+});
+
+router.delete('/report/:id', (req,res) =>{
+    let queryText = `DELETE FROM "activity_log" WHERE "id"=$1;`;
+    console.log(req.params.id);
+    pool.query(queryText, [req.params.id])
+    .then(() =>{
+        res.sendStatus(200)
+    }).catch((error) =>{
+        console.log(error);
+        res.sendStatus(500);
+    })
 })
 
 // router.delete('/:id', (req,res) =>{
