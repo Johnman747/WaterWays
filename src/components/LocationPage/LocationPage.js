@@ -45,6 +45,8 @@ class LocationPage extends Component {
                         <h3>Details</h3>
                         <h3>Star Rating</h3>
 
+
+
                         <p>{JSON.stringify(this.props.reduxStore.reviewsReducer)}</p>
 
                         {location.free?

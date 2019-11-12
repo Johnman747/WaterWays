@@ -34,6 +34,8 @@ router.get('/',(req, res) => {
  */
 router.post('/',(req, res) => {
     const photo = req.body;
+    console.log(photo);
+    
     const values =[
                     req.user.id,
                     photo.id,
