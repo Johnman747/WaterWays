@@ -12,6 +12,7 @@ const passport = require('./strategies/user.strategy');
 const userRouter = require('./routes/user.router');
 const locationRouter = require('./routes/locations.router');
 const reviewRouter = require('./routes/reviews.router');
+const reportsRouter = require('./routes/reports.router');
 // Body parser middleware
 app.use(bodyParser.json({limit: '1 gb'}));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -27,6 +28,7 @@ app.use(passport.session());
 app.use('/api/user', userRouter);
 app.use('/api/locations', locationRouter);
 app.use('/api/reviews', reviewRouter);
+app.use('/api/reports', reportsRouter);
 
 // Serve static files
 app.use(express.static('build'));

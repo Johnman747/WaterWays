@@ -14,11 +14,14 @@ import BackIcon from '../Icons/backArrowWhite.png'
 
 class LocationPage extends Component {
     state = {
+        report_id: 1
     }
 
     componentDidMount() {
         this.getInfo();
         this.props.dispatch({type: 'FETCH_REVIEWS', payload: this.props.match.params.id});
+        this.props.dispatch({type: 'FETCH_REPORTS', payload: this.props.match.params.id});
+        this.props.dispatch({type: 'FETCH_SINGLE_REPORT', payload: this.state.report_id});
     }
 
     getInfo = () => {
@@ -41,7 +44,9 @@ class LocationPage extends Component {
                         <p>{location.description}</p>
                         <h3>Details</h3>
                         <h3>Star Rating</h3>
+
                         <p>{JSON.stringify(this.props.reduxStore.reviewsReducer)}</p>
+
                         {location.free?
                         <img className="icon" src={FreeIcon} alt="Free Icon"/>
                         :
@@ -77,6 +82,10 @@ class LocationPage extends Component {
                         :
                         ""
                         }
+                        <h3>Reports</h3>
+                        <p>{JSON.stringify(this.props.reduxStore.reportsReducer)}</p>
+                        <p>SINGLE</p>
+                        <p>{JSON.stringify(this.props.reduxStore.singleReport)}</p>
                     </div>
 
                 )}

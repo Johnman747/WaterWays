@@ -5,6 +5,8 @@ import user from './userReducer';
 import SingleLocationReducer from './SingleLocationReducer'
 import locationsReducer from './locationsReducer';
 import reviewsReducer from './reviewsReducer';
+import reportsReducer from './reportsReducer';
+import singleReport from './singleReportReducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -18,7 +20,9 @@ const rootReducer = combineReducers({
   user, // will have an id and username if someone is logged in
   SingleLocationReducer,//will have iformation pertaining to single location water source.
   locationsReducer, 
-  reviewsReducer// will have an id and username if someone is logged in
+  reviewsReducer,
+  reportsReducer,
+  singleReport// will have an id and username if someone is logged in
 });
 
 export default rootReducer;
