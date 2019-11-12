@@ -2,22 +2,21 @@ import { put, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
 
 
-function* fetchReviews(action){
+function* fetchReports(action){
     try{
         const config = {
             headers: { 'Content-Type': 'application/json' },
             withCredentials: true,
           };
 
-          const response = yield axios.get(`/api/reviews/${action.payload}`, config);
-          console.log('review saga XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX', response.data)
-          yield put({type:'SET_REVIEWS', payload: response.data})
+          const response = yield axios.get(`/api/reports/${action.payload}`, config);
+          console.log('report saga XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX', response.data)
+          yield put({type:'SET_REPORTS', payload: response.data})
     }catch(error){
         console.log(error);
     }
 }
-
-function* fetchSingleReview(action) {
+function* fetchSingleReport(action) {
     try {
       const config = {
         headers: { 'Content-Type': 'application/json' },
@@ -25,34 +24,36 @@ function* fetchSingleReview(action) {
       };
       console.log(action.payload);
       
-      const response = yield axios.get(`/api/reviews/review/${action.payload}`, config);
-      console.log('single review XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX',response.data);
-      yield put({ type: 'SET_SINGLE_REVIEW', payload: response.data });
-      
+      const response = yield axios.get(`/api/reports/report/${action.payload}`, config);
+  
+      yield put({ type: 'SET_SINGLE_REPORT', payload: response.data });
+      console.log(response.data);
     } catch (error) {
       console.log('single location get request failed', error);
     }
-  }
+}
 
-function* deleteReview(action){
+function* deleteReport(action){
     try{
         const config = {
             headers: { 'Content-Type': 'application/json' },
             withCredentials: true,
           };
           //action payload MUST be the id of the REVIEW no location
-          const response = yield axios.delete(`/api/reviews/review/${action.payload}`, config);
+          const response = yield axios.delete(`/api/reports/report/${action.payload}`, config);
           console.log(response);
-          this.fetchReviews();
+          this.fetchReports();
     }catch(error){
         console.log(error);
     }
 }
 
+
+
 function* reviewSaga(){
-    yield takeLatest('FETCH_REVIEWS', fetchReviews);
-    yield takeLatest('DELETE_REVIEW', deleteReview);
-    yield takeLatest('FETCH_SINGLE_REVIEW', fetchSingleReview);
+    yield takeLatest('FETCH_REPORTS', fetchReports);
+    yield takeLatest('FETCH_SINGLE_REPORT', fetchSingleReport);
+    yield takeLatest('DELETE_REPORT', deleteReport);
 }
 
 export default reviewSaga;

@@ -5,6 +5,8 @@ import userSaga from './userSaga';
 import reviewSaga from './reviewSaga'
 import locationsSaga from './locationsSaga';
 import AddImageSaga from './AddImageSaga';
+import reportSaga from './reportSaga';
+
 // import DeleteLocationSaga from './deleteLocationSaga';
 
 // rootSaga is the primary saga.
@@ -23,5 +25,6 @@ export default function* rootSaga() {
     locationsSaga(),
     AddImageSaga(),
     //DeleteLocationSaga(),
+    reportSaga(),
   ]);
 }
