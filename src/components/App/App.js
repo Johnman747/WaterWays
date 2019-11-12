@@ -19,10 +19,11 @@ import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
 import InfoPage from '../InfoPage/InfoPage';
 import LocationPage from '../LocationPage/LocationPage';
-
-import './App.css';
 import AddLocation from '../AddLocation/AddLocation';
 import AddReport from '../AddReport/AddReport';
+
+import './App.css';
+
 
 class App extends Component {
   componentDidMount () {
