@@ -22,7 +22,7 @@ class UserPage extends Component {
           <p>Last Name: {this.props.reduxStore.user.last_name}</p>
           <p>Email: </p>
           <br />
-          <button onClick={()=>this.props.history.push('/LocationApprove')}>Location Approval</button>
+          <button onClick={()=>this.props.history.push('/ModerateLocation')}>Location Approval</button>
           <br />
           <br />
           <button onClick={()=>this.props.history.push('/ModerateUser')}>Moderate Users</button>
