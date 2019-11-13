@@ -112,13 +112,14 @@ class LocationPage extends Component {
                         onChange={this.handleChange}
                         indicatorColor="primary"
                         textColor="primary"
-                        centered
+                        variant='fullWidth'
                         >
-                        <Tab label="Item One" />
-                        <Tab label="Item Two" />
-                        <Tab label="Item Three" />
+                        <Tab label="Activity Log" />
+                        <Tab label="Reviews" />
+                        <Tab label="Photos" />
                         </Tabs>
                     </Paper>
+                    {this.state.value === 0}
                     </div>
                 )}
             </>
