@@ -52,12 +52,11 @@ class MenuModal extends Component {
             isOpen: !prevState.isOpen,
         }));
     }
-
-    handle_Resolve_Report = () => {
-        this.history.push()
+    handle_Resolve_Report = () =>{
+        this.history.push('/reports')
     }
-    handle_Review = () => {
-        this.history.push()
+    handle_Review = () =>{
+        this.props.history.push(`/addreview/${this.props.locationInfo}`)
     }
 
     render() {

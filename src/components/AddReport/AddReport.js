@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import NativeSelect from '@material-ui/core/NativeSelect';
-import Input from '@material-ui/core/Input';
 
 class AddReport extends Component{
 
@@ -34,7 +33,7 @@ class AddReport extends Component{
     render(){
         return(
             <div className='reportBody'>
-                <form onSubmit={this.addNewReport}>
+                <form>
                     <h1>Report</h1>
                     <label>Select the reason for reporting</label><br/>
                     <NativeSelect
@@ -57,7 +56,7 @@ class AddReport extends Component{
                         margin="normal"
                         variant="filled"
                     /><br/>
-                    <Button variant="contained" color="primary">
+                    <Button onClick={this.addNewReport} variant="contained" color="primary">
                     Submit
                     </Button>
                 </form>

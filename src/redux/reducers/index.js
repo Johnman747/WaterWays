@@ -9,6 +9,7 @@ import reviewsReducer from './reviewsReducer';
 import reportsReducer from './reportsReducer';
 import singleReport from './singleReportReducer';
 import singleReview from './singleReviewReducer';
+import PhotosReducer from './PhotosReducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -26,7 +27,8 @@ const rootReducer = combineReducers({
   reviewsReducer,
   reportsReducer,
   singleReport,
-  singleReview// will have an id and username if someone is logged in
+  singleReview,// will have an id and username if someone is logged in
+  PhotosReducer
 });
 
 export default rootReducer;
