@@ -14,9 +14,9 @@ class ModerateUser extends Component {
         this.props.dispatch({ type: 'FETCH_ALL_USER' })
     } // end getAll Users
 
-    handleDelete = (id) => {
+    handleDelete = (user) => {
         console.log('Delete');
-        this.props.dispatch({ type: 'DELETE_USER', payload: id })
+        this.props.dispatch({ type: 'DELETE_USER', payload: user })
     }
 
     render() {
@@ -31,7 +31,9 @@ class ModerateUser extends Component {
                                 <th>User Id</th>
                                 <th>Username</th>
                                 <th>First Name</th>
-                                <th>Delete User</th>
+                                <th>Delete / Reactivate User</th>
+                                
+                                
                             </tr>
                         </thead>
                         <tbody>
@@ -41,7 +43,9 @@ class ModerateUser extends Component {
                                         <td>{user.id}</td>
                                         <td>{user.username}</td>
                                         <td>{user.first_name}</td>
-                                        <td><button onClick={() => this.handleDelete(user.id)}>Delete</button></td>
+                                        <td><button onClick={() => this.handleDelete(user)}>
+                                        {user.status === 'active' ? (<p>Delete</p>):(<p>Reactivate</p>)}
+                                        </button></td>
                                     </tr>
                                 )}
                         </tbody>
