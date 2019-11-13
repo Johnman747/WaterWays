@@ -23,7 +23,7 @@ router.get('/:id', (req, res) => {
         res.send(result.rows)
     })
         .catch(error => {
-            console.log('Error making SELECT for developmental questions:', error);
+            console.log('Error making SELECT for location:', error);
             res.sendStatus(500);
         });
 
