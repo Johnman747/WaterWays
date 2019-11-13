@@ -38,7 +38,7 @@ function* getAllUser() {
 // Delete users for the moderate user page. 
 function* deleteUser (action) {
   try {
-      yield axios.delete('/api/user/all/' + action.payload );
+      yield axios.put('/api/user/all/' + action.payload );
       yield console.log(action.payload);
       yield getAllUser();
   } catch (error) {
