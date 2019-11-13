@@ -6,6 +6,7 @@ import reviewSaga from './reviewSaga'
 import locationsSaga from './locationsSaga';
 import AddImageSaga from './AddImageSaga';
 import reportSaga from './reportSaga';
+import photoSaga from './PhotosSaga';
 
 // import DeleteLocationSaga from './deleteLocationSaga';
 
@@ -24,6 +25,7 @@ export default function* rootSaga() {
     reviewSaga(),
     locationsSaga(),
     AddImageSaga(),
+    photoSaga(),
     //DeleteLocationSaga(),
     reportSaga(),
   ]);

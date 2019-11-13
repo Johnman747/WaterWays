@@ -6,9 +6,9 @@ const rejectUnauthenticated = require('../modules/authentication-middleware')
 /**
  * GET route template
  */
-router.get('/',(req, res) => {
-    queryText = `SELECT * FROM "Photos";`;
-    pool.query(queryText).then((result)=>{
+router.get('/:id',(req, res) => {
+    queryText = `SELECT * FROM "Photos" WHERE "location_id" = $1;`;
+    pool.query(queryText, [req.params.id]).then((result)=>{
         // console.log(result.rows);
         res.send(result.rows);
     }).catch((error)=>{
