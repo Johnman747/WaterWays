@@ -16,7 +16,7 @@ class MenuModal extends Component {
         this.history.push()
     }
     handle_Review = () =>{
-        this.history.push()
+        this.props.history.push(`/addreview/${this.props.locationInfo}`)
     }
 
   render() {
