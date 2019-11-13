@@ -12,6 +12,8 @@ import Well from '../Icons/ArtesianWellIcon.png';
 import Trail from '../Icons/TrailSource.png';
 import BackIcon from '../Icons/backArrowWhite.png'
 import MenuModal from '../MenuModal/MenuModal'
+import StarRating from '../StarRating/StarRating'
+
 class LocationPage extends Component {
     state = {
         report_id: 1
@@ -44,11 +46,7 @@ class LocationPage extends Component {
                         <p>{location.description}</p>
                         <h3>Details</h3>
                         <h3>Star Rating</h3>
-
-
-
-                        <p>{JSON.stringify(this.props.reduxStore.reviewsReducer)}</p>
-
+                        <StarRating />
                         {location.free?
                         <img className="icon" src={FreeIcon} alt="Free Icon"/>
                         :
