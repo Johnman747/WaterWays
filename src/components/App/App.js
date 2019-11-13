@@ -23,6 +23,7 @@ import InfoPage from '../InfoPage/InfoPage';
 import LocationPage from '../LocationPage/LocationPage';
 import AddLocation from '../AddLocation/AddLocation';
 import AddReport from '../AddReport/AddReport';
+import ReviewsPage from '../ReviewsPage/ReviewsPage';
 
 import './App.css';
 
@@ -72,6 +73,11 @@ class App extends Component {
               exact
               path="/add"
               component={AddLocation}
+            />
+             <ProtectedRoute
+              exact
+              path="/review/:id"
+              render={({ match }) => <ReviewsPage match={match} />}
             />
             <ProtectedRoute
               exact
