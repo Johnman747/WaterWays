@@ -9,7 +9,7 @@ function* fetchLocations() {
     };
     const response = yield axios.get('/api/locations/', config);
     console.log(response.data)
-    yield put({type:'SET_LOCATIONS', payload: response.data});
+    yield put({ type: 'SET_LOCATIONS', payload: response.data });
     // the config includes credentials which
     // allow the server session to recognize the user
     // when the server recognizes the user session
@@ -27,7 +27,7 @@ function* fetchSingleLocation(action) {
       withCredentials: true,
     };
     console.log(action.payload);
-    
+
     const response = yield axios.get(`/api/locations/${action.payload}`, config);
 
     yield put({ type: 'GET_SINGLE_LOCATION', payload: response.data });
@@ -46,8 +46,20 @@ function* addLocation(action) {
     const response = yield axios.post('/api/locations', action.payload);
     console.log(response);
     this.fetchLocations();
-  } catch(error) {
+  } catch (error) {
     console.log('locations post request failed', error);
+  }
+}
+function* updateSingleLocation(action) {
+  try {
+    const config = {
+      headers: { 'Content-Type': 'application/json' },
+      withCredentials: true,
+    };
+    yield axios.put(`/api/locations/location/${action.payload.id}`, action.payload, config);
+    this.fetchLocations();
+  }catch(error){
+    console.log(error);
   }
 }
 function* deleteLocation(action) {
@@ -56,7 +68,7 @@ function* deleteLocation(action) {
       headers: { 'Content-Type': 'application/json' },
       withCredentials: true,
     };
-    console.log('in delete saga',action.payload);
+    console.log('in delete saga', action.payload);
     yield axios.delete(`/api/locations/location/${action.payload}`, config);
     this.fetchLocations();
     // yield put({ type: 'GET_ANSWER'});
@@ -71,6 +83,7 @@ function* locationsSaga() {
   yield takeLatest('POST_LOCATIONS', addLocation);
   yield takeLatest('DELETE_LOCATION', deleteLocation);
   yield takeLatest('FETCH_SINGLE_LOCATION', fetchSingleLocation);
+  yield takeLatest('UPDATE_LOCATION', updateSingleLocation);
 }
 
 export default locationsSaga;

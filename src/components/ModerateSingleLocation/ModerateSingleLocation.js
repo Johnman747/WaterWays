@@ -81,7 +81,7 @@ class ModerateSingleLocation extends Component {
     }
 
     handleSubmit = () => {
-        this.props.dispatch({ type: 'UPDATE_LOCATION', payload: this.state.location.id });
+        this.props.dispatch({ type: 'UPDATE_LOCATION', payload: this.state.location });
         this.props.history.push('/');
     }
 
