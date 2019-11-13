@@ -13,7 +13,7 @@ class MenuModal extends Component {
         })
     }
     handle_Resolve_Report = () =>{
-        this.history.push()
+        this.history.push('/reports')
     }
     handle_Review = () =>{
         this.props.history.push(`/addreview/${this.props.locationInfo}`)
