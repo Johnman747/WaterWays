@@ -10,8 +10,9 @@ import RV from '../Icons/RvIcon.png';
 import Tent from '../Icons/TentIcon.png';
 import Well from '../Icons/ArtesianWellIcon.png';
 import Trail from '../Icons/TrailSource.png';
-import BackIcon from '../Icons/backArrowWhite.png';
-import MenuModal from '../MenuModal/MenuModal';
+import BackIcon from '../Icons/backArrowWhite.png'
+import MenuModal from '../MenuModal/MenuModal'
+import StarRating from '../StarRating/StarRating'
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Tabs from '@material-ui/core/Tabs';
@@ -77,9 +78,8 @@ class LocationPage extends Component {
                         <h1>{location.name}</h1>
                         <h3>{location.address}</h3>
                         <p>{location.description}</p>
+                        <StarRating />
                         <h3>Details</h3>
-                        <h3>Star Rating</h3>
-
                         {location.free?
                         <img className="icon" src={FreeIcon} alt="Free Icon"/>
                         :
