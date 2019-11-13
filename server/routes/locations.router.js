@@ -45,6 +45,38 @@ router.get('/:id', (req, res) => {
 /**
  * POST route template
  */
+router.put('/location/:id', (req,res) =>{
+        const location = req.body;
+        const values =[
+                        location.name,
+                        location.address,
+                        location.latitude,
+                        location.longitude,
+                        location.created_by,
+                        location.free,
+                        location.spigot,
+                        location.trail_access,
+                        location.road_access,
+                        location.campground_access,
+                        location.free_flowing,
+                        location.artesian_well,
+                        location.photo.image,
+                        location.description
+                    ]
+        queryText = `UPDATE "locations" SET
+        "name"=$1,"address"=$2,"latitude"=$3,"longitude"=$4,"created_by"=$5,"free"=$6,
+            "spigot"=$7,"trail_access"=$8,"road_access"=$9,"campground_access"=$10,
+            "free_flowing"=$11,"artesian_well"=$12,"photo_primary"=$13,"description"=$14 WHERE "id"=$15`;
+        
+        pool.query(queryText,[values, req.params.id])
+            .then((result) => {
+            console.log(result)
+            }).catch((error) =>{
+                console.log(error);
+                res.sendStatus(500)
+            });
+
+});
 router.post('/', (req, res) => {
     const location = req.body;
     const values =[
