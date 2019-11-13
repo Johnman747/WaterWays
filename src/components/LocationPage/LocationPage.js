@@ -21,6 +21,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Typography from '@material-ui/core/Typography';
 import ReviewsPage from '../ReviewsPage/ReviewsPage';
 import PhotosTab from '../PhotosTab/PhotosTab';
+import ReportsPage from '../ReportsPage/ReportsPage';
 
 function TabContainer(props) {
     return (
@@ -142,7 +143,7 @@ class LocationPage extends Component {
                         
                         </Tabs>
                 </AppBar>
-                {value === 0 && <TabContainer>Activity Log</TabContainer>}
+                {value === 0 && <TabContainer><ReportsPage/></TabContainer>}
                 {value === 1 && <TabContainer><ReviewsPage/></TabContainer>}
                 {value === 2 && <TabContainer><PhotosTab /></TabContainer>}
                     

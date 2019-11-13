@@ -9,7 +9,7 @@ router.get('/:id', (req, res) => {
     console.log(req.params.id)
     pool.query(queryText, [req.params.id])
     .then((result) => {
-        console.log('server resultsXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX',result.rows)
+        console.log('server results all reports XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX',result.rows)
         
         res.send(result.rows)
     
