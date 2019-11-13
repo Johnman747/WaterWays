@@ -10,11 +10,25 @@ import RV from '../Icons/RvIcon.png';
 import Tent from '../Icons/TentIcon.png';
 import Well from '../Icons/ArtesianWellIcon.png';
 import Trail from '../Icons/TrailSource.png';
-import BackIcon from '../Icons/backArrowWhite.png'
-import MenuModal from '../MenuModal/MenuModal'
+import BackIcon from '../Icons/backArrowWhite.png';
+import MenuModal from '../MenuModal/MenuModal';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+
+const styles = {
+    root: {
+      flexGrow: 1,
+    },
+  };
+
+  
 class LocationPage extends Component {
     state = {
-        report_id: 1
+        report_id: 1,
+        value: 0
     }
 
     componentDidMount() {
@@ -32,7 +46,12 @@ class LocationPage extends Component {
         this.props.history.push('/MapHome')
     }
 
+    handleChange = (event, value) => {
+        this.setState({ value });
+      };
+
     render() {
+        const { classes } = this.props;
         return (
             <>
                 {this.props.reduxStore.SingleLocationReducer.map(location =>
@@ -87,6 +106,19 @@ class LocationPage extends Component {
 
                         <MenuModal locationInfo={location.id} />
 
+                    <Paper className={classes.root}>
+                        <Tabs
+                        value={this.state.value}
+                        onChange={this.handleChange}
+                        indicatorColor="primary"
+                        textColor="primary"
+                        centered
+                        >
+                        <Tab label="Item One" />
+                        <Tab label="Item Two" />
+                        <Tab label="Item Three" />
+                        </Tabs>
+                    </Paper>
                     </div>
                 )}
             </>
@@ -94,8 +126,12 @@ class LocationPage extends Component {
     }
 }
 
+LocationPage.propTypes = {
+    classes: PropTypes.object.isRequired,
+  };
+
 const mapStateToProps = reduxStore => ({
     reduxStore
 });
 
-export default withRouter(connect(mapStateToProps)(LocationPage));
+export default withStyles(styles)(withRouter(connect(mapStateToProps)(LocationPage)));
