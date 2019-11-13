@@ -19,13 +19,8 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import AppBar from '@material-ui/core/AppBar';
 import Typography from '@material-ui/core/Typography';
-<<<<<<< HEAD
-
-import ReviewsPage from '../ReviewsPage/ReviewsPage';
-=======
 import ReviewsPage from '../ReviewsPage/ReviewsPage';
 import PhotosTab from '../PhotosTab/PhotosTab';
->>>>>>> d3aa67ff5c937ac82bcfdca7938735ecfec14c13
 import ReportsPage from '../ReportsPage/ReportsPage';
 
 function TabContainer(props) {
@@ -150,11 +145,7 @@ class LocationPage extends Component {
                 </AppBar>
                 {value === 0 && <TabContainer><ReportsPage/></TabContainer>}
                 {value === 1 && <TabContainer><ReviewsPage/></TabContainer>}
-<<<<<<< HEAD
-                {value === 2 && <TabContainer>Photos</TabContainer>}
-=======
                 {value === 2 && <TabContainer><PhotosTab /></TabContainer>}
->>>>>>> d3aa67ff5c937ac82bcfdca7938735ecfec14c13
                     
                 </div>  
                    
