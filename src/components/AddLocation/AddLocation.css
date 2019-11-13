@@ -1,3 +1,15 @@
-.mapAddComponet{
-    
+.AddLocation{
+    height: 100%;
+}
+
+.StepDots{
+    display: inline-block;
+    margin-left: 35%;
+}
+
+.Stepper{
+    display: inline-block;
+    position: fixed;
+    bottom: 15%;
+    left: 30%;
 }
