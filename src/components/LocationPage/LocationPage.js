@@ -10,26 +10,44 @@ import RV from '../Icons/RvIcon.png';
 import Tent from '../Icons/TentIcon.png';
 import Well from '../Icons/ArtesianWellIcon.png';
 import Trail from '../Icons/TrailSource.png';
-import BackIcon from '../Icons/backArrowWhite.png';
-import MenuModal from '../MenuModal/MenuModal';
+import BackIcon from '../Icons/backArrowWhite.png'
+import MenuModal from '../MenuModal/MenuModal'
+import StarRating from '../StarRating/StarRating'
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
+import AppBar from '@material-ui/core/AppBar';
+import Typography from '@material-ui/core/Typography';
+
+import ReviewsPage from '../ReviewsPage/ReviewsPage';
+import ReportsPage from '../ReportsPage/ReportsPage';
+
+function TabContainer(props) {
+    return (
+      <Typography component="div" style={{ padding: 8 * 3 }}>
+        {props.children}
+      </Typography>
+    );
+  }
+  
+  TabContainer.propTypes = {
+    children: PropTypes.node.isRequired,
+  };
 
 const styles = {
     root: {
       flexGrow: 1,
     },
   };
-
+  
   
 class LocationPage extends Component {
     state = {
         report_id: 1,
         value: 0
     }
+    
 
     componentDidMount() {
         this.getInfo();
@@ -51,7 +69,7 @@ class LocationPage extends Component {
       };
 
     render() {
-        const { classes } = this.props;
+        const { value } = this.state;
         return (
             <>
                 {this.props.reduxStore.SingleLocationReducer.map(location =>
@@ -61,13 +79,8 @@ class LocationPage extends Component {
                         <h1>{location.name}</h1>
                         <h3>{location.address}</h3>
                         <p>{location.description}</p>
+                        <StarRating />
                         <h3>Details</h3>
-                        <h3>Star Rating</h3>
-
-
-
-                        <p>{JSON.stringify(this.props.reduxStore.reviewsReducer)}</p>
-
                         {location.free?
                         <img className="icon" src={FreeIcon} alt="Free Icon"/>
                         :
@@ -106,7 +119,12 @@ class LocationPage extends Component {
 
                         <MenuModal locationInfo={location.id} />
 
-                    <Paper className={classes.root}>
+                    
+                    
+                    </div>
+                )}
+                <div>
+                <AppBar position="static" color="default">
                         <Tabs
                         value={this.state.value}
                         onChange={this.handleChange}
@@ -114,14 +132,20 @@ class LocationPage extends Component {
                         textColor="primary"
                         variant='fullWidth'
                         >
-                        <Tab label="Activity Log" />
-                        <Tab label="Reviews" />
-                        <Tab label="Photos" />
+                            <Tab label="Activity Log" />                                
+                            <Tab label="Reviews" />                                                           
+                            <Tab label="Photos" />
+                        
                         </Tabs>
-                    </Paper>
-                    {this.state.value === 0}
-                    </div>
-                )}
+                </AppBar>
+                {value === 0 && <TabContainer><ReportsPage/></TabContainer>}
+                {value === 1 && <TabContainer><ReviewsPage/></TabContainer>}
+                {value === 2 && <TabContainer>Photos</TabContainer>}
+                    
+                </div>  
+                   
+                
+
             </>
         )
     }

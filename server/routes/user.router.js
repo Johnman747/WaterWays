@@ -23,13 +23,23 @@ router.get('/all', rejectUnauthenticated, (req, res) => {
 // ---- DELETE USER ---- //
 // Delete Users fromt the database by setting user status from active to deleted
 router.put('/all/:id', rejectUnauthenticated, (req, res) => {
-  let queryText = `UPDATE "user" SET "status" = 'deleted' WHERE "id"=$1;`;
-  pool.query(queryText, [req.params.id])
+  let user = req.body;
+  let status;
+  if(user.status == 'deleted'){
+    status = 'active';
+  }
+  if(user.status == 'active'){
+    status = 'deleted'
+  }
+  console.log('status',status);
+  console.log(user);
+  let queryText = `UPDATE "user" SET "status" = $1 WHERE "id"=$2;`;
+  pool.query(queryText, [status, req.params.id])
   .then( (result) => {
-    console.log('Delete Success', result);
+    //console.log('Delete Success', result);
     res.sendStatus(200);
   }).catch( error => {
-    console.log('Error in DELTE user request', error);
+    console.log('Error in DELETE user request', error);
     res.sendStatus(500);
   })
 })
