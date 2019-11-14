@@ -20,6 +20,25 @@ function* fetchLocations() {
   }
 }
 
+function* fetchSearchLocations() {
+  try {
+    const config = {
+      headers: { 'Content-Type': 'application/json' },
+      withCredentials: true,
+    };
+    const response = yield axios.get('/api/locations/search', config);
+    console.log(response.data)
+    yield put({ type: 'SET_LOCATIONS', payload: response.data });
+    // the config includes credentials which
+    // allow the server session to recognize the user
+    // when the server recognizes the user session
+    // it will end the session
+
+  } catch (error) {
+    console.log('Error with Get locations:', error);
+  }
+}
+
 function* fetchSingleLocation(action) {
   try {
     const config = {
@@ -81,6 +100,7 @@ function* deleteLocation(action) {
 
 function* locationsSaga() {
   yield takeLatest('FETCH_LOCATIONS', fetchLocations);
+  yield takeLatest('FETCH_SEARCH_LOCATIONS', fetchSearchLocations);
   yield takeLatest('POST_LOCATIONS', addLocation);
   yield takeLatest('DELETE_LOCATION', deleteLocation);
   yield takeLatest('FETCH_SINGLE_LOCATION', fetchSingleLocation);
