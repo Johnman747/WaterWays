@@ -24,6 +24,7 @@ import AddLocation from '../AddLocation/AddLocation';
 import AddReport from '../AddReport/AddReport';
 import AddReviewPage from '../AddReview/AddReview';
 import ReviewsPage from '../ReviewsPage/ReviewsPage';
+import SearchBar from '../SearchBar/SearchBar';
 
 import './App.css';
 
@@ -112,6 +113,11 @@ class App extends Component {
               exact
               path="/ModerateUser"
               component={ModerateUser}
+            />
+            <ProtectedRoute
+              exact
+              path="/Search"
+              component={SearchBar}
             />
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />
