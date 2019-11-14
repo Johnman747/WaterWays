@@ -47,9 +47,6 @@ class LoginPage extends Component {
         <br></br>
         <br></br>
         <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
         <form className='loginForm' onSubmit={this.login}>
           <div>
               <TextField
