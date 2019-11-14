@@ -19,8 +19,9 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import AppBar from '@material-ui/core/AppBar';
 import Typography from '@material-ui/core/Typography';
-
 import ReviewsPage from '../ReviewsPage/ReviewsPage';
+import PhotosTab from '../PhotosTab/PhotosTab';
+import ReportsPage from '../ReportsPage/ReportsPage';
 
 function TabContainer(props) {
     return (
@@ -50,13 +51,18 @@ class LocationPage extends Component {
 
     componentDidMount() {
         this.getInfo();
+        this.getPhotos();
         this.props.dispatch({type: 'FETCH_REVIEWS', payload: this.props.match.params.id});
         this.props.dispatch({type: 'FETCH_REPORTS', payload: this.props.match.params.id});
         this.props.dispatch({type: 'FETCH_SINGLE_REPORT', payload: this.state.report_id});
+        this.props.dispatch({type: 'FETCH_PHOTOS', payload: this.props.match.params.id});
     }
 
     getInfo = () => {
         this.props.dispatch({ type: 'FETCH_SINGLE_LOCATION', payload: this.props.match.params.id })
+    }
+    getPhotos = () => {
+        this.props.dispatch({ type: 'FETCH_SINGLE_PHOTO', payload: this.props.match.params.id })
     }
 
     BackButton = () => {
@@ -137,9 +143,9 @@ class LocationPage extends Component {
                         
                         </Tabs>
                 </AppBar>
-                {value === 0 && <TabContainer>Activity Log</TabContainer>}
+                {value === 0 && <TabContainer><ReportsPage/></TabContainer>}
                 {value === 1 && <TabContainer><ReviewsPage/></TabContainer>}
-                {value === 2 && <TabContainer>Photos</TabContainer>}
+                {value === 2 && <TabContainer><PhotosTab /></TabContainer>}
                     
                 </div>  
                    
