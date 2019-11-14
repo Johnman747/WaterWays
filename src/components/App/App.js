@@ -25,8 +25,10 @@ import AddReport from '../AddReport/AddReport';
 import AddReviewPage from '../AddReview/AddReview';
 import ReviewsPage from '../ReviewsPage/ReviewsPage';
 import SearchBar from '../SearchBar/SearchBar';
+import SearchFilter from '../SearchFilter/SearchFilter';
 
 import './App.css';
+import { LastLocationProvider } from 'react-router-last-location';
 
 
 class App extends Component {
@@ -37,6 +39,7 @@ class App extends Component {
   render() {
     return (
       <Router>
+        <LastLocationProvider>
         <div>
           <Nav />
           <Switch>
@@ -119,11 +122,17 @@ class App extends Component {
               path="/Search"
               component={SearchBar}
             />
+            <ProtectedRoute
+              exact
+              path="/SearchFilter"
+              component={SearchFilter}
+            />
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />
           </Switch>
           <Footer />
         </div>
+        </LastLocationProvider>
       </Router>
     )
   }

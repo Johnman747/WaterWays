@@ -13,20 +13,19 @@ class MapHome extends Component {
     state = { userLocation: { latitude: 32, longitude: 32 }, loading: true };
 
     componentDidMount(props) {
-      navigator.geolocation.getCurrentPosition(
-        position => {
-          const { latitude, longitude } = position.coords;
-  
-          this.setState({
-            userLocation: { latitude: latitude, longitude: longitude },
-            loading: false
-          });
-        },
-        () => {
-          this.setState({ loading: false });
-        }
-      );
-
+        navigator.geolocation.getCurrentPosition(
+            position => {
+              const { latitude, longitude } = position.coords;
+      
+              this.setState({
+                userLocation: { latitude: latitude, longitude: longitude },
+                loading: false
+              });
+            },
+            () => {
+              this.setState({ loading: false });
+            }
+          );
       this.getLocations();
     }
     // Calls locations to be passed down to MapMarkers component

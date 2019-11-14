@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {  HashRouter as Router, withRouter} from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import CurrentLocation from '../Icons/CurrantLocationIcon.png'
+import "./UserMapMarker.css";
 
 import {
     Marker, InfoWindow
@@ -29,12 +31,12 @@ class MapMarkers extends Component {
        return (
            <Router>
            <div className="mapMarkers">
-               <Marker
+               <Marker 
                     position={{
                         lat: this.props.initialCenter.latitude,
                         lng: this.props.initialCenter.longitude
                     }}   
-                    icon={{fillColor: '#0000FF'}}
+                    icon={{CurrentLocation}}
                     />  
            </div>
            </Router>
