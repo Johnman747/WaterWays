@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
 
 class RegisterPage extends Component {
   state = {
@@ -46,54 +48,45 @@ class RegisterPage extends Component {
             {this.props.errors.registrationMessage}
           </h2>
         )}
-        <form onSubmit={this.registerUser}>
-          <h1>Register User</h1>
+        <form className='registerForm' onSubmit={this.registerUser}>
           <div>
-          <label htmlFor="first name">
-              First Name:
-              <input
+              <TextField
+                label="First Name"
                 type="text"
-                name="first name"
+                margin="normal"
+                variant="outlined"
                 value={this.state.first}
                 onChange={this.handleInputChangeFor('first')}
-              />
-            </label>
-            <label htmlFor="last name">
-              Last Name:
-              <input
+              /><br/>
+              <TextField
+                label="Last Name"
                 type="text"
-                name="last name"
+                margin="normal"
+                variant="outlined"
                 value={this.state.last}
                 onChange={this.handleInputChangeFor('last')}
-              />
-            </label>
-            <label htmlFor="username">
-              Username:
-              <input
+              /><br/>
+              <TextField
+                label="User Name"
                 type="text"
-                name="username"
+                margin="normal"
+                variant="outlined"
                 value={this.state.username}
                 onChange={this.handleInputChangeFor('username')}
-              />
-            </label>
-            <label htmlFor="password">
-              Password:
-              <input
+              /><br/>
+              <TextField
+                label="password"
                 type="password"
-                name="password"
+                margin="normal"
+                variant="outlined"
                 value={this.state.password}
                 onChange={this.handleInputChangeFor('password')}
-              />
-            </label>
-          </div>
-          <div>
-            <input
-              className="register"
-              type="submit"
-              name="submit"
-              value="Register"
-            />
-          </div>
+              /><br/>
+          </div><br/>
+          <br></br>
+          <Button size='large' variant="contained" color="primary" onClick={this.registerUser}>
+              Register
+          </Button>
         </form>
         <br></br>
         

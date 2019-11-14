@@ -13,3 +13,11 @@
     bottom: 15%;
     left: 30%;
 }
+
+.AddLocationIcon{
+    height: 30px;
+}
+
+.Active{
+    background-color: #3BA8FA;
+}
