@@ -25,37 +25,38 @@ import ReportsPage from '../ReportsPage/ReportsPage';
 
 function TabContainer(props) {
     return (
-      <Typography component="div" style={{ padding: 8 * 3 }}>
-        {props.children}
-      </Typography>
+        <Typography component="div" style={{ padding: 8 * 3 }}>
+            {props.children}
+        </Typography>
     );
-  }
-  
-  TabContainer.propTypes = {
+}
+
+TabContainer.propTypes = {
     children: PropTypes.node.isRequired,
-  };
+};
 
 const styles = {
     root: {
-      flexGrow: 1,
+        flexGrow: 1,
     },
-  };
-  
-  
+};
+
+
 class LocationPage extends Component {
     state = {
         report_id: 1,
-        value: 0
+        value: 0,
+        modal: false
     }
-    
+
 
     componentDidMount() {
         this.getInfo();
         this.getPhotos();
-        this.props.dispatch({type: 'FETCH_REVIEWS', payload: this.props.match.params.id});
-        this.props.dispatch({type: 'FETCH_REPORTS', payload: this.props.match.params.id});
-        this.props.dispatch({type: 'FETCH_SINGLE_REPORT', payload: this.state.report_id});
-        this.props.dispatch({type: 'FETCH_PHOTOS', payload: this.props.match.params.id});
+        this.props.dispatch({ type: 'FETCH_REVIEWS', payload: this.props.match.params.id });
+        this.props.dispatch({ type: 'FETCH_REPORTS', payload: this.props.match.params.id });
+        this.props.dispatch({ type: 'FETCH_SINGLE_REPORT', payload: this.state.report_id });
+        this.props.dispatch({ type: 'FETCH_PHOTOS', payload: this.props.match.params.id });
     }
 
     getInfo = () => {
@@ -71,12 +72,17 @@ class LocationPage extends Component {
 
     handleChange = (event, value) => {
         this.setState({ value });
-      };
+    };
+    modalChange = () => {
+        this.setState({
+            modal: !this.state.modal
+        })
+    }
 
     render() {
         const { value } = this.state;
         return (
-            <>
+            <div className={this.state.modal===true && "ModalBackground"}>
                 {this.props.reduxStore.SingleLocationReducer.map(location =>
                     <div key={location.id}>
                         <img onClick={this.BackButton} className="backIcon" src={BackIcon} alt="Back Icon" />
@@ -86,10 +92,10 @@ class LocationPage extends Component {
                         <p>{location.description}</p>
                         <StarRating />
                         <h3>Details</h3>
-                        {location.free?
-                        <img className="icon" src={FreeIcon} alt="Free Icon"/>
-                        :
-                        <img className="icon" src={PaidIcon} alt="Paid Icon"/>
+                        {location.free ?
+                            <img className="icon" src={FreeIcon} alt="Free Icon" />
+                            :
+                            <img className="icon" src={PaidIcon} alt="Paid Icon" />
                         }
                         {location.spigot ?
                             <img className="icon" src={Spigot} alt="Spigot Icon" />
@@ -122,43 +128,40 @@ class LocationPage extends Component {
                             ""
                         }
 
-                        <MenuModal locationInfo={location.id} />
+                        <MenuModal locationInfo={location.id} modalChange={this.modalChange} />
 
-                    
-                    
+
+
                     </div>
                 )}
                 <div>
-                <AppBar position="static" color="default">
+                    <AppBar position="static" color="default">
                         <Tabs
-                        value={this.state.value}
-                        onChange={this.handleChange}
-                        indicatorColor="primary"
-                        textColor="primary"
-                        variant='fullWidth'
+                            value={this.state.value}
+                            onChange={this.handleChange}
+                            indicatorColor="primary"
+                            textColor="primary"
+                            variant='fullWidth'
                         >
-                            <Tab label="Activity Log" />                                
-                            <Tab label="Reviews" />                                                           
+                            <Tab label="Activity Log" />
+                            <Tab label="Reviews" />
                             <Tab label="Photos" />
-                        
-                        </Tabs>
-                </AppBar>
-                {value === 0 && <TabContainer><ReportsPage/></TabContainer>}
-                {value === 1 && <TabContainer><ReviewsPage/></TabContainer>}
-                {value === 2 && <TabContainer><PhotosTab /></TabContainer>}
-                    
-                </div>  
-                   
-                
 
-            </>
+                        </Tabs>
+                    </AppBar>
+                    {value === 0 && <TabContainer><ReportsPage /></TabContainer>}
+                    {value === 1 && <TabContainer><ReviewsPage /></TabContainer>}
+                    {value === 2 && <TabContainer><PhotosTab /></TabContainer>}
+
+                </div>
+            </div>
         )
     }
 }
 
 LocationPage.propTypes = {
     classes: PropTypes.object.isRequired,
-  };
+};
 
 const mapStateToProps = reduxStore => ({
     reduxStore

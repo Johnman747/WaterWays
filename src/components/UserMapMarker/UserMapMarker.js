@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {  HashRouter as Router, withRouter} from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import CurrentLocation from '../Icons/CurrantLocationIcon.png'
+import CurrentLocation from '../Icons/CurrantLocationIconSmall.png'
 import "./UserMapMarker.css";
 
 import {
@@ -36,7 +36,7 @@ class MapMarkers extends Component {
                         lat: this.props.initialCenter.latitude,
                         lng: this.props.initialCenter.longitude
                     }}   
-                    icon={{CurrentLocation}}
+                    icon={CurrentLocation}
                     />  
            </div>
            </Router>
