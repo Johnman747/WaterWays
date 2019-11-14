@@ -3,13 +3,14 @@ import { connect } from 'react-redux';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import NativeSelect from '@material-ui/core/NativeSelect';
+import {withRouter} from 'react-router-dom';
 
 class AddReport extends Component{
 
     state = {
         reportToAdd: {
             created_by: this.props.reduxStore.user.id,
-            location: this.props.reduxStore.locationsReducer.id,
+            location: this.props.match.params.id,
             issue_comment: '',
             issue_type: '',
         }
@@ -27,7 +28,8 @@ class AddReport extends Component{
     addNewReport = event => {
         event.preventDefault();
         console.log('booyah')
-        this.props.dispatch({ type: 'POST_REPORT', payload: this.state.reportToAdd})
+        this.props.dispatch({ type: 'POST_REPORT', payload: this.state.reportToAdd});
+        this.props.history.push(`/location/${this.props.match.params.id}`)
     } // end addNewReport
 
     render(){
@@ -67,4 +69,4 @@ class AddReport extends Component{
 const mapStateToProps = reduxStore => ({
     reduxStore
   });
-  export default connect(mapStateToProps)(AddReport);
+  export default withRouter(connect(mapStateToProps)(AddReport));

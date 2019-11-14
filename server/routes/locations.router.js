@@ -16,6 +16,17 @@ router.get('/', (req, res) => {
     })
 });
 
+// Get Location for Search Bar ////////////////////
+router.get('/search', (req, res) => {
+    queryText = `SELECT * FROM "locations" WHERE "approve" = TRUE ORDER BY "name" ASC;`;
+    pool.query(queryText).then((result)=>{
+        // console.log(result.rows);
+        res.send(result.rows);
+    }).catch((error)=>{
+        console.log(error);
+    })
+});
+
 router.get('/:id', (req, res) => {
     let queryText = `SELECT * FROM "locations" WHERE id=$1;`;
     pool.query(queryText, [req.params.id])
