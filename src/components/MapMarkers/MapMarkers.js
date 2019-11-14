@@ -30,7 +30,7 @@ class MapMarkers extends Component {
        return (
            <Router>
            <div className="mapMarkers">
-               <Marker key={this.props.location.id}
+               <Marker
                     position={{
                         lat: Number(this.props.location.latitude),
                         lng: Number(this.props.location.longitude)

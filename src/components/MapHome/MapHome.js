@@ -2,27 +2,41 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { HashRouter as Router, withRouter } from 'react-router-dom';
 import MapMarkers from '../MapMarkers/MapMarkers';
+import UserMapMarker from '../UserMapMarker/UserMapMarker'
 
 import {
     GoogleMap,
     LoadScript,
 } from '@react-google-maps/api';
-import AddPage from '../AddLocation/AddLocation';
 
 class MapHome extends Component {
-    
-    // Mounts getLocation on pageload.
-    componentDidMount() {
-        this.getLocations();
-    } // end componentDidMount
+    state = { userLocation: { latitude: 32, longitude: 32 }, loading: true };
 
+    componentDidMount(props) {
+      navigator.geolocation.getCurrentPosition(
+        position => {
+          const { latitude, longitude } = position.coords;
+  
+          this.setState({
+            userLocation: { latitude: latitude, longitude: longitude },
+            loading: false
+          });
+        },
+        () => {
+          this.setState({ loading: false });
+        }
+      );
+
+      this.getLocations();
+    }
     // Calls locations to be passed down to MapMarkers component
     getLocations = () => {
         this.props.dispatch({ type: 'FETCH_LOCATIONS' })
     } // end getLocations
-
+  
     render() {
-    return(
+      const {userLocation } = this.state;  
+        return(
         <Router>
             <div className="mapHomeComponent">
                 <LoadScript
@@ -37,23 +51,22 @@ class MapHome extends Component {
                         }}
                         zoom={10}
                         center={{
-                            lat: 44.9746234,
-                            lng: -93.2685388,
+                            lat: this.state.userLocation.latitude,
+                            lng: this.state.userLocation.longitude,
                         }}
                     >
-                        {this.props.reduxStore.locationsReducer.map((location) => {
-                            return (
+                    >
+                        {this.props.reduxStore.locationsReducer.map(location =>
                                 <MapMarkers location={location} />
-                            )
-                        })}
+                        )}
+                  <UserMapMarker initialCenter={userLocation}/>
                     </GoogleMap>
-                </LoadScript>
+                 </LoadScript> 
             </div>
         </Router>
     )
-    }
- }
-
+  }
+}
 const mapStateToProps = (reduxStore) => ({
     reduxStore
 });
