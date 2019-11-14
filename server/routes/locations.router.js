@@ -63,7 +63,7 @@ router.put('/location/:id', (req,res) =>{
                         location.photo_primary,
                         location.description,
                         location.RV,
-                        location.approve
+                        location.approve,
                     ]
         queryText = `UPDATE "locations" SET
         "name"=$1,"address"=$2,"latitude"=$3,"longitude"=$4,"created_by"=$5,"free"=$6,
@@ -97,13 +97,16 @@ router.post('/', (req, res) => {
                     location.photo.image,
                     location.description,
                     location.RV,
-                    location.approve
+                    location.approve,
+                    location.trail_water_source,
+                    location.dirt_road_access,
+                    location.dirt_trail_access,
                 ]
     queryText = `INSERT INTO "locations"
     (name,address,latitude,longitude,created_by,free,
         spigot,trail_access,road_access,campground_access,
-        free_flowing,artesian_well,photo_primary,description,RV,approve)
-    VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16)`;
+        free_flowing,artesian_well,photo_primary,description,RV,approve,trail_water_source,dirt_road_access,dirt_trail_access)
+    VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19)`;
     
     pool.query(queryText,values)
         .then((result) => {
