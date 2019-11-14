@@ -47,13 +47,12 @@ class MenuModal extends Component {
     };
 
     handle_Modal = () => {
-        console.log('Clicked Modal');
         this.setState(prevState => ({
             isOpen: !prevState.isOpen,
         }));
     }
     handle_Resolve_Report = () =>{
-        this.history.push('/reports')
+        this.props.history.push(`/addreport/${this.props.locationInfo}`)
     }
     handle_Review = () =>{
         this.props.history.push(`/addreview/${this.props.locationInfo}`)
@@ -71,7 +70,7 @@ class MenuModal extends Component {
                 >
                     <div style={getModalStyle()} className={classes.paper}>
                         {
-                            showContent === true ?
+                            showContent === true &&
                                 <div className="modalWindow">
                                     <Fab onClick={this.handle_Resolve_Report} color="primary" aria-label="Report"><ReportProblemIcon/></Fab>
                                     <br />
@@ -83,8 +82,6 @@ class MenuModal extends Component {
                                     <br />
                                     <Fab onClick={this.handle_Modal} color="primary" aria-label="Cancel" className={classes.fab}><ClearSharpIcon/></Fab>
                                 </div>
-                                :
-                                (null)
                         }
                     </div>
                 </Modal>
