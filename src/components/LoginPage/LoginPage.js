@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+
+
 
 class LoginPage extends Component {
   state = {
@@ -40,37 +44,46 @@ class LoginPage extends Component {
             {this.props.errors.loginMessage}
           </h2>
         )}
-        <form onSubmit={this.login}>
-          <h1>Login</h1>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <form className='loginForm' onSubmit={this.login}>
           <div>
-            <label htmlFor="username">
-              Username:
-              <input
+              <TextField
+                id="filled-username-input"
+                label="User Name"
                 type="text"
                 name="username"
+                margin="normal"
+                variant="outlined"
                 value={this.state.username}
                 onChange={this.handleInputChangeFor('username')}
               />
-            </label>
-          </div>
+          </div><br/>
           <div>
-            <label htmlFor="password">
-              Password:
-              <input
+              <TextField
+                id="filled-username-input"
+                label="Password"
                 type="password"
                 name="password"
+                margin="normal"
+                variant="outlined"
                 value={this.state.password}
                 onChange={this.handleInputChangeFor('password')}
-              />
-            </label>
+              /> 
           </div>
-          <div>
-            <input
-              className="log-in"
-              type="submit"
-              name="submit"
-              value="Log In"
-            />
+          <div><br/>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+
+            <Button size='large' variant="contained" color="primary" onClick={this.login}>
+              Login
+            </Button>
           </div>
         </form>
         <center>
