@@ -9,6 +9,7 @@ import {
   Marker,
 } from '@react-google-maps/api';
 import './AddLocation.css'
+import Addtags from './Addtags';
 
 class AddLocation extends Component {
   state = {
@@ -28,18 +29,30 @@ class AddLocation extends Component {
       RV: false,
       photo: '',
       description: '',
+      trail_water_source: false,
+      dirt_road_access: false,
+      dirt_trail_access: false,
+
     },
     step: 0
   }
 
-  handleChange = (event, propertyName) => {
+  handleChange = (boolean, propertyName) => {
     this.setState({
       locationToAdd: {
         ...this.state.locationToAdd,
-        [propertyName]: event.target.value,
+        [propertyName]: !boolean,
       }
     });
-    console.log(this.state.locationToAdd.free)
+  } // end handleChange
+
+  handleChangeInput = (e, propertyName) => {
+    this.setState({
+      locationToAdd: {
+        ...this.state.locationToAdd,
+        [propertyName]: e.target.value,
+      }
+    });
   } // end handleChange
 
   handleImage = (imageUrl) => {
@@ -93,7 +106,7 @@ class AddLocation extends Component {
               id="filled-name"
               label="Name"
               value={this.state.name}
-              onChange={(event) => this.handleChange(event, 'name')}
+              onChange={(event) => this.handleChangeInput(event, 'name')}
               margin="normal"
               variant="filled"
             /><br />
@@ -101,7 +114,7 @@ class AddLocation extends Component {
               id="filled-name"
               label="Description"
               value={this.state.name}
-              onChange={(event) => this.handleChange(event, 'description')}
+              onChange={(event) => this.handleChangeInput(event, 'description')}
               margin="normal"
               variant="filled"
             /><br />
@@ -111,49 +124,7 @@ class AddLocation extends Component {
           </>
         }
         {this.state.step === 1 &&
-          <>
-            <h1>Add Tags</h1>
-            <label>Free To Fill?</label><br />
-            <select defaultValue='false' onChange={(event) => this.handleChange(event, 'free')}>
-              <option value='true'>Yes</option>
-              <option value='false' selected='selected'>No</option>
-            </select><br />
-            <label>Spigot Available?</label><br />
-            <select defaultValue='false' onChange={(event) => this.handleChange(event, 'spigot')}>
-              <option value='true'>Yes</option>
-              <option value='false' selected='selected'>No</option>
-            </select><br />
-            <label>Trail Access?</label><br />
-            <select defaultValue='false' onChange={(event) => this.handleChange(event, 'trail_access')}>
-              <option value='true'>Yes</option>
-              <option value='false' selected='selected'>No</option>
-            </select><br />
-            <label>Road Access</label><br />
-            <select defaultValue='false' onChange={(event) => this.handleChange(event, 'road_access')}>
-              <option value='true'>Yes</option>
-              <option value='false' selected='selected'>No</option>
-            </select><br />
-            <label>Campground Access</label><br />
-            <select defaultValue='false' onChange={(event) => this.handleChange(event, 'campground_access')}>
-              <option value='true'>Yes</option>
-              <option value='false' selected='selected'>No</option>
-            </select><br />
-            <label>Free FLowing</label><br />
-            <select defaultValue='false' onChange={(event) => this.handleChange(event, 'free_flowing')}>
-              <option value='true'>Yes</option>
-              <option value='false' selected='selected'>No</option>
-            </select><br />
-            <label>Artesian</label><br />
-            <select defaultValue='false' onChange={(event) => this.handleChange(event, 'artesian_well')}>
-              <option value='true'>Yes</option>
-              <option value='false' selected='selected'>No</option>
-            </select><br />
-            <label>RV Access</label><br />
-            <select defaultValue='false' onChange={(event) => this.handleChange(event, 'RV')}>
-              <option value='true'>Yes</option>
-              <option value='false' selected='selected'>No</option>
-            </select>
-          </>
+          <Addtags locationToAdd={this.state.locationToAdd} handleChange={this.handleChange}/>
         }
         {this.state.step === 2 &&
           <>
