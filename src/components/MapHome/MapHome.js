@@ -7,7 +7,7 @@ import {
     GoogleMap,
     LoadScript,
 } from '@react-google-maps/api';
-import AddPage from '../AddLocation/AddLocation';
+
 
 class MapHome extends Component {
     
