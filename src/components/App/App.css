@@ -17,6 +17,14 @@ body {
     padding: 25px;
     border-radius: 2px;
 }
+.registerForm {
+    text-align: center;
+    width: 70%;
+    height: 70%;
+    margin: 20px auto;
+    padding: 25px;
+    border-radius: 2px;
+}
 
 input {
     margin: 5px;

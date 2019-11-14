@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
         marginBottom: theme.spacing(1),
     },
     Dots:{
-        backgroundColor: '#80B8E4',
+        backgroundColor: 'white',
     }
 }));
 
