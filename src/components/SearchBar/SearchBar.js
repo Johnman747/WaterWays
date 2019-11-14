@@ -46,6 +46,8 @@ class SearchBar extends Component {
             }
         );
 
+        
+
         return (
             <>
                 <input placeholder="Search Bar" onClick={this.setLocations} onChange={(e)=>this.searchBar(e)} />
