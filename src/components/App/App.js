@@ -28,6 +28,7 @@ import SearchBar from '../SearchBar/SearchBar';
 import SearchFilter from '../SearchFilter/SearchFilter';
 
 import './App.css';
+import { LastLocationProvider } from 'react-router-last-location';
 
 
 class App extends Component {
@@ -38,6 +39,7 @@ class App extends Component {
   render() {
     return (
       <Router>
+        <LastLocationProvider>
         <div>
           <Nav />
           <Switch>
@@ -130,6 +132,7 @@ class App extends Component {
           </Switch>
           <Footer />
         </div>
+        </LastLocationProvider>
       </Router>
     )
   }
