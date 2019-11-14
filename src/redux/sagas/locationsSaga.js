@@ -57,6 +57,7 @@ function* updateSingleLocation(action) {
       withCredentials: true,
     };
     yield axios.put(`/api/locations/location/${action.payload.id}`, action.payload, config);
+    this.fetchSingleLocation();
     this.fetchLocations();
   }catch(error){
     console.log(error);

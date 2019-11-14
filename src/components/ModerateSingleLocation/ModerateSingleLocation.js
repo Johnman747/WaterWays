@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { HashRouter as Router, withRouter } from 'react-router-dom';
+import AddImage from '../AddImage/AddImage'
 
 class ModerateSingleLocation extends Component {
 
@@ -19,7 +20,7 @@ class ModerateSingleLocation extends Component {
             campground_access: '',
             free_flowing: '',
             artesian_well: '',
-            image: '',
+            photo_primary: '',
             description: ''
         }
     }
@@ -34,6 +35,7 @@ class ModerateSingleLocation extends Component {
 
         if (this.props.reduxStore.SingleLocationReducer !== prevProps.reduxStore.SingleLocationReducer) {
             // let array = [];
+            console.log(this.props.reduxStore.SingleLocationReducer.photo_primary)
             this.props.reduxStore.SingleLocationReducer.map(location => {
                 this.setState({
                     location: {
@@ -50,8 +52,10 @@ class ModerateSingleLocation extends Component {
                         campground_access: location.campground_access,
                         free_flowing: location.free_flowing,
                         artesian_well: location.artesian_well,
-                        image: location.photo_primary,
-                        description: location.description
+                        photo_primary: location.photo_primary,
+                        description: location.description,
+                        RV: location.RV,
+                        approve: location.approve
                     }
                 });
             })
@@ -137,15 +141,23 @@ class ModerateSingleLocation extends Component {
                                 <button onClick={()=>this.handleToggle("artesian_well",true)}>True</button>:<button onClick={()=>this.handleToggle("artesian_well",false)}>False</button>
                             }
                              <p>image</p>
-                            {this.state.location.image?
+                            {/* {this.state.location.image?
                                 <button onClick={()=>this.handleToggle("image",true)}>True</button>:<button onClick={()=>this.handleToggle("image",false)}>False</button>
-                            }
+                            } */}<AddImage />
                              <p>description</p>
                             {this.state.location.description?
                                 <button onClick={()=>this.handleToggle("description",true)}>True</button>:<button onClick={()=>this.handleToggle("description",false)}>False</button>
                             }
+                             <p>RV</p>
+                            {this.state.location.RV ?
+                                <button onClick={()=>this.handleToggle("RV",true)}>True</button>:<button onClick={()=>this.handleToggle("RV",false)}>False</button>
+                            }
+                             <p>Approve</p>
+                            {this.state.location.approve ?
+                                <button onClick={()=>this.handleToggle("approve",true)}>True</button>:<button onClick={()=>this.handleToggle("approve",false)}>False</button>
+                            }
                             <br/>
-                    <button>Submit</button>
+                    <button onClick={this.handleSubmit}>Submit</button>
                     <button>Delete</button>
 
                 </div>
