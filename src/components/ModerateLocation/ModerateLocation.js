@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { HashRouter as Router, withRouter } from 'react-router-dom';
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 
 class ModerateLocation extends Component {
 
@@ -18,11 +19,14 @@ class ModerateLocation extends Component {
         console.log('Click Location #', id);
         this.props.history.push(`/ModerateSingleLocation/${id}`)
     }
-
+    handleBack = () =>{
+        this.props.history.push('/user')
+    }
     render() {
         return (
             <Router>
                 <div className="moderateLocation">
+                    <ArrowBackIosIcon onClick={this.handleBack}/>
                     <h1>Moderate Locations:</h1>
                     <p>Moderate locations based on community guidlines.</p>
                     <table className="locationTable">
