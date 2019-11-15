@@ -12,6 +12,7 @@ import ClearSharpIcon from '@material-ui/icons/ClearSharp';
 import RateReviewIcon from '@material-ui/icons/RateReview';
 import ReportProblemIcon from '@material-ui/icons/ReportProblem';
 import AddIcon from '@material-ui/icons/Add';
+import './MenuModal.css'
 
 // function rand() {
 //     return Math.round(Math.random() * 20) - 10;
@@ -30,13 +31,14 @@ function getModalStyle() {
 
 const styles = theme => ({
     paper: {
+        // background:'linear-gradient(45deg, #9898FA 30%, #98FAFA 90%)',
         position: 'absolute',
-        width: theme.spacing.unit * 10,
-        // backgroundColor: theme.palette.background.paper,
+        width: theme.spacing.unit * 12,
+        height: theme.spacing.unit * 52,
         boxShadow: theme.shadows[5],
         padding: theme.spacing.unit * 20,
         paddingLeft: theme.spacing.unit *20,
-        outline: 'none',   
+        outline: 'none',
     },
 });
 
@@ -47,13 +49,13 @@ class MenuModal extends Component {
     };
 
     handle_Modal = () => {
-        console.log('Clicked Modal');
         this.setState(prevState => ({
             isOpen: !prevState.isOpen,
         }));
+        this.props.modalChange()
     }
     handle_Resolve_Report = () =>{
-        this.history.push('/reports')
+        this.props.history.push(`/addreport/${this.props.locationInfo}`)
     }
     handle_Review = () =>{
         this.props.history.push(`/addreview/${this.props.locationInfo}`)
@@ -71,20 +73,21 @@ class MenuModal extends Component {
                 >
                     <div style={getModalStyle()} className={classes.paper}>
                         {
-                            showContent === true ?
+                            showContent === true &&
                                 <div className="modalWindow">
+                                    <h4>Report/</h4><h4>Resolve</h4>
                                     <Fab onClick={this.handle_Resolve_Report} color="primary" aria-label="Report"><ReportProblemIcon/></Fab>
                                     <br />
                                     <br />
+                                    <h4>Review</h4>
                                     <Fab onClick={this.handle_Review} color="primary" aria-label="Review"><RateReviewIcon/></Fab>
                                     <br />
                                     <br />
+                                    <h4>Image</h4>
                                     <AddImage locationId={this.props.locationInfo} />
                                     <br />
                                     <Fab onClick={this.handle_Modal} color="primary" aria-label="Cancel" className={classes.fab}><ClearSharpIcon/></Fab>
                                 </div>
-                                :
-                                (null)
                         }
                     </div>
                 </Modal>

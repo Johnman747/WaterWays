@@ -11,13 +11,10 @@ import {
 class MapHome extends Component {
     state = { userLocation: { latitude: 0, longitude: 0 }, loading: true };
 
-    componentDidMount(props) {
+    componentDidMount() {
       this.getLocations();
       this.getGeoLocation();
     }
-    // componentWillUpdate(){
-    //     this.getGeoLocation()
-    //   }
 
     //function get current location
     getGeoLocation = () => {

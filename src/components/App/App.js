@@ -59,8 +59,8 @@ class App extends Component {
             />
             <Route
               exact
-              path="/addreport"
-              component={AddReport}
+              path="/addreport/:id"
+              component={({match})=><AddReport match={match} />}
             />
             <Route
               exact

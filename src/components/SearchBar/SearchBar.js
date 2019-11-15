@@ -13,7 +13,7 @@ class SearchBar extends Component {
     }
 
     getLocations = () =>{
-        this.props.dispatch({ type: 'FETCH_LOCATIONS' });
+        this.props.dispatch({ type: 'FETCH_SEARCH_LOCATIONS' });
     }
 
     setLocations = ()=>{
@@ -39,6 +39,7 @@ class SearchBar extends Component {
     }
 
     render() {
+        
         let filteredLocation = this.state.locations.filter(
             (location) => {
                 return location.name.toLowerCase().indexOf(
