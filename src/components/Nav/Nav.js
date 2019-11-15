@@ -9,7 +9,7 @@ import './Nav.css';
 const Nav = (props) => (
   <div className="nav">
     <div className="nav-right">
-      <Link className="nav-link" to="/MapHome">
+      <Link className="nav-link" to="/home">
         {/* Show this link if they are logged in or not,
         but call this link 'Home' if they are logged in,
         and call this link 'Login / Register' if they are not */}
@@ -21,7 +21,7 @@ const Nav = (props) => (
             <img className="navbarIcon2" src={Addicon} alt="add water source"/>
           </Link>
       {/* Always show this link since the about page is not protected */}
-      <Link className="nav-link" to="/home">
+      <Link className="nav-link" to="/user">
         <img className="navbarIcon3" src={PersonIcon} alt="account"/>
       </Link>
     </div>

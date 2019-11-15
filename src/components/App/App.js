@@ -74,7 +74,7 @@ class App extends Component {
             <ProtectedRoute
               exact
               path="/home"
-              component={UserPage}
+              component={MapHome}
             />
             {/* This works the same as the other protected route, except that if the user is logged in,
             they will see the info page instead. */}
@@ -96,8 +96,8 @@ class App extends Component {
             {/* This is the main Map component. */}
             <ProtectedRoute
               exact
-              path="/MapHome"
-              component={MapHome}
+              path="/user"
+              component={UserPage}
             />
             {/* This is the main Moderate Locations component. */}
             <ProtectedRoute

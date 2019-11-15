@@ -21,7 +21,9 @@ class ModerateSingleLocation extends Component {
             free_flowing: '',
             artesian_well: '',
             photo_primary: '',
-            description: ''
+            description: '',
+            RV: '',
+            approve: ''
         }
     }
 
@@ -106,7 +108,7 @@ class ModerateSingleLocation extends Component {
                             <br/>
                             <input value={this.state.location.address} onChange={(event) => this.handleChange(event, 'address')} />
                             <br/>
-                            <input value={this.state.location.created_by} onChange={(event) => this.handleChange(event, 'created_by')} />
+                            {/* <input value={this.state.location.created_by} onChange={(event) => this.handleChange(event, 'created_by')} /> */}
                             <br/>
                             <input value={this.state.location.latitude} onChange={(event) => this.handleChange(event, 'latitude')} />
                             <br/>
