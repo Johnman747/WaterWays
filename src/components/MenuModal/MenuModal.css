@@ -1,12 +1,12 @@
 .ModalBackground{
-    height: 100%;
-    width: 100%;
+    /* height: 100%;
+    width: 100%; */
     filter: blur(5px);
     -webkit-filter: blur(5px);
 }
 
 .modalWindow {
-    float: right;
     position: fixed;
     left: 78%;
+    color: #3BA8FA;
 }

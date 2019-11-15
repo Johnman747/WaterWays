@@ -3,40 +3,65 @@ import { connect } from 'react-redux';
 import { HashRouter as Router, withRouter } from 'react-router-dom';
 import MapMarkers from '../MapMarkers/MapMarkers';
 import UserMapMarker from '../UserMapMarker/UserMapMarker'
-
 import {
     GoogleMap,
     LoadScript,
 } from '@react-google-maps/api';
 
 class MapHome extends Component {
-    state = { userLocation: { latitude: 32, longitude: 32 }, loading: true };
+    state = { userLocation: { latitude: 0, longitude: 0, accuracy:0}, loading: true };
 
-    componentDidMount(props) {
-        navigator.geolocation.getCurrentPosition(
-            position => {
-              const { latitude, longitude } = position.coords;
+    // componentDidMount(props) {
+    //     navigator.geolocation.getCurrentPosition(
+    //         position => {
+    //           const { latitude, longitude } = position.coords;
       
-              this.setState({
-                userLocation: { latitude: latitude, longitude: longitude },
-                loading: false
-              });
-            },
-            () => {
-              this.setState({ loading: false });              
-            }
-          );
+    //           this.setState({
+    //             userLocation: { latitude: latitude, longitude: longitude },
+    //             loading: false
+    //           });
+    //         },
+    //         () => {
+    //           this.setState({ loading: false });              
+    //         }
+    //       );
+    //   this.getLocations();
+    //   console.log('###################',this.state.userLocation, this.state.loading);
+      
+    componentDidMount() {
       this.getLocations();
-      console.log('###################',this.state.userLocation, this.state.loading);
-      
+      this.getGeoLocation();
+    }
+
+    //function get current location
+    getGeoLocation = () => {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                position => {
+                    console.log(position.coords);
+                    this.setState(prevState => ({
+                        userLocation: {
+                            ...prevState.userLocation,
+                            latitude: position.coords.latitude,
+                            longitude: position.coords.longitude,
+                            accuracy: position.coords.accuracy
+                        }
+                    }))
+                }
+            )
+        } else {
+            console.log('error')
+        }
     }
     // Calls locations to be passed down to MapMarkers component
     getLocations = () => {
         this.props.dispatch({ type: 'FETCH_LOCATIONS' })
+        console.log(this.state);
+        
     } // end getLocations
   
     render() {
-      const {userLocation } = this.state;  
+        const {userLocation } = this.state;  
         return(
         <Router>
             <div className="mapHomeComponent">
@@ -52,9 +77,10 @@ class MapHome extends Component {
                         }}
                         zoom={10}
                         center={{
-                            lat: this.state.userLocation.latitude,
-                            lng: this.state.userLocation.longitude,
+                            lat: userLocation.latitude,
+                            lng: userLocation.longitude,
                         }}
+                        options={{"disableDefaultUI": "true"}}
                     >
                     >
                         {this.props.reduxStore.locationsReducer.map(location =>
