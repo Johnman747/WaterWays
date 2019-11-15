@@ -2,56 +2,50 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { HashRouter as Router, withRouter } from 'react-router-dom';
 import MapMarkers from '../MapMarkers/MapMarkers';
-import {createBrowserHistory} from 'history';
-
+import UserMapMarker from '../UserMapMarker/UserMapMarker'
 import {
     GoogleMap,
     LoadScript,
 } from '@react-google-maps/api';
 
-
 class MapHome extends Component {
-    state = {
-        lastUrl: null,
-        locations: []
-    }
-    // Mounts getLocation on pageload.
-    componentDidMount() {
-        // this.lastURL();
-        this.getLocations();
-    } // end componentDidMount
+    state = { userLocation: { latitude: 0, longitude: 0 }, loading: true };
 
+    componentDidMount(props) {
+      this.getLocations();
+      this.getGeoLocation();
+    }
+    // componentWillUpdate(){
+    //     this.getGeoLocation()
+    //   }
+
+    //function get current location
+    getGeoLocation = () => {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                position => {
+                    console.log(position.coords);
+                    this.setState(prevState => ({
+                        userLocation: {
+                            ...prevState.userLocation,
+                            latitude: position.coords.latitude,
+                            longitude: position.coords.longitude
+                        }
+                    }))
+                }
+            )
+        } else {
+            console.log('error')
+        }
+    }
     // Calls locations to be passed down to MapMarkers component
     getLocations = () => {
-        console.log('HISTORY XXXXXX ', this.props.history.location.pathname)
-        this.props.dispatch({ type: 'FETCH_LOCATIONS' });
-        this.setLocations();
+        this.props.dispatch({ type: 'FETCH_LOCATIONS' })
     } // end getLocations
-    setLocations = ()=>{
-        let array = []
-    // console.log(this.state.lastUrl)
-    if(this.state.lastUrl !== '/searchFilter'){
-        this.props.reduxStore.locationsReducer.map(location =>
-                array.push(location) 
-            )
-    }else{
-        this.props.reduxStore.filteredLocationsReducer.map(location =>
-            array.push(location) 
-        )
-    }
-        this.setState({
-            ...this.state,
-            locations: array
-        })     
-    }
-    // lastURL = () => {
-        
-    //     // this.setState({
-    //     //     lastUrl: this.props.history
-    //     // })
-    // }//tracks last url visited within the app
+  
     render() {
-    return(
+        const {userLocation } = this.state;  
+        return(
         <Router>
             <div className="mapHomeComponent">
                 <LoadScript
@@ -66,24 +60,22 @@ class MapHome extends Component {
                         }}
                         zoom={10}
                         center={{
-                            lat: 44.9746234,
-                            lng: -93.2685388,
+                            lat: userLocation.latitude,
+                            lng: userLocation.longitude,
                         }}
-                    >  
-                        {this.state.locations.map((location) => {
-                            return (
+                    >
+                    >
+                        {this.props.reduxStore.locationsReducer.map(location =>
                                 <MapMarkers location={location} />
-                            )
-                        })}
-
+                        )}
+                  <UserMapMarker initialCenter={userLocation}/>
                     </GoogleMap>
-                </LoadScript>
+                 </LoadScript> 
             </div>
         </Router>
     )
-    }
- }
-
+  }
+}
 const mapStateToProps = (reduxStore) => ({
     reduxStore
 });
