@@ -22,6 +22,7 @@ class SearchFilter extends Component {
     }
     
     componentDidMount(){
+        this.props.dispatch({type:'ADD_TO_HISTORY', payload: this.props.history.location.pathname});
         this.props.dispatch({type:'FETCH_LOCATIONS'});
         console.log(this.props.history.location.pathname);
         // this.props.dispatch({type: 'ADD_TO_HISTORY', payload: this.props.history.location.pathname});
@@ -64,7 +65,7 @@ class SearchFilter extends Component {
     
     setFilters = () =>{
         console.log(this.state.locations)
-        this.props.dispatch({type: 'SET_LOCATIONS', payload: this.state.locations})
+        this.props.dispatch({type: 'SET_FILTERED_LOCATIONS', payload: this.state.locations})
         // this.props.history.push('/');
     }
     

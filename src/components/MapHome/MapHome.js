@@ -3,15 +3,22 @@ import { connect } from 'react-redux';
 import { HashRouter as Router, withRouter } from 'react-router-dom';
 import MapMarkers from '../MapMarkers/MapMarkers';
 import UserMapMarker from '../UserMapMarker/UserMapMarker'
+// import {withLastLocation} from 'react-router-last-location';
 import {
     GoogleMap,
     LoadScript,
 } from '@react-google-maps/api';
 
 class MapHome extends Component {
-    state = { userLocation: { latitude: 0, longitude: 0 }, loading: true };
+    state = { 
+        userLocation: { latitude: 0, longitude: 0 },
+         loading: true
+        };
 
     componentDidMount() {
+    //    this.props.dispatch({type:'ADD_TO_HISTORY', payload: this.props.history.location.pathname})
+        let lastURL = this.props.reduxStore.historyReducer.pop();
+        if(lastURL !== '/searchFilter')
       this.getLocations();
       this.getGeoLocation();
     }

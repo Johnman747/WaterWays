@@ -7,7 +7,8 @@ import LogOutButton from '../LogOutButton/LogOutButton';
 class UserPage extends Component {
 
   componentDidMount() {
-    this.props.dispatch({ type: 'FETCH_USER' })
+    this.props.dispatch({type:'ADD_TO_HISTORY', payload: this.props.history.location.pathname})
+    this.props.dispatch({ type: 'FETCH_USER' });
   }
 
   render() {

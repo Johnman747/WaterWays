@@ -7,6 +7,10 @@ class AddImage extends Component{
       photo:'',
       id:this.props.locationId,
   }
+  componentDidMount(){
+    this.props.dispatch({type:'ADD_TO_HISTORY', payload: this.props.history.location.pathname})
+
+  }
   handleImage = (imageUrl) => {
     this.setState({
         photo: imageUrl

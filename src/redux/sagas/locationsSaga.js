@@ -97,6 +97,14 @@ function* deleteLocation(action) {
   }
 }
 
+function* setFilters(action) {
+  try{
+    yield put({type: 'SET_LOCATIONS', payload: action.payload});
+  }catch(error){
+    console.log(error)
+  }
+}
+
 
 function* locationsSaga() {
   yield takeLatest('FETCH_LOCATIONS', fetchLocations);
@@ -105,6 +113,7 @@ function* locationsSaga() {
   yield takeLatest('DELETE_LOCATION', deleteLocation);
   yield takeLatest('FETCH_SINGLE_LOCATION', fetchSingleLocation);
   yield takeLatest('UPDATE_LOCATION', updateSingleLocation);
+  yield takeLatest('SET_FILTERED_LOCATIONS', setFilters);
 }
 
 export default locationsSaga;
