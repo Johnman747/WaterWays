@@ -64,7 +64,7 @@ class SearchFilter extends Component {
     
     setFilters = () =>{
         console.log(this.state.locations)
-        this.props.dispatch({type: 'SET_FILTERED_LOCATIONS', payload: this.state.locations})
+        this.props.dispatch({type: 'SET_LOCATIONS', payload: this.state.locations})
         // this.props.history.push('/');
     }
     
