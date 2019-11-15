@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from "react-router-dom";
 
 class SearchFilter extends Component {
-
+    
     state = {
         locationFilters:
         {
@@ -17,54 +17,74 @@ class SearchFilter extends Component {
             rv: null
         },
         locations:[]
+
+
     }
     
     componentDidMount(){
         this.props.dispatch({type:'FETCH_LOCATIONS'});
+        console.log(this.props.history.location.pathname);
+        // this.props.dispatch({type: 'ADD_TO_HISTORY', payload: this.props.history.location.pathname});
     }
 
-    setLocations = ()=>{
+     setLocations = () =>{
         let array = []
         this.props.reduxStore.locationsReducer.map(location =>
-            array.push(location) 
+            {if(location.free === true && this.state.locationFilters.free === true){
+                array.push(location) 
+            }
+             else if(location.spigot === true && this.state.locationFilters.spigot === true){
+                array.push(location) 
+            }
+             else if(location.trail_access === true && this.state.locationFilters.trail_access === true){
+                array.push(location) 
+            }
+             else if(location.road_access === true && this.state.locationFilters.road_access === true){
+                array.push(location)
+            }
+             else if(location.campground_access === true && this.state.locationFilters.campground_access === true){
+                array.push(location) 
+            }
+             else if(location.free_flowing === true && this.state.locationFilters.free_flowing === true){
+                array.push(location) 
+            }
+             else if(location.artesian_well === true && this.state.locationFilters.artesian_well === true){
+                array.push(location) 
+            }
+             else if(location.rv === true && this.state.locationFilters.rv === true){
+                array.push(location) 
+            }}
         )
-        this.setState({
-            ...this.state,
+         this.setState({
+            ...this.state.locations,
             locations: array
         })
-        this.showMe();        
+        this.setFilters();       
     }
-
-    // componentDidUpdate(preProps){
-    //     if(this.props.reduxStore.locationsReducer !== preProps.reduxStore.locationsReducer){
-
-    //     this.props.reduxStore.locationsReducer.forEach(location => {
-    //         this.setState({
-    //             locations: [...this.state.locations, location]
-    //         });
-    //     })
-    //     console.log('Component did update hook');
-    //     this.showMe();
-    //     }
-    // }
+    
+    setFilters = () =>{
+        console.log(this.state.locations)
+        this.props.dispatch({type: 'SET_FILTERED_LOCATIONS', payload: this.state.locations})
+        // this.props.history.push('/');
+    }
+    
 
     handleToggle = (propertyName, boolean) => {
         this.setState({
             locationFilters: {
-                // ...this.state.location,
+                ...this.state.locationFilters,
                 [propertyName]: !boolean
             }
         })
         this.showMe();
     }
     showMe() {
-        // console.log('redux store reducer', this.props.reduxStore.locationsReducer)
-        console.log('local state', this.state);
+        console.log('local state filters', this.state.locationFilters);
+        console.log('local state locations', this.state.locations);
+
     }
 
-    handleApply = () => {
-        console.log('Submit!');
-    }
+    
 
     handleClear = () => {
         console.log('Clear');
@@ -117,4 +137,4 @@ const mapStateToProps = reduxStore => ({
     reduxStore
 });
 
-export default connect(mapStateToProps)(SearchFilter);
+export default withRouter(connect(mapStateToProps)(SearchFilter));

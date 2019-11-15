@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { HashRouter as Router, withRouter } from 'react-router-dom';
 import MapMarkers from '../MapMarkers/MapMarkers';
+import {createBrowserHistory} from 'history';
 
 import {
     GoogleMap,
@@ -10,17 +11,45 @@ import {
 
 
 class MapHome extends Component {
-    
+    state = {
+        lastUrl: null,
+        locations: []
+    }
     // Mounts getLocation on pageload.
     componentDidMount() {
+        // this.lastURL();
         this.getLocations();
     } // end componentDidMount
 
     // Calls locations to be passed down to MapMarkers component
     getLocations = () => {
-        this.props.dispatch({ type: 'FETCH_LOCATIONS' })
+        console.log('HISTORY XXXXXX ', this.props.history.location.pathname)
+        this.props.dispatch({ type: 'FETCH_LOCATIONS' });
+        this.setLocations();
     } // end getLocations
-
+    setLocations = ()=>{
+        let array = []
+    // console.log(this.state.lastUrl)
+    if(this.state.lastUrl !== '/searchFilter'){
+        this.props.reduxStore.locationsReducer.map(location =>
+                array.push(location) 
+            )
+    }else{
+        this.props.reduxStore.filteredLocationsReducer.map(location =>
+            array.push(location) 
+        )
+    }
+        this.setState({
+            ...this.state,
+            locations: array
+        })     
+    }
+    // lastURL = () => {
+        
+    //     // this.setState({
+    //     //     lastUrl: this.props.history
+    //     // })
+    // }//tracks last url visited within the app
     render() {
     return(
         <Router>
@@ -40,12 +69,13 @@ class MapHome extends Component {
                             lat: 44.9746234,
                             lng: -93.2685388,
                         }}
-                    >
-                        {this.props.reduxStore.locationsReducer.map((location) => {
+                    >  
+                        {this.state.locations.map((location) => {
                             return (
                                 <MapMarkers location={location} />
                             )
                         })}
+
                     </GoogleMap>
                 </LoadScript>
             </div>
