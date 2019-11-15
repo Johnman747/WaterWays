@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import UploadImage from './UploadImage';
 import Stepper from './Stepper';
 import TextField from '@material-ui/core/TextField/TextField';
+
 import {
   GoogleMap,
   LoadScript,
@@ -101,23 +102,37 @@ class AddLocation extends Component {
       <div className="AddLocation">
         {this.state.step === 0 &&
           <>
-            <h1>Add Locations</h1>
+          <div className='addTitle'>
+            <h2 className='addh2'>Add a Water Source</h2>
+          </div>
+          <div className='addTextField'>
+          <h3 className='addh3'>Name the Water Source</h3>
+          <p>If the source doesn't have an official name, make the name clear and relevant to its location.</p>
+           
             <TextField
               id="filled-name"
               label="Name"
               value={this.state.name}
               onChange={(event) => this.handleChangeInput(event, 'name')}
               margin="normal"
-              variant="filled"
+              variant="outlined"
+              fullWidth='true'
             /><br />
+            
+            <h3 className='addh3'>Write a Description</h3>
+            <p>Tell other users about the water source: what it is, what to look for, etc.</p>
             <TextField
               id="filled-name"
               label="Description"
               value={this.state.name}
               onChange={(event) => this.handleChangeInput(event, 'description')}
               margin="normal"
-              variant="filled"
+              variant="outlined"
+              fullWidth='true'
+              multiline='true'
+              rows='4'
             /><br />
+            </div>
             <label>
               <UploadImage setImage={this.handleImage} />
             </label>
@@ -128,7 +143,9 @@ class AddLocation extends Component {
         }
         {this.state.step === 2 &&
           <>
-            <h1>Add Address</h1>
+          <div className='addAddressTitle'>
+            <h2 className='addh2'>Add Address</h2>
+          </div>
             <div className="mapAddComponet">
               <LoadScript
                 id="script-loader"

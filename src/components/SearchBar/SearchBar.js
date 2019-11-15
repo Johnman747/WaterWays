@@ -39,6 +39,7 @@ class SearchBar extends Component {
     }
 
     render() {
+        
         let filteredLocation = this.state.locations.filter(
             (location) => {
                 return location.name.toLowerCase().indexOf(

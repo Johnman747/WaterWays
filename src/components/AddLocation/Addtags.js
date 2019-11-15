@@ -19,7 +19,9 @@ class AddLocationTags extends Component {
         return (
             <>
                 <>
-                    <h1>Select Features</h1>
+                <div className='selectTitle'>
+                    <h2 class='addh2'>Select Features</h2>
+                </div>
                     <h5>Tap all featues that apply</h5>
                     <h3>Cost</h3>
                     {addLocation.free ?
