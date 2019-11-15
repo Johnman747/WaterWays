@@ -3,14 +3,20 @@ import { connect } from 'react-redux';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Logo from '../Icons/waterwaysLogo.png'
-// import IconButton from '@material-ui/core/IconButton';
 import { InputAdornment } from '@material-ui/core';
 import Person from '@material-ui/icons/Person';
 import Lock from '@material-ui/icons/Lock';
+import blue from '@material-ui/core/colors/blue';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
-
-
-
+const theme = createMuiTheme({
+  palette: {
+    primary: blue,
+  },
+  typography: {
+    useNextVariants: true,
+  },
+});
 
 class LoginPage extends Component {
   state = {
@@ -65,7 +71,9 @@ class LoginPage extends Component {
                 <p>Preserving Resources.</p>
               </div>
             </div>
+            <MuiThemeProvider theme={theme}>
             <Button size='large' variant="contained" color="primary" onClick={this.loginRender}>Login</Button>
+            </MuiThemeProvider>
             <br />
             <br />
             <button
@@ -105,10 +113,11 @@ class LoginPage extends Component {
                     name="username"
                     margin="normal"
                     variant="outlined"
-                    InputProps={{startAdornment: <InputAdornment position="start"><Person/></InputAdornment>}}
+                    InputProps={{ startAdornment: <InputAdornment position="start"><Person /></InputAdornment> }}
                     value={this.state.username}
                     onChange={this.handleInputChangeFor('username')}
                   />
+                  <br />
                   <TextField
                     id="filled-username-input"
                     label="Password"
@@ -116,22 +125,25 @@ class LoginPage extends Component {
                     name="password"
                     margin="normal"
                     variant="outlined"
-                    InputProps={{startAdornment: <InputAdornment position="start"><Lock/></InputAdornment>}}
+                    InputProps={{ startAdornment: <InputAdornment position="start"><Lock /></InputAdornment> }}
                     value={this.state.password}
                     onChange={this.handleInputChangeFor('password')}
                   />
                 </div>
                 <br />
                 <div>
+                <MuiThemeProvider theme={theme}>
                   <Button size='large' variant="contained" color="primary" onClick={this.login}>Login</Button>
-                  <br/>
-                  <br/>
+                  </MuiThemeProvider>
+
+                  <br />
+                  <br />
                   <button
-              type="button"
-              className="link-button"
-              onClick={() => { this.props.dispatch({ type: 'SET_TO_REGISTER_MODE' }) }}
-            >
-              New? Create an Account
+                    type="button"
+                    className="link-button"
+                    onClick={() => { this.props.dispatch({ type: 'SET_TO_REGISTER_MODE' }) }}
+                  >
+                    New? Create an Account
           </button>
                 </div>
               </form>

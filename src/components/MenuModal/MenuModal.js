@@ -2,10 +2,7 @@ import React, { Component } from 'react';
 import AddImage from '../AddImage/AddImage'
 import { withRouter } from 'react-router-dom';
 // ---- Material UI ---- //
-import Typography from '@material-ui/core/Typography';
-
 import Modal from '@material-ui/core/Modal';
-import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
 import Fab from '@material-ui/core/Fab';
 import ClearSharpIcon from '@material-ui/icons/ClearSharp';
@@ -98,48 +95,3 @@ class MenuModal extends Component {
 }
 
 export default withStyles(styles)(withRouter(MenuModal));
-
-
-
-
-// import React, {Component} from 'react';
-// import AddImage from '../AddImage/AddImage'
-// import {withRouter} from 'react-router-dom';
-
-// class MenuModal extends Component {
-//     state = { 
-//         isOpen: false, 
-//     };
-
-//     handle_Modal = () =>{
-//         this.setState(prevState => ({
-//             isOpen: !prevState.isOpen,
-//         }));
-//     }
-//     handle_Resolve_Report = () =>{
-//         this.history.push()
-//     }
-//     handle_Review = () =>{
-//         this.history.push()
-//     }
-
-//   render() {
-//       const showContent = this.state.isOpen;
-//     return (
-//         <div>
-//             {
-//                 showContent === true ? 
-//                 <div>
-//                     <button onClick={this.handle_Resolve_Report}>Resolve/Report a Problem</button>
-//                     <button onClick={this.handle_Review}>Leave a Review</button>
-//                     <AddImage locationId={this.props.locationInfo}/>
-//                 </div>
-//                 :
-//                 (null)
-//             }
-//             <button onClick={this.handle_Modal}>Modal</button>
-//         </div>
-//   )}
-// }
-
-// export default withRouter(MenuModal);
