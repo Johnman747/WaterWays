@@ -4,5 +4,12 @@
 }
 
 .backIcon{
+    position: fixed;
     height: 40px;
+    margin-top: 2%;
+    margin-left: 2%;
+}
+
+.LocationImage{
+        width: 100%;
 }

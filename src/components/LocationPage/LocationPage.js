@@ -86,7 +86,7 @@ class LocationPage extends Component {
                 {this.props.reduxStore.SingleLocationReducer.map(location =>
                     <div key={location.id}>
                         <img onClick={this.BackButton} className="backIcon" src={BackIcon} alt="Back Icon" />
-                        <img alt="Location Photo" />
+                        <img src={location.photo_primary} className="LocationImage" alt="Location Photo" />
                         <h1>{location.name}</h1>
                         <h3>{location.address}</h3>
                         <p>{location.description}</p>
