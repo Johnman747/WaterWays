@@ -10,6 +10,10 @@ import RV from '../Icons/RvIcon.png';
 import Tent from '../Icons/TentIcon.png';
 import Well from '../Icons/ArtesianWellIcon.png';
 import Trail from '../Icons/TrailSource.png';
+import DirtRoad from '../Icons/DirtRoadIcon.png';
+import DirtTrail from '../Icons/DirtTrailIcon.png';
+import PavedRoad from '../Icons/PavedRoadIcon.png';
+import PavedTrail from '../Icons/PavedTrailIcon.png'
 import BackIcon from '../Icons/backArrowWhite.png'
 import MenuModal from '../MenuModal/MenuModal'
 import StarRating from '../StarRating/StarRating'
@@ -25,7 +29,7 @@ import ReportsPage from '../ReportsPage/ReportsPage';
 
 function TabContainer(props) {
     return (
-        <Typography component="div" style={{ padding: 8 * 3 }}>
+        <Typography component="div">
             {props.children}
         </Typography>
     );
@@ -39,6 +43,7 @@ const styles = {
     root: {
         flexGrow: 1,
     },
+
 };
 
 
@@ -82,59 +87,122 @@ class LocationPage extends Component {
     render() {
         const { value } = this.state;
         return (
-            <div className={this.state.modal===true && "ModalBackground"}>
+            <div className={this.state.modal === true && "ModalBackground"}>
                 {this.props.reduxStore.SingleLocationReducer.map(location =>
                     <div key={location.id}>
                         <img onClick={this.BackButton} className="backIcon" src={BackIcon} alt="Back Icon" />
-                        <img alt="Location Photo" />
-                        <h1>{location.name}</h1>
-                        <h3>{location.address}</h3>
-                        <p>{location.description}</p>
-                        <StarRating />
-                        <h3>Details</h3>
-                        {location.free ?
-                            <img className="icon" src={FreeIcon} alt="Free Icon" />
-                            :
-                            <img className="icon" src={PaidIcon} alt="Paid Icon" />
-                        }
-                        {location.spigot ?
-                            <img className="icon" src={Spigot} alt="Spigot Icon" />
-                            :
-                            ""
-                        }
-                        {location.free_flowing ?
-                            <img className="icon" src={FreeFlow} alt="Free Flow Icon" />
-                            :
-                            ""
-                        }
-                        {location.trail_access ?
-                            <img className="icon" src={Trail} alt="Trail Access Icon" />
-                            :
-                            ""
-                        }
-                        {location.RV_Station ?
-                            <img className="icon" src={RV} alt="RV Station Icon" />
-                            :
-                            ""
-                        }
-                        {location.campground_access ?
-                            <img className="icon" src={Tent} alt="Campground Access Icon" />
-                            :
-                            ""
-                        }
-                        {location.artesian_well ?
-                            <img className="icon" src={Well} alt="Artesian Well Icon" />
-                            :
-                            ""
-                        }
-
-                        <MenuModal locationInfo={location.id} modalChange={this.modalChange} />
-
-
-
+                        <img src={location.photo_primary} className="LocationImage" alt="Location Photo" />
+                        <div className="BlueBarLocaionPage"></div>
+                        <div className="DetailsDisplay">
+                            <h1 className="LocationName">{location.name}</h1>
+                            <h3>{location.address}</h3>
+                            <p>{location.description}</p>
+                            <div className="detailsHeader">
+                                <h2>Details</h2>
+                            </div>
+                            <div className="starRating">
+                                <StarRating />
+                            </div>
+                            <div className="IconContainer">
+                                {location.free ?
+                                    <div className="DetailItem">
+                                        <img className="icon" src={FreeIcon} alt="Free Icon" />
+                                        <h5 className="tagDescription">Paid</h5>
+                                    </div>
+                                    :
+                                    <div className="DetailItem">
+                                        <img className="icon" src={PaidIcon} alt="Paid Icon" />
+                                        <h5 className="tagDescription">Paid</h5>
+                                    </div>
+                                }
+                                {location.spigot ?
+                                    <div className="DetailItem">
+                                        <img className="icon" src={Spigot} alt="Spigot Icon" />
+                                        <h5 className="tagDescription">Spigot</h5>
+                                    </div>
+                                    :
+                                    ""
+                                }
+                                {location.free_flowing ?
+                                    <div className="DetailItem">
+                                        <img className="icon" src={FreeFlow} alt="Free Flow Icon" />
+                                        <h5 className="tagDescription">Free FLowing</h5>
+                                    </div>
+                                    :
+                                    ""
+                                }
+                                {location.trail_water_source ?
+                                    <div className="DetailItem">
+                                        <img className="icon" src={Trail} alt="Trail Access Icon" />
+                                        <h5 className="tagDescription">Trail Source</h5>
+                                    </div>
+                                    :
+                                    ""
+                                }
+                                {location.rv ?
+                                    <div className="DetailItem">
+                                        <img className="icon" src={RV} alt="RV Station Icon" />
+                                        <h5 className="tagDescription">RV</h5>
+                                    </div>
+                                    :
+                                    ""
+                                }
+                                {location.campground_access ?
+                                    <div className="DetailItem">
+                                        <img className="icon" src={Tent} alt="Campground Access Icon" />
+                                        <h5 className="tagDescription">Campground</h5>
+                                    </div>
+                                    :
+                                    ""
+                                }
+                                {location.artesian_well ?
+                                    <div className="DetailItem">
+                                        <img className="icon" src={Well} alt="Artesian Well Icon" />
+                                        <h5 className="tagDescription">Atresian Well</h5>
+                                    </div>
+                                    :
+                                    ""
+                                }
+                                {location.dirt_road_access ?
+                                    <div className="DetailItem">
+                                        <img className="icon" src={DirtRoad} alt="Artesian Well Icon" />
+                                        <h5 className="tagDescription">Dirt Road Access</h5>
+                                    </div>
+                                    :
+                                    ""
+                                }
+                                {location.dirt_trial_access ?
+                                    <div className="DetailItem">
+                                        <img className="icon" src={DirtTrail} alt="Artesian Well Icon" />
+                                        <h5 className="tagDescription">Dirt Trail Access</h5>
+                                    </div>
+                                    :
+                                    ""
+                                }
+                                {location.trail_access ?
+                                    <div className="DetailItem">
+                                        <img className="icon" src={PavedTrail} alt="Artesian Well Icon" />
+                                        <h5 className="tagDescription">Paved Trail Access</h5>
+                                    </div>
+                                    :
+                                    ""
+                                }
+                                {location.road_access ?
+                                    <div className="DetailItem">
+                                        <img className="icon" src={PavedRoad} alt="Artesian Well Icon" />
+                                        <h5 className="tagDescription">Paved Road Access</h5>
+                                    </div>
+                                    :
+                                    ""
+                                }
+                            </div>
+                            <div className="modalButton" >
+                            <MenuModal locationInfo={location.id} modalChange={this.modalChange} />
+                            </div>
+                        </div>
                     </div>
                 )}
-                <div>
+                <div className="LocationPageTabs">
                     <AppBar position="static" color="default">
                         <Tabs
                             value={this.state.value}
@@ -149,11 +217,12 @@ class LocationPage extends Component {
 
                         </Tabs>
                     </AppBar>
-                    {value === 0 && <TabContainer><ReportsPage /></TabContainer>}
-                    {value === 1 && <TabContainer><ReviewsPage /></TabContainer>}
-                    {value === 2 && <TabContainer><PhotosTab /></TabContainer>}
+                    {value === 0 && <div className="TabPage"><TabContainer classes={styles.root}><ReportsPage /></TabContainer> </div>}
+                    {value === 1 && <div className="TabPage"><TabContainer><ReviewsPage /></TabContainer></div>}
+                    {value === 2 && <div className="TabPage"><TabContainer><PhotosTab /></TabContainer></div>}
 
                 </div>
+                <div className="navCover"></div>
             </div>
         )
     }

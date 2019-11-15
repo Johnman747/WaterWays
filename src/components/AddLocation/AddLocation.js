@@ -54,6 +54,7 @@ class AddLocation extends Component {
         [propertyName]: e.target.value,
       }
     });
+    console.log(this.state)
   } // end handleChange
 
   handleImage = (imageUrl) => {
@@ -163,6 +164,7 @@ class AddLocation extends Component {
                     lng: -93.2685388,
                   }}
                   onClick={(e)=> this.setMarker(e.latLng.toJSON())}
+                  options={{"disableDefaultUI": "true",}}
                   >
                   <Marker
                   draggable

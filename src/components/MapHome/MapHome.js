@@ -39,6 +39,8 @@ class MapHome extends Component {
     // Calls locations to be passed down to MapMarkers component
     getLocations = () => {
         this.props.dispatch({ type: 'FETCH_LOCATIONS' })
+        console.log(this.state);
+        
     } // end getLocations
   
     render() {
@@ -61,6 +63,7 @@ class MapHome extends Component {
                             lat: userLocation.latitude,
                             lng: userLocation.longitude,
                         }}
+                        options={{"disableDefaultUI": "true"}}
                     >
                     >
                         {this.props.reduxStore.locationsReducer.map(location =>
