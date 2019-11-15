@@ -1,5 +1,6 @@
 .AddLocation{
     height: 100%;
+    text-align: center;
 }
 
 .StepDots{
@@ -20,4 +21,27 @@
 
 .Active{
     background-color: #3BA8FA;
+}
+.addTitle{
+    background-color: #3BA8FA;
+    padding: 1px;
+}
+.addh2{
+    color:white;
+}
+p{
+    text-align: left;
+    padding-left: 7px;
+}
+.addh3{
+    text-align: left;
+    padding-left: 10px;
+}
+.selectTitle{
+    background-color: #3BA8FA;
+    padding: 1px;
+}
+.addAddressTitle{
+    background-color: #3BA8FA;
+    padding: 1px;
 }
