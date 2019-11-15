@@ -54,7 +54,7 @@ router.get('/review/:id', (req,res) =>{
 
 
 router.delete('/review/:id', (req,res) =>{
-    let queryText = `DELETE FROM "reviews" WHERE "id"=$1;`;
+    let queryText = `DELETE FROM "reviews" WHERE "id"=$1;`;
     console.log(req.params.id);
     pool.query(queryText, [req.params.id])
     .then(() =>{
