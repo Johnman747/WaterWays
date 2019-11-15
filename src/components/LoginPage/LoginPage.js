@@ -5,6 +5,9 @@ import Button from '@material-ui/core/Button';
 import Logo from '../Icons/waterwaysLogo.png'
 // import IconButton from '@material-ui/core/IconButton';
 import { InputAdornment } from '@material-ui/core';
+import Person from '@material-ui/icons/Person';
+import Lock from '@material-ui/icons/Lock';
+
 
 
 
@@ -102,7 +105,7 @@ class LoginPage extends Component {
                     name="username"
                     margin="normal"
                     variant="outlined"
-                    InputProps={{startAdornment: <InputAdornment position="start">Kg</InputAdornment>}}
+                    InputProps={{startAdornment: <InputAdornment position="start"><Person/></InputAdornment>}}
                     value={this.state.username}
                     onChange={this.handleInputChangeFor('username')}
                   />
@@ -113,6 +116,7 @@ class LoginPage extends Component {
                     name="password"
                     margin="normal"
                     variant="outlined"
+                    InputProps={{startAdornment: <InputAdornment position="start"><Lock/></InputAdornment>}}
                     value={this.state.password}
                     onChange={this.handleInputChangeFor('password')}
                   />
