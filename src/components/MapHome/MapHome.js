@@ -23,10 +23,12 @@ class MapHome extends Component {
               });
             },
             () => {
-              this.setState({ loading: false });
+              this.setState({ loading: false });              
             }
           );
       this.getLocations();
+      console.log('###################',this.state.userLocation, this.state.loading);
+      
     }
     // Calls locations to be passed down to MapMarkers component
     getLocations = () => {

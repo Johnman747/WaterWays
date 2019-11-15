@@ -73,6 +73,7 @@ class LocationPage extends Component {
     handleChange = (event, value) => {
         this.setState({ value });
     };
+    
     modalChange = () => {
         this.setState({
             modal: !this.state.modal

@@ -6,15 +6,15 @@ body {
 
 .alert {
     background-color: #ff4545;
-    margin: 50px;
+    margin: 0px;
 }
 
 .loginForm {
     text-align: center;
     width: 70%;
     height: 70%;
-    margin: 20px auto;
-    padding: 25px;
+    margin: 10px auto;
+    padding-bottom: 40px;
     border-radius: 2px;
 }
 .registerForm {
@@ -40,6 +40,32 @@ input {
   outline:0;
   cursor: pointer;
 }
+.loginPage {
+    background-color: #8cb7df;
+    text-align: center;
+    height: 100%;
+    /* padding-bottom: 1000px; */
+}
+.renderLogin {
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+.renderLoginButton {
+    padding-top: 20px;
+}
+.logoFont {
+    color: #c6e6fd;
+    padding-bottom: 10px;
+    line-height: .4;
+}
+.loginSpace {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+/* .loginSpace2 {
+    padding-top: 10px;
+    padding-bottom: 10px;
+} */
 
 .log-in:hover, .log-out:hover, .register:hover {
   background-color: #CBE3F2;
