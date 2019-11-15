@@ -1,5 +1,5 @@
 .icon{
-    height: 30px;
+    height: 25px;
     margin: 0px 5px;
 }
 
@@ -11,5 +11,84 @@
 }
 
 .LocationImage{
-        width: 100%;
+    width: 100%;
 }
+
+.DetailsDisplay{
+    background-color: white;
+    position: fixed;
+    top:25vh;
+    width: 100%;
+    padding-left: 10px;
+    z-index: 1;
+}
+
+.LocationPageTabs{
+    width: 100%;
+    position: fixed;
+    bottom: 30%;
+    z-index: 0;
+}
+.LocationName{
+    margin: -1% 0;
+}
+
+.BlueBarLocaionPage{
+    position: fixed;
+    background-color: #3BA8FA;
+    height: 80px;
+    width: 100%;
+    top: 20%;
+}
+
+.starRating{
+display: inline-block;
+margin-right: 5%;
+padding-top: 10px;
+}
+
+.detailsHeader{
+display: inline-block;
+margin-right: 35% ;
+}
+
+.DetailItem{
+display: inline-block;
+text-align: center;
+margin: 3px;
+}
+
+.tagDescription{
+    margin-top: -3%;
+}
+
+.IconContainer{
+    text-align: center;
+}
+.modalButton{
+    position: fixed;
+    bottom: 11%;
+    right: 3%;
+    z-index: 10;
+}
+
+.TabPage{
+    position: fixed;
+    bottom: 11%;
+    height: 19%;
+    width: 100%;
+    overflow: auto;
+    background-color: white;
+    z-index: -1;
+}
+
+.ReviewTabDisplay{
+    border: 1px solid black;
+}
+
+/* .navCover{
+    height: 100px;
+    position: relative;
+    background-color: #3BA8FA;
+    z-index: 10;
+} */
