@@ -33,7 +33,8 @@ class MapHome extends Component {
                         userLocation: {
                             ...prevState.userLocation,
                             latitude: position.coords.latitude,
-                            longitude: position.coords.longitude
+                            longitude: position.coords.longitude,
+                            accuracy: position.coords.accuracy
                         }
                     }))
                 }
