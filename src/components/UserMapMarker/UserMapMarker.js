@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {  HashRouter as Router, withRouter} from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import {  HashRouter as Router} from 'react-router-dom';
 import CurrentLocation from '../Icons/CurrantLocationIconSmall.png'
-// import "./UserMapMarker.css";
+import CurrentLocation from '../Icons/CurrantLocationIconSmall.png'
 
 import {
     Marker

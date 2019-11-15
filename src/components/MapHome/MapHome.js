@@ -9,7 +9,7 @@ import {
 } from '@react-google-maps/api';
 
 class MapHome extends Component {
-    state = { userLocation: { latitude: 0, longitude: 0 }, loading: true };
+    state = { userLocation: { latitude: 0, longitude: 0, accuracy:0}, loading: true };
 
     componentDidMount() {
       this.getLocations();
@@ -26,7 +26,8 @@ class MapHome extends Component {
                         userLocation: {
                             ...prevState.userLocation,
                             latitude: position.coords.latitude,
-                            longitude: position.coords.longitude
+                            longitude: position.coords.longitude,
+                            accuracy: position.coords.accuracy
                         }
                     }))
                 }
