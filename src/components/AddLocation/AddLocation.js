@@ -105,8 +105,10 @@ class AddLocation extends Component {
           <div className='addTitle'>
             <h2 className='addh2'>Add a Water Source</h2>
           </div>
+          <div className='addTextField'>
           <h3 className='addh3'>Name the Water Source</h3>
           <p>If the source doesn't have an official name, make the name clear and relevant to its location.</p>
+           
             <TextField
               id="filled-name"
               label="Name"
@@ -116,6 +118,7 @@ class AddLocation extends Component {
               variant="outlined"
               fullWidth='true'
             /><br />
+            
             <h3 className='addh3'>Write a Description</h3>
             <p>Tell other users about the water source: what it is, what to look for, etc.</p>
             <TextField
@@ -129,6 +132,7 @@ class AddLocation extends Component {
               multiline='true'
               rows='4'
             /><br />
+            </div>
             <label>
               <UploadImage setImage={this.handleImage} />
             </label>
