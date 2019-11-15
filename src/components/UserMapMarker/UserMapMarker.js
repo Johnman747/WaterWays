@@ -1,30 +1,19 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import {  HashRouter as Router} from 'react-router-dom';
 import {  HashRouter as Router, withRouter} from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import CurrentLocation from '../Icons/CurrantLocationIconSmall.png'
 import "./UserMapMarker.css";
 
 import {
-    Marker, InfoWindow
+    Marker
 } from '@react-google-maps/api';
 
-class MapMarkers extends Component {
+class UserMapMarker extends Component {
 
     state = {
         window: false
-    }
-
-    infoWindow = () => {
-        this.setState({
-            window: !this.state.window
-        })
-        console.log('Click Pin')
-    }
-
-    handleInfoPush = (id) => {
-        console.log('Push to location details', id);
-        this.props.history.push(`/location/${id}`)
     }
 
    render () {
@@ -36,6 +25,10 @@ class MapMarkers extends Component {
                         lat: this.props.initialCenter.latitude,
                         lng: this.props.initialCenter.longitude
                     }}   
+
+                    onCloseClick={{
+                    }}
+
                     icon={CurrentLocation}
                     />  
            </div>
@@ -47,4 +40,4 @@ class MapMarkers extends Component {
 const mapStateToProps = (reduxStore) => ({
     reduxStore
 });
-export default connect(mapStateToProps)(MapMarkers);
+export default connect(mapStateToProps)(UserMapMarker);
