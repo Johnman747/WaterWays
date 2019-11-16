@@ -3,20 +3,15 @@ import AddImage from '../AddImage/AddImage'
 import { withRouter } from 'react-router-dom';
 // ---- Material UI ---- //
 import Typography from '@material-ui/core/Typography';
-
 import Modal from '@material-ui/core/Modal';
 import Button from '@material-ui/core/Button';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles, MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import Fab from '@material-ui/core/Fab';
 import ClearSharpIcon from '@material-ui/icons/ClearSharp';
 import RateReviewIcon from '@material-ui/icons/RateReview';
 import ReportProblemIcon from '@material-ui/icons/ReportProblem';
 import AddIcon from '@material-ui/icons/Add';
 import './MenuModal.css'
-
-// function rand() {
-//     return Math.round(Math.random() * 20) - 10;
-// }
 
 function getModalStyle() {
     const top = 50 
@@ -33,13 +28,16 @@ const styles = theme => ({
     paper: {
         // background:'linear-gradient(45deg, #9898FA 30%, #98FAFA 90%)',
         position: 'absolute',
-        width: theme.spacing.unit * 12,
-        height: theme.spacing.unit * 52,
+        width: theme.spacing(12),
+        height: theme.spacing(52),
         boxShadow: theme.shadows[5],
-        padding: theme.spacing.unit * 20,
-        paddingLeft: theme.spacing.unit *20,
+        padding: theme.spacing(20),
+        paddingLeft: theme.spacing(20),
         outline: 'none',
     },
+    modalbutton:{
+        backgroundColor: "#3BA8FA",
+    }
 });
 
 
@@ -72,8 +70,7 @@ class MenuModal extends Component {
                     onClose={this.handle_Modal}
                 >
                     <div style={getModalStyle()} className={classes.paper}>
-                        {
-                            showContent === true &&
+                        {showContent === true &&
                                 <div className="modalWindow">
                                     <h4>Report/</h4><h4>Resolve</h4>
                                     <Fab onClick={this.handle_Resolve_Report} color="primary" aria-label="Report"><ReportProblemIcon/></Fab>
@@ -91,55 +88,12 @@ class MenuModal extends Component {
                         }
                     </div>
                 </Modal>
-                <Fab onClick={this.handle_Modal} color="primary" aria-label="Add" className="modalIcon"><AddIcon/></Fab>
+                {showContent === false &&
+                <Fab classes={classes.modalbutton} onClick={this.handle_Modal} color="primary" aria-label="Add" className="modalIcon"><AddIcon/></Fab>
+                }
             </div>
         )
     }
 }
 
 export default withStyles(styles)(withRouter(MenuModal));
-
-
-
-
-// import React, {Component} from 'react';
-// import AddImage from '../AddImage/AddImage'
-// import {withRouter} from 'react-router-dom';
-
-// class MenuModal extends Component {
-//     state = { 
-//         isOpen: false, 
-//     };
-
-//     handle_Modal = () =>{
-//         this.setState(prevState => ({
-//             isOpen: !prevState.isOpen,
-//         }));
-//     }
-//     handle_Resolve_Report = () =>{
-//         this.history.push()
-//     }
-//     handle_Review = () =>{
-//         this.history.push()
-//     }
-
-//   render() {
-//       const showContent = this.state.isOpen;
-//     return (
-//         <div>
-//             {
-//                 showContent === true ? 
-//                 <div>
-//                     <button onClick={this.handle_Resolve_Report}>Resolve/Report a Problem</button>
-//                     <button onClick={this.handle_Review}>Leave a Review</button>
-//                     <AddImage locationId={this.props.locationInfo}/>
-//                 </div>
-//                 :
-//                 (null)
-//             }
-//             <button onClick={this.handle_Modal}>Modal</button>
-//         </div>
-//   )}
-// }
-
-// export default withRouter(MenuModal);

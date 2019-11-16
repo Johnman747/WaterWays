@@ -11,7 +11,7 @@ class AddReport extends Component{
         reportToAdd: {
             created_by: this.props.reduxStore.user.id,
             location: this.props.match.params.id,
-            issue_comment: '',
+            issue_comment: 'Health Concerns',
             issue_type: '',
         }
     }
@@ -27,7 +27,7 @@ class AddReport extends Component{
 
     addNewReport = event => {
         event.preventDefault();
-        console.log('booyah')
+        console.log(this.state.reportToAdd)
         this.props.dispatch({ type: 'POST_REPORT', payload: this.state.reportToAdd});
         this.props.history.push(`/location/${this.props.match.params.id}`)
     } // end addNewReport

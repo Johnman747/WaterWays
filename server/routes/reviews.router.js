@@ -5,7 +5,7 @@ const rejectUnauthenticated = require('../modules/authentication-middleware')
 
 router.get('/:id', (req, res) => {
     
-    let queryText = `SELECT * FROM "reviews" WHERE "location_id"=$1;`;
+    let queryText = `SELECT "reviews".id, "reviews".comment, "reviews".review_score_of_five, "reviews".location_id, "user".first_name, "user".last_name FROM "reviews" JOIN "user" ON "reviews".user_id = "user".id WHERE "location_id" = $1;`;
     console.log(req.params.id)
     pool.query(queryText, [req.params.id])
     .then((result) => {

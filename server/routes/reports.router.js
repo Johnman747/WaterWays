@@ -5,7 +5,7 @@ const rejectUnauthenticated = require('../modules/authentication-middleware')
 
 router.get('/:id', (req, res) => {
     
-    let queryText = `SELECT * FROM "activity_log" WHERE "location_id"=$1;`;
+    let queryText = `SELECT "activity_log".id, "activity_log".issue_type, "activity_log".issue_comment, "activity_log".location_id, "user".first_name, "user".last_name FROM "activity_log" JOIN "user" ON "activity_log".user_id = "user".id WHERE "location_id" = $1; ORDER BY "activity_log".id DESC`;
     console.log(req.params.id)
     pool.query(queryText, [req.params.id])
     .then((result) => {
@@ -33,12 +33,13 @@ router.get('/report/:id', (req,res) =>{
 });
 router.post('/', (req,res) =>{
     let report = req.body;
+    console.log("POST XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",req.body)
     let queryText = `
     INSERT INTO "activity_log"(user_id,location_id,issue_comment,issue_type)
     VALUES($1,$2,$3,$4)`
     let values = [
-            report.user_id,
-            report.locatation_id,
+            report.created_by,
+            report.location,
             report.issue_comment,
             report.issue_type
     ]

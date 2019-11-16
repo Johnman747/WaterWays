@@ -39,12 +39,15 @@ TabContainer.propTypes = {
     children: PropTypes.node.isRequired,
 };
 
-const styles = {
+const styles = theme =>({
     root: {
         flexGrow: 1,
     },
+    ModalButton:{
+        background: '#3BA8FA'
+    }
 
-};
+});
 
 
 class LocationPage extends Component {
@@ -62,6 +65,12 @@ class LocationPage extends Component {
         this.props.dispatch({ type: 'FETCH_REPORTS', payload: this.props.match.params.id });
         this.props.dispatch({ type: 'FETCH_SINGLE_REPORT', payload: this.state.report_id });
         this.props.dispatch({ type: 'FETCH_PHOTOS', payload: this.props.match.params.id });
+    }
+
+    componentDidUpdate(preProps){
+        if(this.props.reduxStore.reportsReducer.length !== preProps.reduxStore.reportsReducer.length){
+            this.setState({state: this.state})
+        }
     }
 
     getInfo = () => {
@@ -86,12 +95,16 @@ class LocationPage extends Component {
 
     render() {
         const { value } = this.state;
+        const { classes } = this.props;
+
         return (
-            <div className={this.state.modal === true && "ModalBackground"}>
+            <div className={this.state.modal? "ModalBackground": undefined}> 
                 {this.props.reduxStore.SingleLocationReducer.map(location =>
                     <div key={location.id}>
                         <img onClick={this.BackButton} className="backIcon" src={BackIcon} alt="Back Icon" />
+                        <div className="imageCut">
                         <img src={location.photo_primary} className="LocationImage" alt="Location Photo" />
+                        </div>
                         <div className="BlueBarLocaionPage"></div>
                         <div className="DetailsDisplay">
                             <h1 className="LocationName">{location.name}</h1>
