@@ -2,10 +2,17 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import Rating from '@material-ui/lab/Rating';
+import Button from '@material-ui/core/Button';
 
-class ReviewsPage extends Component {
-    render() {
-        return (
+
+class ReviewsPage extends Component{
+
+handleDelete = (id) => {    
+    this.props.dispatch({ type: 'DELETE_REVIEW', payload:id});
+    // this.props.history.push('/');
+  }
+    render(){
+        return(
 
             <div className='ReviewsBody'>
                 {this.props.reduxStore.reviewsReducer.map(reviews => {
@@ -14,6 +21,7 @@ class ReviewsPage extends Component {
                         <Rating className="RagingPageStars" value={reviews.review_score_of_five} />
                         <p className="ReviewComment">"{reviews.comment}"</p>
                         <div className="LineSplitter"></div>
+                        <Button onClick={()=> this.handleDelete(reviews.id)}>Delete</Button>
                     </div>
                 })}
             </div>

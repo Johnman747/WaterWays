@@ -11,6 +11,23 @@ import {
 class MapHome extends Component {
     state = { userLocation: { latitude: 0, longitude: 0, accuracy:0}, loading: true };
 
+    // componentDidMount(props) {
+    //     navigator.geolocation.getCurrentPosition(
+    //         position => {
+    //           const { latitude, longitude } = position.coords;
+      
+    //           this.setState({
+    //             userLocation: { latitude: latitude, longitude: longitude },
+    //             loading: false
+    //           });
+    //         },
+    //         () => {
+    //           this.setState({ loading: false });              
+    //         }
+    //       );
+    //   this.getLocations();
+    //   console.log('###################',this.state.userLocation, this.state.loading);
+      
     componentDidMount() {
       this.getLocations();
       this.getGeoLocation();
@@ -67,7 +84,7 @@ class MapHome extends Component {
                     >
                     >
                         {this.props.reduxStore.locationsReducer.map(location =>
-                                <MapMarkers location={location} />
+                                <MapMarkers key={location.id} location={location} />
                         )}
                   <UserMapMarker initialCenter={userLocation}/>
                     </GoogleMap>
