@@ -15,6 +15,23 @@ class MapHome extends Component {
          loading: true
         };
 
+    // componentDidMount(props) {
+    //     navigator.geolocation.getCurrentPosition(
+    //         position => {
+    //           const { latitude, longitude } = position.coords;
+      
+    //           this.setState({
+    //             userLocation: { latitude: latitude, longitude: longitude },
+    //             loading: false
+    //           });
+    //         },
+    //         () => {
+    //           this.setState({ loading: false });              
+    //         }
+    //       );
+    //   this.getLocations();
+    //   console.log('###################',this.state.userLocation, this.state.loading);
+      
     componentDidMount() {
     //    this.props.dispatch({type:'ADD_TO_HISTORY', payload: this.props.history.location.pathname})
         let lastURL = this.props.reduxStore.historyReducer.pop();
@@ -46,6 +63,8 @@ class MapHome extends Component {
     // Calls locations to be passed down to MapMarkers component
     getLocations = () => {
         this.props.dispatch({ type: 'FETCH_LOCATIONS' })
+        console.log(this.state);
+        
     } // end getLocations
   
     render() {
@@ -68,6 +87,7 @@ class MapHome extends Component {
                             lat: userLocation.latitude,
                             lng: userLocation.longitude,
                         }}
+                        options={{"disableDefaultUI": "true"}}
                     >
                     >
                         {this.props.reduxStore.locationsReducer.map(location =>

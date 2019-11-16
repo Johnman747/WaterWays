@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { HashRouter as Router, withRouter } from 'react-router-dom';
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 
 class ModerateUser extends Component {
 
@@ -18,11 +19,14 @@ class ModerateUser extends Component {
         console.log('Delete');
         this.props.dispatch({ type: 'DELETE_USER', payload: user })
     }
-
+    handleBack = () =>{
+        this.props.history.push('/user')
+    }
     render() {
         return (
             <Router>
                 <div className="moderateUser">
+                <ArrowBackIosIcon onClick={this.handleBack}/>
                     <h1>Moderate Users:</h1>
                     <p>Moderate users based on community guidlines.</p>
                     <table className="userTable">

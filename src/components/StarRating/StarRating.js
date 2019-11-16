@@ -28,7 +28,7 @@ class StarRating extends Component {
     render() {
         return (
             <>
-                <Rating value={this.state.rating} readOnly precision={0.5} />
+                <Rating value={this.state.rating} readOnly precision={0.5} size="large" />
             </>
         )
     }

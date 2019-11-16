@@ -2,20 +2,12 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0px;
     background-color:white;
+    height: 100%;
 }
 
 .alert {
     background-color: #ff4545;
-    margin: 50px;
-}
-
-.loginForm {
-    text-align: center;
-    width: 70%;
-    height: 70%;
-    margin: 20px auto;
-    padding: 25px;
-    border-radius: 2px;
+    margin: 0px;
 }
 .registerForm {
     text-align: center;
@@ -30,7 +22,14 @@ input {
     margin: 5px;
     margin-bottom: 10px;
 }
-
+.loginForm {
+    text-align: center;
+    width: 70%;
+    height: 70%;
+    margin: 10px auto;
+    padding-bottom: 40px;
+    border-radius: 2px;
+}
 .log-in, .log-out, .register {
   background-color: #3BA8FA;
   border-radius: 4px;
@@ -40,6 +39,37 @@ input {
   outline:0;
   cursor: pointer;
 }
+.loginPage {
+    background-color: #8cb7df;
+    text-align: center;
+    text-align-last: center;
+    /* padding-bottom: 100px; */
+}
+.renderLogin {
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+.renderLoginButton {
+    padding-top: 20px;
+}
+.logoFont {
+    color: #c6e6fd;
+    padding-bottom: 10px;
+    line-height: .4;
+    text-align: center;
+}
+.loginSpace {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    text-align: center !important;
+    align-items: center;
+    align-content: center;
+}
+
+/* .loginSpace2 {
+    padding-top: 10px;
+    padding-bottom: 10px;
+} */
 
 .log-in:hover, .log-out:hover, .register:hover {
   background-color: #CBE3F2;

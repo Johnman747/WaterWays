@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {  HashRouter as Router} from 'react-router-dom';
 import CurrentLocation from '../Icons/CurrantLocationIconSmall.png'
-import CurrentLocation from '../Icons/CurrantLocationIconSmall.png'
+
 
 import {
     Marker
