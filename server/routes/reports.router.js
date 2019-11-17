@@ -5,11 +5,11 @@ const rejectUnauthenticated = require('../modules/authentication-middleware')
 
 router.get('/:id', (req, res) => {
     
-    let queryText = `SELECT "activity_log".id, "activity_log".issue_type, "activity_log".issue_comment, "activity_log".location_id, "user".first_name, "user".last_name FROM "activity_log" JOIN "user" ON "activity_log".user_id = "user".id WHERE "location_id" = $1; ORDER BY "activity_log".id DESC`;
+    let queryText = `SELECT "activity_log".id, "activity_log".issue_type, "activity_log".issue_comment, "activity_log".location_id, "user".first_name, "user".last_name FROM "activity_log" JOIN "user" ON "activity_log".user_id = "user".id WHERE "location_id" = $1 ORDER BY "activity_log".id DESC;`;
     console.log(req.params.id)
     pool.query(queryText, [req.params.id])
     .then((result) => {
-        console.log('server results all reports XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX',result.rows)
+        // console.log('server results all reports XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX',result.rows)
         
         res.send(result.rows)
     
@@ -24,7 +24,7 @@ router.get('/report/:id', (req,res) =>{
     let queryText = `SELECT * FROM "activity_log" WHERE "id"=$1;`;
     pool.query(queryText, [req.params.id])
     .then((result) =>{
-        console.log('server results XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX', result.rows);
+        // console.log('server results XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX', result.rows);
         res.send(result.rows);
     }).catch((error)=>{
         console.log(error);
@@ -33,10 +33,9 @@ router.get('/report/:id', (req,res) =>{
 });
 router.post('/', (req,res) =>{
     let report = req.body;
-    console.log("POST XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",req.body)
     let queryText = `
     INSERT INTO "activity_log"(user_id,location_id,issue_comment,issue_type)
-    VALUES($1,$2,$3,$4)`
+    VALUES($1,$2,$3,$4) RETURNING "activity_log".location_id`
     let values = [
             report.created_by,
             report.location,
@@ -45,7 +44,7 @@ router.post('/', (req,res) =>{
     ]
     pool.query(queryText,values)
     .then((result) =>{
-        console.log(result);
+        // console.log("POST RESULTS-------------------------",result.rows);
         res.sendStatus(201)
     }).catch((error) =>{
         console.log(error);
@@ -53,8 +52,8 @@ router.post('/', (req,res) =>{
 })
 
 router.delete('/report/:id', (req,res) =>{
-    let queryText = `DELETE FROM "activity_log" WHERE "id"=$1;`;
-    console.log(req.params.id);
+    let queryText = `DELETE FROM "activity_log" WHERE "id" = $1;`;
+    // console.log(req.params.id);
     pool.query(queryText, [req.params.id])
     .then(() =>{
         res.sendStatus(200)

@@ -40,9 +40,10 @@ function* fetchSingleReview(action) {
         headers: { 'Content-Type': 'application/json' },
         withCredentials: true,
       };
-      const response = yield axios.post('/api/reviews', action.payload, config);
-      console.log(response);
-      this.fetchLocations();
+      yield axios.post('/api/reviews', action.payload, config);
+      // console.log("POST REVIEW ------------",action.payload);
+      const thing = {payload: action.payload.location_id}
+      this.fetchReviews(thing);
     } catch(error) {
       console.log('locations post request failed', error);
     }

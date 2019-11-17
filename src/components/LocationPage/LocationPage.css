@@ -85,6 +85,8 @@ margin: 3px;
     display: inline-block;
     height: 3px;
     width: 80vw;
+    margin-left: 10vw;
+    margin-right: 10vw;
     background-color: lightgray;
 }
 
@@ -124,4 +126,19 @@ margin: 3px;
 .ReportName{
     margin-bottom: -20px;
     padding-top: 10px;
+}
+
+.deleteReviewBtn{
+
+}
+
+.photoTabPics{
+    /* border: 2px solid black; */
+    width: 99vw;
+    display: inline-block;
+}
+
+.navSpacer{
+    width: 100vw;
+    height: 78px;
 }

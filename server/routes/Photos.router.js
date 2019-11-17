@@ -18,8 +18,7 @@ router.get('/:id',(req, res) => {
 
 router.delete('/:id', (req, res) => { 
     const location = req.body; 
-    console.log('in delete', location) 
-        const query = `DELETE FROM "Photos" WHERE "id"=$1;`;
+        const query = `DELETE FROM "Photos" WHERE "id" = $1;`;
         pool.query(query, [req.params.id]).then(() => {
             res.sendStatus(200);
         }).catch((error) => {

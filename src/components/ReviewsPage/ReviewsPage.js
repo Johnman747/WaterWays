@@ -9,6 +9,7 @@ class ReviewsPage extends Component{
 
 handleDelete = (id) => {    
     this.props.dispatch({ type: 'DELETE_REVIEW', payload:id});
+    this.props.dispatch({ type: 'FETCH_REVIEWS', payload: this.props.match.params.id });
     // this.props.history.push('/');
   }
     render(){
@@ -16,12 +17,14 @@ handleDelete = (id) => {
 
             <div className='ReviewsBody'>
                 {this.props.reduxStore.reviewsReducer.map(reviews => {
-                    return <div className="ReviewDiv">
+                    return <div key={reviews.id} className="ReviewDiv">
                         <h4 className="ReviewName">{reviews.first_name} {reviews.last_name}</h4>
                         <Rating className="RagingPageStars" value={reviews.review_score_of_five} />
                         <p className="ReviewComment">"{reviews.comment}"</p>
+                        {this.props.reduxStore.user.admin_level === 3 &&
+                            <Button className="deleteReviewBtn" onClick={()=> this.handleDelete(reviews.id)}>Delete</Button>
+                        }
                         <div className="LineSplitter"></div>
-                        <Button onClick={()=> this.handleDelete(reviews.id)}>Delete</Button>
                     </div>
                 })}
             </div>

@@ -39,11 +39,11 @@ TabContainer.propTypes = {
     children: PropTypes.node.isRequired,
 };
 
-const styles = theme =>({
+const styles = theme => ({
     root: {
         flexGrow: 1,
     },
-    ModalButton:{
+    ModalButton: {
         background: '#3BA8FA'
     }
 
@@ -67,9 +67,12 @@ class LocationPage extends Component {
         this.props.dispatch({ type: 'FETCH_PHOTOS', payload: this.props.match.params.id });
     }
 
-    componentDidUpdate(preProps){
-        if(this.props.reduxStore.reportsReducer.length !== preProps.reduxStore.reportsReducer.length){
-            this.setState({state: this.state})
+    componentDidUpdate(preProps) {
+        if (this.props.reduxStore.reportsReducer.length !== preProps.reduxStore.reportsReducer.length) {
+            this.props.dispatch({ type: 'FETCH_REPORTS', payload: this.props.match.params.id });
+        }
+        if (this.props.reduxStore.reviewsReducer.length !== preProps.reduxStore.reviewsReducer.length) {
+            this.props.dispatch({ type: 'FETCH_REVIEWS', payload: this.props.match.params.id });
         }
     }
 
@@ -87,7 +90,7 @@ class LocationPage extends Component {
     handleChange = (event, value) => {
         this.setState({ value });
     };
-    
+
     modalChange = () => {
         this.setState({
             modal: !this.state.modal
@@ -99,12 +102,12 @@ class LocationPage extends Component {
         const { classes } = this.props;
 
         return (
-            <div className={this.state.modal? "ModalBackground": undefined}> 
+            <div className={this.state.modal ? "ModalBackground" : undefined}>
                 {this.props.reduxStore.SingleLocationReducer.map(location =>
                     <div key={location.id}>
                         <img onClick={this.BackButton} className="backIcon" src={BackIcon} alt="Back Icon" />
                         <div className="imageCut">
-                        <img src={location.photo_primary} className="LocationImage" alt="Location Photo" />
+                            <img src={location.photo_primary} className="LocationImage" alt="Location Photo" />
                         </div>
                         <div className="BlueBarLocaionPage"></div>
                         <div className="DetailsDisplay">
@@ -129,89 +132,69 @@ class LocationPage extends Component {
                                         <h5 className="tagDescription">Paid</h5>
                                     </div>
                                 }
-                                {location.spigot ?
+                                {location.spigot &&
                                     <div className="DetailItem">
                                         <img className="icon" src={Spigot} alt="Spigot Icon" />
                                         <h5 className="tagDescription">Spigot</h5>
                                     </div>
-                                    :
-                                    ""
                                 }
-                                {location.free_flowing ?
+                                {location.free_flowing &&
                                     <div className="DetailItem">
                                         <img className="icon" src={FreeFlow} alt="Free Flow Icon" />
                                         <h5 className="tagDescription">Free FLowing</h5>
                                     </div>
-                                    :
-                                    ""
                                 }
-                                {location.trail_water_source ?
+                                {location.trail_water_source &&
                                     <div className="DetailItem">
                                         <img className="icon" src={Trail} alt="Trail Access Icon" />
                                         <h5 className="tagDescription">Trail Source</h5>
                                     </div>
-                                    :
-                                    ""
                                 }
-                                {location.rv ?
+                                {location.rv &&
                                     <div className="DetailItem">
                                         <img className="icon" src={RV} alt="RV Station Icon" />
                                         <h5 className="tagDescription">RV</h5>
                                     </div>
-                                    :
-                                    ""
                                 }
-                                {location.campground_access ?
+                                {location.campground_access &&
                                     <div className="DetailItem">
                                         <img className="icon" src={Tent} alt="Campground Access Icon" />
                                         <h5 className="tagDescription">Campground</h5>
                                     </div>
-                                    :
-                                    ""
                                 }
-                                {location.artesian_well ?
+                                {location.artesian_well &&
                                     <div className="DetailItem">
                                         <img className="icon" src={Well} alt="Artesian Well Icon" />
                                         <h5 className="tagDescription">Atresian Well</h5>
                                     </div>
-                                    :
-                                    ""
                                 }
-                                {location.dirt_road_access ?
+                                {location.dirt_road_access &&
                                     <div className="DetailItem">
                                         <img className="icon" src={DirtRoad} alt="Artesian Well Icon" />
                                         <h5 className="tagDescription">Dirt Road Access</h5>
                                     </div>
-                                    :
-                                    ""
                                 }
-                                {location.dirt_trial_access ?
+                                {location.dirt_trail_access &&
                                     <div className="DetailItem">
                                         <img className="icon" src={DirtTrail} alt="Artesian Well Icon" />
                                         <h5 className="tagDescription">Dirt Trail Access</h5>
                                     </div>
-                                    :
-                                    ""
                                 }
-                                {location.trail_access ?
+                                {location.trail_access &&
                                     <div className="DetailItem">
                                         <img className="icon" src={PavedTrail} alt="Artesian Well Icon" />
                                         <h5 className="tagDescription">Paved Trail Access</h5>
                                     </div>
-                                    :
-                                    ""
                                 }
-                                {location.road_access ?
+                                {location.road_access &&
                                     <div className="DetailItem">
                                         <img className="icon" src={PavedRoad} alt="Artesian Well Icon" />
                                         <h5 className="tagDescription">Paved Road Access</h5>
                                     </div>
-                                    :
-                                    ""
                                 }
                             </div>
                             <div className="modalButton" >
-                            <MenuModal locationInfo={location.id} modalChange={this.modalChange} />
+                                <MenuModal locationInfo={location.id} modalChange={this.modalChange} />
                             </div>
                         </div>
                     </div>
@@ -236,7 +219,7 @@ class LocationPage extends Component {
                     {value === 2 && <div className="TabPage"><TabContainer><PhotosTab /></TabContainer></div>}
 
                 </div>
-                <div className="navCover"></div>
+                <div className="navSpacer"></div>
             </div>
         )
     }

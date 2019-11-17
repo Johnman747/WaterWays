@@ -5,12 +5,11 @@ const rejectUnauthenticated = require('../modules/authentication-middleware')
 
 router.get('/:id', (req, res) => {
     
-    let queryText = `SELECT "reviews".id, "reviews".comment, "reviews".review_score_of_five, "reviews".location_id, "user".first_name, "user".last_name FROM "reviews" JOIN "user" ON "reviews".user_id = "user".id WHERE "location_id" = $1;`;
+    let queryText = `SELECT "reviews".id, "reviews".comment, "reviews".review_score_of_five, "reviews".location_id, "user".first_name, "user".last_name FROM "reviews" JOIN "user" ON "reviews".user_id = "user".id WHERE "location_id" = $1 ORDER BY "reviews".id DESC;`;
     console.log(req.params.id)
     pool.query(queryText, [req.params.id])
     .then((result) => {
-        console.log('server resultsXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX',result.rows)
-        
+        // console.log('server resultsXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX',result.rows)
         res.send(result.rows)
     
     }).catch(error => {
@@ -32,7 +31,7 @@ router.post('/', (req,res) =>{
     ]
     pool.query(queryText,values)
     .then((result) =>{
-        console.log(result);
+        // console.log(result);
         res.sendStatus(201)
     }).catch((error) =>{
         console.log(error);
@@ -43,7 +42,7 @@ router.get('/review/:id', (req,res) =>{
     let queryText = `SELECT * FROM "reviews" WHERE "id"=$1;`;
     pool.query(queryText, [req.params.id])
     .then((result) =>{
-        console.log('server results XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX', result.rows);
+        // console.log('server results XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX', result.rows);
         res.send(result.rows);
     }).catch((error)=>{
         console.log(error);

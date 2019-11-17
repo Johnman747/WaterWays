@@ -50,8 +50,11 @@ function* deleteReport(action){
 
 function* postReport(action){
   try{
-    console.log(action.payload)
-    yield axios.post('/api/reports', action.payload)
+    console.log("post report -------------------",action.payload)
+    yield axios.post('/api/reports', action.payload);
+    const thing = {payload: action.payload.location}
+    yield this.fetchReports(thing)
+
   }catch(error){
     console.log(error);
     

@@ -89,7 +89,7 @@ class MenuModal extends Component {
                     </div>
                 </Modal>
                 {showContent === false &&
-                <Fab classes={classes.modalbutton} onClick={this.handle_Modal} color="primary" aria-label="Add" className="modalIcon"><AddIcon/></Fab>
+                <Fab className={classes.modalbutton} onClick={this.handle_Modal} color="primary" aria-label="Add" className="modalIcon"><AddIcon/></Fab>
                 }
             </div>
         )
