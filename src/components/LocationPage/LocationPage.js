@@ -53,7 +53,7 @@ const styles = theme => ({
 class LocationPage extends Component {
     state = {
         report_id: 1,
-        value: 0,
+        value: 1,
         modal: false
     }
 

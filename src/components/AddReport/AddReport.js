@@ -3,9 +3,11 @@ import { connect } from 'react-redux';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import NativeSelect from '@material-ui/core/NativeSelect';
-import {withRouter} from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
+import './AddReport.css'
+import BackButton from '../Icons/backArrowWhite.png'
 
-class AddReport extends Component{
+class AddReport extends Component {
 
     state = {
         reportToAdd: {
@@ -19,7 +21,7 @@ class AddReport extends Component{
         this.setState({
             reportToAdd: {
                 ...this.state.reportToAdd,
-                [propertyName]: event.target.value, 
+                [propertyName]: event.target.value,
             }
         });
         console.log(this.state.reportToAdd)
@@ -28,38 +30,53 @@ class AddReport extends Component{
     addNewReport = event => {
         event.preventDefault();
         console.log(this.state.reportToAdd)
-        this.props.dispatch({ type: 'POST_REPORT', payload: this.state.reportToAdd});
+        this.props.dispatch({ type: 'POST_REPORT', payload: this.state.reportToAdd });
         this.props.history.push(`/location/${this.props.match.params.id}`)
     } // end addNewReport
 
-    render(){
-        return(
+    BackButton = () =>{
+        this.props.history.push(`/location/${this.props.match.params.id}`)
+    }
+
+    render() {
+        return (
             <div className='reportBody'>
+                <img onClick={this.BackButton} className="ReportPageBackIcon" src={BackButton} alt="Back Button" />
                 <form>
-                    <h1>Report</h1>
-                    <label>Select the reason for reporting</label><br/>
-                    <NativeSelect
-                        value={this.state.issue_type}
-                        onChange={(event)=>{this.handleChange(event, 'issue_type')}}
-                    >
-                        <option value='Health Concerns'>Health Concerns</option>
-                        <option value='Location Closed'>Location Closed</option>
-                        <option value='Location Damaged/Vandalized'>Location Damaged/Vandalized</option>
-                        <option value='Dry'>Dry</option>
-                        <option value='Problem Resolved'>Problem Resolved</option>
-                        <option value='Other'>Other</option>
-                    </NativeSelect><br/>
-                    <label>Reason</label>
+                    <div className="AddReportHeader">
+                        <h1>Report</h1>
+                    </div>
+                    <label className="ReportPageLabel">Select the reason for reporting</label><br />
+                    <div >
+                        <NativeSelect
+                            value={this.state.issue_type}
+                            onChange={(event) => { this.handleChange(event, 'issue_type') }}
+                            className="AddReportSelect"
+                        >
+                            <option value='Health Concerns'>Health Concerns</option>
+                            <option value='Location Closed'>Location Closed</option>
+                            <option value='Location Damaged/Vandalized'>Location Damaged/Vandalized</option>
+                            <option value='Dry'>Dry</option>
+                            <option value='Problem Resolved'>Problem Resolved</option>
+                            <option value='Other'>Other</option>
+                        </NativeSelect><br />
+                    </div>
+                    <h4 className="ReportPageLabel">Please describe the problem here:</h4>
+                    <div className="ReportPageTextField">
                     <TextField
-                        onChange={(event)=>{this.handleChange(event, 'issue_comment')}}
+                        onChange={(event) => { this.handleChange(event, 'issue_comment') }}
                         id="outlined-textarea"
                         label="Description"
                         multiline
+                        rows={5}
                         margin="normal"
-                        variant="filled"
-                    /><br/>
+                        variant="outlined"
+                        fullWidth
+                    />
+                    </div>
+                    <br />
                     <Button onClick={this.addNewReport} variant="contained" color="primary">
-                    Submit
+                        Submit
                     </Button>
                 </form>
             </div>
@@ -68,5 +85,5 @@ class AddReport extends Component{
 }
 const mapStateToProps = reduxStore => ({
     reduxStore
-  });
-  export default withRouter(connect(mapStateToProps)(AddReport));
+});
+export default withRouter(connect(mapStateToProps)(AddReport));
