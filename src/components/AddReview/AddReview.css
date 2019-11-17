@@ -1,0 +1,38 @@
+.AddReviewPage{
+    text-align: center;
+}
+.AddReviewPageTextField{
+    display: block;
+    width: 250px;
+    margin: auto;
+}
+.AddReviewPageStars{
+    margin: 0 10px;
+}
+
+.AddReviewPageLabels{
+    font-weight: 100;
+}
+
+.AddReviewPageHeader{
+    text-align: center;
+    color: white;
+    background-color: #00b9fc;
+    width: 100vw;
+    height: 70px;
+    margin-top: -21px;
+    padding-top: 10px;
+    margin-bottom: 40px;
+}
+
+.AddReviewPageBackIcon{
+    height: 30px;
+    position: fixed;
+    z-index: 10;
+    top: 15px;
+    left: 10px;
+}
+
+.AddReviewBtn{
+    margin-top: 40px;
+}

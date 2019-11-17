@@ -13,34 +13,6 @@ import ReportProblemIcon from '@material-ui/icons/ReportProblem';
 import AddIcon from '@material-ui/icons/Add';
 import './MenuModal.css'
 
-function getModalStyle() {
-    const top = 50 
-    const left = 50
-
-    return {
-        top: `${top}%`,
-        left: `${left}%`,
-        transform: `translate(-${top}%, -${left}%)`,
-    };
-}
-
-const styles = theme => ({
-    paper: {
-        // background:'linear-gradient(45deg, #9898FA 30%, #98FAFA 90%)',
-        position: 'absolute',
-        width: theme.spacing(12),
-        height: theme.spacing(52),
-        boxShadow: theme.shadows[5],
-        padding: theme.spacing(20),
-        paddingLeft: theme.spacing(20),
-        outline: 'none',
-    },
-    modalbutton:{
-        backgroundColor: "#3BA8FA",
-    }
-});
-
-
 class MenuModal extends Component {
     state = {
         isOpen: false,
@@ -52,11 +24,14 @@ class MenuModal extends Component {
         }));
         this.props.modalChange()
     }
-    handle_Resolve_Report = () =>{
+    handle_Resolve_Report = () => {
         this.props.history.push(`/addreport/${this.props.locationInfo}`)
     }
-    handle_Review = () =>{
+    handle_Review = () => {
         this.props.history.push(`/addreview/${this.props.locationInfo}`)
+    }
+    handle_Add_Image = ()=>{
+        this.props.history.push(`/addimage/${this.props.locationInfo}`)
     }
 
     render() {
@@ -69,31 +44,32 @@ class MenuModal extends Component {
                     open={this.state.isOpen}
                     onClose={this.handle_Modal}
                 >
-                    <div style={getModalStyle()} className={classes.paper}>
+                    <div>
                         {showContent === true &&
-                                <div className="modalWindow">
-                                    <h4>Report/</h4><h4>Resolve</h4>
-                                    <Fab onClick={this.handle_Resolve_Report} color="primary" aria-label="Report"><ReportProblemIcon/></Fab>
-                                    <br />
-                                    <br />
-                                    <h4>Review</h4>
-                                    <Fab onClick={this.handle_Review} color="primary" aria-label="Review"><RateReviewIcon/></Fab>
-                                    <br />
-                                    <br />
-                                    <h4>Image</h4>
-                                    <AddImage locationId={this.props.locationInfo} />
-                                    <br />
-                                    <Fab onClick={this.handle_Modal} color="primary" aria-label="Cancel" className={classes.fab}><ClearSharpIcon/></Fab>
+                            <div className="modalWindow">
+                                <div className="ModalWindowFabDiv">
+                                    <h4 className="FabLabel">Report/Resolve</h4>
+                                    <Fab onClick={this.handle_Resolve_Report} color="primary" aria-label="Report"><ReportProblemIcon /></Fab>
                                 </div>
+                                <div className="ModalWindowFabDiv">
+                                    <h4 className="FabLabel">Review</h4>
+                                    <Fab onClick={this.handle_Review} color="primary" aria-label="Review"><RateReviewIcon /></Fab>
+                                </div>
+                                <div className="ModalWindowFabDiv">
+                                    <h4 className="FabLabel">Add Image</h4>
+                                    <Fab onClick={this.handle_Add_Image} color="primary" aria-label="AddImage"></Fab>
+                                </div>
+                                <Fab onClick={this.handle_Modal} color="primary" aria-label="Cancel"><ClearSharpIcon /></Fab>
+                            </div>
                         }
                     </div>
                 </Modal>
                 {showContent === false &&
-                <Fab className={classes.modalbutton} onClick={this.handle_Modal} color="primary" aria-label="Add" className="modalIcon"><AddIcon/></Fab>
+                    <Fab onClick={this.handle_Modal} color="primary" aria-label="Add" className="modalIcon"><AddIcon /></Fab>
                 }
             </div>
         )
     }
 }
 
-export default withStyles(styles)(withRouter(MenuModal));
+export default withRouter(MenuModal);

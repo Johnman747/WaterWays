@@ -7,6 +7,21 @@
 
 .modalWindow {
     position: fixed;
-    left: 78%;
+    right: 10vw;
+    bottom: 11%;
     color: #3BA8FA;
+    text-align: right;
+}
+
+.FabLabel{
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.ModalWindowFabDiv{
+    display: block;
+}
+
+.AddImageModalWindow{
+    display: inline-block;
 }

@@ -1,0 +1,43 @@
+.AddImageHeader{
+    text-align: center;
+    color: white;
+    background-color: #00b9fc;
+    width: 100vw;
+    height: 70px;
+    margin-top: -21px;
+    padding-top: 10px;
+    margin-bottom: 40px;
+}
+
+.AddImagePageBackButton{
+    height: 30px;
+    position: fixed;
+    z-index: 10;
+    top: 15px;
+    left: 10px;
+}
+
+.AddImagePage{
+    text-align: center;
+}
+
+.AddImagePagePreview{
+    display: block;
+    width: 250px;
+    height: 300px;
+    border: 1px solid lightgray;
+    margin: auto;
+}
+
+.ImagePreview{
+    width: 250px;
+    height: 300px;
+}
+
+.AddImageButton{
+    margin-top: 40px;
+}
+
+.UploadImageAddImagePage{
+    margin-bottom: 10px;
+}

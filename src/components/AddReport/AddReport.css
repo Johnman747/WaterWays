@@ -12,8 +12,7 @@
 .AddReportSelect{
     border: 1px solid lightslategray;
     border-radius: 5px;
-    display: inline-block;
-    margin: 10px 20vw;
+    margin: auto;
 }
 
 .reportBody{

@@ -24,12 +24,12 @@ class AddReport extends Component {
                 [propertyName]: event.target.value,
             }
         });
-        console.log(this.state.reportToAdd)
+        // console.log(this.state.reportToAdd)
     } // end handleChange
 
     addNewReport = event => {
         event.preventDefault();
-        console.log(this.state.reportToAdd)
+        // console.log(this.state.reportToAdd)
         this.props.dispatch({ type: 'POST_REPORT', payload: this.state.reportToAdd });
         this.props.history.push(`/location/${this.props.match.params.id}`)
     } // end addNewReport
