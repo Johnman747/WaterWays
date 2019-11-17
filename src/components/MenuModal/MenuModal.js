@@ -10,6 +10,7 @@ import Fab from '@material-ui/core/Fab';
 import ClearSharpIcon from '@material-ui/icons/ClearSharp';
 import RateReviewIcon from '@material-ui/icons/RateReview';
 import ReportProblemIcon from '@material-ui/icons/ReportProblem';
+import ImageIcon from '@material-ui/icons/Image';
 import AddIcon from '@material-ui/icons/Add';
 import './MenuModal.css'
 
@@ -57,7 +58,7 @@ class MenuModal extends Component {
                                 </div>
                                 <div className="ModalWindowFabDiv">
                                     <h4 className="FabLabel">Add Image</h4>
-                                    <Fab onClick={this.handle_Add_Image} color="primary" aria-label="AddImage"></Fab>
+                                    <Fab onClick={this.handle_Add_Image} color="primary" aria-label="AddImage"><ImageIcon/></Fab>
                                 </div>
                                 <Fab onClick={this.handle_Modal} color="primary" aria-label="Cancel"><ClearSharpIcon /></Fab>
                             </div>

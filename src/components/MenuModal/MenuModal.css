@@ -9,7 +9,7 @@
     position: fixed;
     right: 10vw;
     bottom: 11%;
-    color: #3BA8FA;
+    color: #00b9fc;
     text-align: right;
 }
 
@@ -20,6 +20,7 @@
 
 .ModalWindowFabDiv{
     display: block;
+    margin: 10px;
 }
 
 .AddImageModalWindow{
