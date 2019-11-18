@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import UploadImage from '../AddLocation/UploadImage'
 import { connect } from 'react-redux';
+import {withRouter} from 'react-router-dom';
 
 class AddImage extends Component{
   state={
@@ -33,4 +34,4 @@ class AddImage extends Component{
 const mapStateToProps = (reduxStore) => ({
   reduxStore
 });
-export default connect(mapStateToProps)(AddImage);
+export default withRouter(connect(mapStateToProps)(AddImage));
