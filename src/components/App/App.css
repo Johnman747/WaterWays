@@ -80,11 +80,7 @@ input {
 .modalIcon {
     float: right;
 }
-.modalWindow {
-    /* float: right; */
-    /* position: fixed;
-    left: 130%; */
-}
+
 .registerPage {
     background-color: #8cb7df;
     text-align: center;
