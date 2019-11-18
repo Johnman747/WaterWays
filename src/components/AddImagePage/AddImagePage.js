@@ -7,7 +7,7 @@ import { withRouter } from 'react-router-dom'
 class AddImagePage extends Component {
     state = {
         photo: '',
-        id: this.props.locationId,
+        id: this.props.match.params.id,
     }
     handleImage = (imageUrl) => {
         this.setState({
@@ -16,9 +16,14 @@ class AddImagePage extends Component {
     }
 
     handle_AddImage = () => {
-        // this.props.dispatch({ type: 'POST_IMAGE', payload: this.state })
-        // this.props.history.push(`/location/${this.props.match.params.id}`)
-        console.log(this.state.photo);
+        const formData = {
+            photo:{image: this.state.photo},
+            id: this.props.match.params.id,
+        }
+        this.props.dispatch({ type: 'POST_IMAGE', payload: formData })
+        this.props.dispatch({ type: 'FETCH_PHOTOS', payload: this.props.match.params.id });
+        this.props.history.push(`/location/${this.props.match.params.id}`)
+        // console.log(this.state.photo);
 
     }
 
@@ -67,4 +72,4 @@ const mapStateToProps = (reduxStore) => ({
     reduxStore
 });
 
-export default withRouter(connect()(AddImagePage));
+export default withRouter(connect(mapStateToProps)(AddImagePage));

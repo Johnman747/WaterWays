@@ -74,6 +74,9 @@ class LocationPage extends Component {
         if (this.props.reduxStore.reviewsReducer.length !== preProps.reduxStore.reviewsReducer.length) {
             this.props.dispatch({ type: 'FETCH_REVIEWS', payload: this.props.match.params.id });
         }
+        if (this.props.reduxStore.PhotosReducer.length !== preProps.reduxStore.PhotosReducer.length) {
+            this.props.dispatch({ type: 'FETCH_PHOTOS', payload: this.props.match.params.id });
+        }
     }
 
     getInfo = () => {
