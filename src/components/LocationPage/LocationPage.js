@@ -196,9 +196,12 @@ class LocationPage extends Component {
                                     </div>
                                 }
                             </div>
+                             {this.props.reduxStore.user.id ?
                             <div className="modalButton" >
                                 <MenuModal locationInfo={location.id} modalChange={this.modalChange} />
                             </div>
+                             :(null)
+                            }  
                         </div>
                     </div>
                 )}
