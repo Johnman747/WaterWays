@@ -127,8 +127,7 @@ class SearchFilter extends Component {
                     <button onClick={() => this.handleToggle("RV", true)}>True</button> : <button onClick={() => this.handleToggle("RV", false)}>False</button>
                 }
                 <br />
-                <br />
-                <button onClick={this.handleClear}>Clear</button>
+                {/* <button onClick={this.handleClear}>Clear</button> */}
                 <button onClick={this.setLocations}>Apply</button>
             </div>
         )

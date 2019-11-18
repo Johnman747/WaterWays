@@ -35,8 +35,9 @@ class MapHome extends Component {
     componentDidMount() {
     //    this.props.dispatch({type:'ADD_TO_HISTORY', payload: this.props.history.location.pathname})
         let lastURL = this.props.reduxStore.historyReducer.pop();
-        if(lastURL !== '/searchFilter')
-      this.getLocations();
+        if(lastURL !== '/searchFilter'){
+             this.getLocations();
+        }
       this.getGeoLocation();
     }
 
