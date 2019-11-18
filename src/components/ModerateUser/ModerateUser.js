@@ -7,7 +7,6 @@ import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { red, blue } from '@material-ui/core/colors';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import './ModerateUser.css'
@@ -73,6 +72,7 @@ class ModerateUser extends Component {
                             </TableBody>
                         </Table>
                     </div>
+                    <div className="navSpacer"></div>
                 </MuiThemeProvider>
 
             </Router>
