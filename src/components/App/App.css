@@ -119,8 +119,8 @@ input {
     padding: 10px;
 }
 .moderateUserArrow {
-    padding-right: 10px;
-    margin-right: 30px;
+    /* padding-right: 10px;
+    margin-right: 30px; */
 }
 .userTable {
     text-align: center;
@@ -148,4 +148,11 @@ input {
 .userPageButtons{
     margin-left: 55px;
     margin-right: 55px;
+}
+.moderateLocationHeader {
+    text-align: center;
+    text-align-last: center;
+    padding-bottom: 10px;
+    background-color: #3ba8fa;
+    padding: 10px;
 }

@@ -75,13 +75,14 @@ router.put('/location/:id', (req,res) =>{
                         location.description,
                         location.RV,
                         location.approve,
+                        req.params.id
                     ]
         queryText = `UPDATE "locations" SET
         "name"=$1,"address"=$2,"latitude"=$3,"longitude"=$4,"created_by"=$5,"free"=$6,
             "spigot"=$7,"trail_access"=$8,"road_access"=$9,"campground_access"=$10,
-            "free_flowing"=$11,"artesian_well"=$12,"photo_primary"=$13,"description"=$14,"RV"=$15,"approve"=$16 WHERE "id"=$17`;
+            "free_flowing"=$11,"artesian_well"=$12,"photo_primary"=$13,"description"=$14,"rv"=$15,"approve"=$16 WHERE "id"=$17`;
         
-        pool.query(queryText,[values, req.params.id])
+        pool.query(queryText, values)
             .then((result) => {
             console.log(result)
             }).catch((error) =>{
