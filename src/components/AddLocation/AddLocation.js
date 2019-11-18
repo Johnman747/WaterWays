@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import UploadImage from './UploadImage';
 import Stepper from './Stepper';
 import TextField from '@material-ui/core/TextField/TextField';
-
+import mapStyles from '../MapHome/MapStyles'
 import {
   GoogleMap,
   LoadScript,
@@ -167,7 +167,15 @@ class AddLocation extends Component {
                     lng: -93.2685388,
                   }}
                   onClick={(e)=> this.setMarker(e.latLng.toJSON())}
-                  options={{"disableDefaultUI": "true",}}
+                  mapTypeId="hybrid"
+                  options={{
+                    "zoomControl": true,
+                    "mapTypeControl": false,
+                    "scaleControl": false,
+                    "streetViewControl": false,
+                    "rotateControl": false,
+                    "fullscreenControl": false,
+                    styles: mapStyles}}
                   >
                   <Marker
                   draggable

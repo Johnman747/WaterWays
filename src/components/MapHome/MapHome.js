@@ -7,6 +7,7 @@ import {
     GoogleMap,
     LoadScript,
 } from '@react-google-maps/api';
+import mapStyles from './MapStyles'
 
 class MapHome extends Component {
     state = { userLocation: { latitude: 0, longitude: 0, accuracy:0}, loading: true };
@@ -80,7 +81,16 @@ class MapHome extends Component {
                             lat: userLocation.latitude,
                             lng: userLocation.longitude,
                         }}
-                        options={{"disableDefaultUI": "true"}}
+                        options={{
+                            "mapTypeId": 'terrain',
+                            "zoomControl": true,
+                            "mapTypeControl": false,
+                            "scaleControl": false,
+                            "streetViewControl": false,
+                            "rotateControl": false,
+                            "fullscreenControl": false,
+                            styles: mapStyles
+                        }}
                     >
                     >
                         {this.props.reduxStore.locationsReducer.map(location =>
