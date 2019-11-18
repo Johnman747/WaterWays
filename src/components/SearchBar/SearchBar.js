@@ -1,45 +1,56 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {withRouter} from "react-router-dom";
+import { withRouter } from "react-router-dom";
+import BackIcon from '../Icons/backArrowWhite.png'
+import './SearchBar.css'
 
 class SearchBar extends Component {
     state = {
         search: '',
-        locations:[]
+        locations: [],
+        backIcon: false
     }
 
-    componentDidMount(){
+    componentDidMount() {
         this.getLocations();
     }
 
-    getLocations = () =>{
+    getLocations = () => {
         this.props.dispatch({ type: 'FETCH_SEARCH_LOCATIONS' });
     }
 
-    setLocations = ()=>{
+    setLocations = () => {
         let array = []
         this.props.reduxStore.locationsReducer.map(location =>
-            array.push(location) 
+            array.push(location)
         )
         this.setState({
             ...this.state,
-            locations: array
-        })        
+            locations: array,
+            backIcon: true
+        })
     }
 
-    searchBar = (e) =>{
+    searchBar = (e) => {
         this.setState({
             ...this.state,
             search: e.target.value
         })
     }
 
-    handleClick = (id)=>{
+    handleClick = (id) => {
         this.props.history.push(`/location/${id}`)
+    }
+    backButton = () => {
+        this.setState({
+            ...this.state,
+            locations: [],
+            backIcon: false
+        });
     }
 
     render() {
-        
+
         let filteredLocation = this.state.locations.filter(
             (location) => {
                 return location.name.toLowerCase().indexOf(
@@ -47,17 +58,30 @@ class SearchBar extends Component {
             }
         );
 
-        
+
 
         return (
             <>
-                <input placeholder="Search Bar" onClick={this.setLocations} onChange={(e)=>this.searchBar(e)} />
-                {filteredLocation.map(location =>{
-                    return(
-                        <p key={location.id} onClick={()=>this.handleClick(location.id)}>{location.name}</p>
-                    )
-                })}
-            </>
+            <div className="SearchBar" >
+                {this.state.backIcon && <img className="SearchBackBtn" src={BackIcon} alt="Back Button" onClick={this.backButton} />}
+                <input className="Search" placeholder="Search Bar" onClick={this.setLocations} onChange={(e) => this.searchBar(e)} />
+            </div>
+                <div className="Results">
+                    {filteredLocation.map(location => {
+                        return (
+                            <div className="SearchLocationShow" key={location.id} onClick={() => this.handleClick(location.id)}>
+                                <div className="ImgDivSearch">
+                                    <img className="SearchImg" src={location.photo_primary} alt="Location Photo" />
+                                </div>
+                                <div className="displayInfoSearch">
+                                    <h3 className="SearchLocationName" >{location.name}</h3>
+                                    <h5 className="SearchLocationName">{location.address}</h5>
+                                </div>
+                            </div>
+                        )
+                    })}
+                </div>
+                </>
         )
     }
 }
@@ -66,4 +90,4 @@ const mapStateToProps = reduxStore => ({
     reduxStore
 });
 
-export default connect(mapStateToProps)(SearchBar);
+export default withRouter(connect(mapStateToProps)(SearchBar));
