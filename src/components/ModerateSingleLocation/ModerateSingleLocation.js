@@ -447,7 +447,7 @@ class ModerateSingleLocation extends Component {
                         <div className="submitDeleteLocationButton">
                         <Button onClick={this.handleSubmit} color="primary" variant="contained">Submit</Button>
 
-                        <Button color="secondary" variant="contained">Delete</Button>
+                        <Button onClick={this.handleDelete} color="secondary" variant="contained">Delete</Button>
                         </div>
 
                         <div className="navSpacer"></div>

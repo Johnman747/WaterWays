@@ -9,6 +9,7 @@ import {
     LoadScript,
 } from '@react-google-maps/api';
 import mapStyles from './MapStyles'
+import Search from '../SearchBar/SearchBar';
 
 class MapHome extends Component {
     state = { 
@@ -76,6 +77,7 @@ class MapHome extends Component {
         const {userLocation } = this.state;  
         return(
         <Router>
+            <Search />
             <div className="mapHomeComponent">
                 <LoadScript
                     id="script-loader"
