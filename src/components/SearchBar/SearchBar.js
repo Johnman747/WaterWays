@@ -65,6 +65,7 @@ class SearchBar extends Component {
             <div className="SearchBar" >
                 {this.state.backIcon && <img className="SearchBackBtn" src={BackIcon} alt="Back Button" onClick={this.backButton} />}
                 <input className="Search" placeholder="Search Bar" onClick={this.setLocations} onChange={(e) => this.searchBar(e)} />
+                <button className="filter" onClick={() => this.props.history.push('/searchFilter')}>Little Button</button>
             </div>
                 <div className="Results">
                     {filteredLocation.map(location => {
