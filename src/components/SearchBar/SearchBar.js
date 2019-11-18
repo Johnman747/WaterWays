@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from "react-router-dom";
 import BackIcon from '../Icons/backArrowWhite.png'
+import FilterIcon from '../Icons/FilterIcon.png'
 import './SearchBar.css'
 
 class SearchBar extends Component {
@@ -65,7 +66,7 @@ class SearchBar extends Component {
             <div className="SearchBar" >
                 {this.state.backIcon && <img className="SearchBackBtn" src={BackIcon} alt="Back Button" onClick={this.backButton} />}
                 <input className="Search" placeholder="Search Bar" onClick={this.setLocations} onChange={(e) => this.searchBar(e)} />
-                <button className="filter" onClick={() => this.props.history.push('/searchFilter')}>Little Button</button>
+                <img src={FilterIcon} className="filter" onClick={() => this.props.history.push('/searchFilter')}/>
             </div>
                 <div className="Results">
                     {filteredLocation.map(location => {
