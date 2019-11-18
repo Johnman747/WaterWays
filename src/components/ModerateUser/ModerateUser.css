@@ -1,0 +1,13 @@
+th {
+    background-color: #f2f2f2;
+    padding-bottom: 20px;
+    color: black;
+}
+th, td {
+    padding: 10px;
+}
+.userTHead {
+    /* text-decoration: underline; */
+}
+tr:nth-child(even){background-color: #f2f2f2}
+

@@ -1,7 +1,21 @@
 import React, { Component } from 'react';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import Logo from '../Icons/waterwaysLogo.png'
+import blue from '@material-ui/core/colors/blue';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+
+
+const theme = createMuiTheme({
+  palette: {
+    primary: blue,
+  },
+  typography: {
+    useNextVariants: true,
+  },
+});
+
 
 class RegisterPage extends Component {
   state = {
@@ -27,7 +41,7 @@ class RegisterPage extends Component {
         },
       });
     } else {
-      this.props.dispatch({type: 'REGISTRATION_INPUT_ERROR'});
+      this.props.dispatch({ type: 'REGISTRATION_INPUT_ERROR' });
     }
   } // end registerUser
 
@@ -39,66 +53,78 @@ class RegisterPage extends Component {
 
   render() {
     return (
-      <div>
-        {this.props.errors.registrationMessage && (
-          <h2
-            className="alert"
-            role="alert"
-          >
-            {this.props.errors.registrationMessage}
-          </h2>
-        )}
-        <form className='registerForm' onSubmit={this.registerUser}>
-          <div>
+      <div className="registerPage">
+        <MuiThemeProvider theme={theme}>
+          <br />
+          <img src={Logo} alt="waterwaysLogo" height="100" width="100" className="waterwaysLogo" />
+          <div className="logoFont">
+            <h1>WaterWays</h1>
+            <p>Sharing Knowledge.</p>
+            <p>Preserving Resources.</p>
+          </div>
+
+          <form className='registerForm' onSubmit={this.registerUser}>
+            <div>
               <TextField
+                id="filled-username-input"
                 label="First Name"
                 type="text"
                 margin="normal"
                 variant="outlined"
                 value={this.state.first}
                 onChange={this.handleInputChangeFor('first')}
-              /><br/>
+              /><br />
               <TextField
+                id="filled-username-input"
                 label="Last Name"
                 type="text"
                 margin="normal"
                 variant="outlined"
                 value={this.state.last}
                 onChange={this.handleInputChangeFor('last')}
-              /><br/>
+              /><br />
               <TextField
+                id="filled-username-input"
                 label="User Name"
                 type="text"
                 margin="normal"
                 variant="outlined"
                 value={this.state.username}
                 onChange={this.handleInputChangeFor('username')}
-              /><br/>
+              /><br />
               <TextField
-                label="password"
+                id="filled-username-input"
+                label="Password"
                 type="password"
                 margin="normal"
                 variant="outlined"
                 value={this.state.password}
                 onChange={this.handleInputChangeFor('password')}
-              /><br/>
-          </div><br/>
-          <br></br>
-          <Button size='large' variant="contained" color="primary" onClick={this.registerUser}>
+              /><br />
+              {this.props.errors.registrationMessage && (
+                <p
+                  className="alert"
+                  role="alert"
+                >
+                  {this.props.errors.registrationMessage}
+                </p>
+              )}
+            </div><br />
+            <Button size='large' variant="contained" color="primary" onClick={this.registerUser}>
               Register
           </Button>
-        </form>
-        <br></br>
-        
-        <center>
-          <button
-            type="button"
-            className="link-button"
-            onClick={() => {this.props.dispatch({type: 'SET_TO_LOGIN_MODE'})}}
-          >
-            Login
+          </form>
+          <br />
+          <center>
+            <button
+              type="button"
+              className="register-link-button"
+              onClick={() => { this.props.dispatch({ type: 'SET_TO_LOGIN_MODE' }) }}
+            >
+              Login
           </button>
-        </center>
+          </center>
+        </MuiThemeProvider>
       </div>
     );
   }
