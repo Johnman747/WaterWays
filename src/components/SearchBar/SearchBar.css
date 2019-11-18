@@ -6,6 +6,10 @@
     width: 100vw;
 }
 
+.filter{
+    display: inline-block;
+}
+
 .Search{
     height: 30px;
     width: 75vw;
