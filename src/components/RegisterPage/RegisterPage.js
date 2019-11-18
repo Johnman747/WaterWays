@@ -23,7 +23,7 @@ class RegisterPage extends Component {
     password: '',
     first: '',
     last: '',
-    admin: 3
+    admin: 1
   };
 
   registerUser = (event) => {
