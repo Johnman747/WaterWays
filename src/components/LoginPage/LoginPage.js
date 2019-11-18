@@ -59,6 +59,7 @@ class LoginPage extends Component {
 
     return (
       <div className="loginPage">
+        <MuiThemeProvider theme={theme}>
         {showLogin === false ?
           <div className="renderLogin">
             <img src={Logo} alt="waterwaysLogo" height="250" width="250" className="waterwaysLogo" />
@@ -71,9 +72,7 @@ class LoginPage extends Component {
                 <p>Preserving Resources.</p>
               </div>
             </div>
-            <MuiThemeProvider theme={theme}>
             <Button size='large' variant="contained" color="primary" onClick={this.loginRender}>Login</Button>
-            </MuiThemeProvider>
             <br />
             <br />
             <button
@@ -132,9 +131,7 @@ class LoginPage extends Component {
                 </div>
                 <br />
                 <div>
-                <MuiThemeProvider theme={theme}>
                   <Button size='large' variant="contained" color="primary" onClick={this.login}>Login</Button>
-                  </MuiThemeProvider>
 
                   <br />
                   <br />
@@ -149,6 +146,7 @@ class LoginPage extends Component {
               </form>
             </>
             : ""}
+      </MuiThemeProvider>
       </div>
     );
   }

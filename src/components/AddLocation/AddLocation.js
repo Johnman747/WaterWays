@@ -151,6 +151,9 @@ class AddLocation extends Component {
           <div className='addAddressTitle'>
             <h2 className='addh2'>Add Address</h2>
           </div>
+          <div className="mapSpacer">
+            <h4>Tap map to drop a pin</h4>
+          </div>
             <div className="mapAddComponet">
               <LoadScript
                 id="script-loader"
@@ -181,11 +184,13 @@ class AddLocation extends Component {
                 </GoogleMap>
               </LoadScript>
             </div>
+            <div className="mapSpacer"></div>
             {/* <label>Address</label><br />
             <input onChange={(event) => this.handleChange(event, 'address')}></input><br /> */}
           </>
         }
         <Stepper handleNext={this.handleNext} handleBack={this.handleBack} handleReset={this.handleReset} handleSubmit={this.addNewLocation} />
+        <div className="navSpacer"></div>
       </div>
     )
   }
