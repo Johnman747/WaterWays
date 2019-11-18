@@ -1,0 +1,27 @@
+.AddLocationIcon{
+    height: 20px;
+    display: inline-block;
+    margin: auto;
+    padding: 10px;
+}
+
+.Active{
+    background-color: #3BA8FA;
+    display: inline-block;
+    border-radius: 20px;
+}
+.ActiveDescription{
+    color: #3BA8FA;
+}
+
+
+.AddTagWholeIcon{
+    display: inline-block;
+    text-align: center;
+    font-weight: 100;
+    width: 45vw;
+}
+
+.AddTagDescription{
+    margin: -15px;
+}

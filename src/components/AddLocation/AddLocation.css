@@ -5,23 +5,14 @@
 
 .StepDots{
     display: inline-block;
-    margin-left: 35%;
+    margin: auto;
 }
 
 .Stepper{
-    display: inline-block;
-    position: fixed;
-    bottom: 15%;
-    left: 30%;
+    display: block;
+    margin: auto;
 }
 
-.AddLocationIcon{
-    height: 30px;
-}
-
-.Active{
-    background-color: #3BA8FA;
-}
 .addTitle{
     background-color: #3BA8FA;
     padding: 1px;
@@ -48,4 +39,9 @@ p{
 .addTextField{
     margin-left: 24px;
     margin-right: 24px;
+}
+
+.mapSpacer{
+    width: 100vw;
+    height: 60px;
 }
