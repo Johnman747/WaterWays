@@ -61,6 +61,7 @@ class LocationPage extends Component {
     componentDidMount() {
         this.getInfo();
         this.getPhotos();
+        this.props.dispatch({type:'ADD_TO_HISTORY', payload: this.props.history.location.pathname})
         this.props.dispatch({ type: 'FETCH_REVIEWS', payload: this.props.match.params.id });
         this.props.dispatch({ type: 'FETCH_REPORTS', payload: this.props.match.params.id });
         this.props.dispatch({ type: 'FETCH_SINGLE_REPORT', payload: this.state.report_id });

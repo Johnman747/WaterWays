@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { HashRouter as Router, withRouter } from 'react-router-dom';
 import MapMarkers from '../MapMarkers/MapMarkers';
 import UserMapMarker from '../UserMapMarker/UserMapMarker'
+// import {withLastLocation} from 'react-router-last-location';
 import {
     GoogleMap,
     LoadScript,
@@ -10,7 +11,10 @@ import {
 import mapStyles from './MapStyles'
 
 class MapHome extends Component {
-    state = { userLocation: { latitude: 0, longitude: 0, accuracy:0}, loading: true };
+    state = { 
+        userLocation: { latitude: 0, longitude: 0 },
+         loading: true
+        };
 
     // componentDidMount(props) {
     //     navigator.geolocation.getCurrentPosition(
@@ -30,7 +34,14 @@ class MapHome extends Component {
     //   console.log('###################',this.state.userLocation, this.state.loading);
       
     componentDidMount() {
-      this.getLocations();
+    //    this.props.dispatch({type:'ADD_TO_HISTORY', payload: this.props.history.location.pathname})
+        let lastURL = this.props.reduxStore.historyReducer.pop();
+        console.log(lastURL)
+        if(lastURL === '/searchFilter'){
+            this.props.dispatch({type: 'SET_FILTERED_LOCATIONS', payload: this.props.reduxStore.filteredLocationsReducer})
+        }else{
+            this.getLocations();
+        }
       this.getGeoLocation();
     }
 
@@ -92,7 +103,7 @@ class MapHome extends Component {
                             styles: mapStyles
                         }}
                     >
-                    >
+                
                         {this.props.reduxStore.locationsReducer.map(location =>
                                 <MapMarkers key={location.id} location={location} />
                         )}
