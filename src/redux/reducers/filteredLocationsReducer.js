@@ -1,6 +1,6 @@
 const filteredLocationsReducer = (state = [], action) => {
     switch (action.type) {
-      case 'SET_FILTERED_LOCATIONS':
+      case 'SET_FILTERS':
         return action.payload;
       default:
         return state;

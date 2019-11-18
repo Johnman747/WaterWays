@@ -99,7 +99,12 @@ function* deleteLocation(action) {
 
 function* setFilters(action) {
   try{
-    yield put({type: 'SET_LOCATIONS', payload: action.payload});
+    // const config = {
+    //   headers: { 'Content-Type': 'application/json' },
+    //   withCredentials: true,
+    // };    
+   const response = yield axios.post('/api/locations/filter', action.payload);
+    yield put({type: 'SET_LOCATIONS', payload: response.data});
   }catch(error){
     console.log(error)
   }

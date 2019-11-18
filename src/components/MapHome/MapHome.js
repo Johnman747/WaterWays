@@ -35,8 +35,11 @@ class MapHome extends Component {
     componentDidMount() {
     //    this.props.dispatch({type:'ADD_TO_HISTORY', payload: this.props.history.location.pathname})
         let lastURL = this.props.reduxStore.historyReducer.pop();
-        if(lastURL !== '/searchFilter'){
-             this.getLocations();
+        console.log(lastURL)
+        if(lastURL === '/searchFilter'){
+            this.props.dispatch({type: 'SET_FILTERED_LOCATIONS', payload: this.props.reduxStore.filteredLocationsReducer})
+        }else{
+            this.getLocations();
         }
       this.getGeoLocation();
     }
@@ -90,7 +93,7 @@ class MapHome extends Component {
                         }}
                         options={{"disableDefaultUI": "true"}}
                     >
-                    >
+                
                         {this.props.reduxStore.locationsReducer.map(location =>
                                 <MapMarkers key={location.id} location={location} />
                         )}

@@ -27,6 +27,76 @@ router.get('/search', (req, res) => {
     })
 });
 
+router.post('/filter', (req,res) =>{
+//THIS POST IS ACTUALLY A GET REQUEST BUT NEEDED TO 
+//BE ABLE TO PASS A REQUEST BODY DO NOT CHANGE THIS
+    
+const filters = req.body;
+    const values = [
+        filters.free,
+        filters.spigot,
+        filters.trail_access,
+        filters.road_access,
+        filters.campground_access,
+        filters.free_flowing,
+        filters.artesian_well,
+        filters.rv
+        ]
+    console.log(filters);
+    
+    let queryText = `SELECT * FROM "locations" WHERE ` 
+    if(filters.free === true){        
+        queryText = queryText + `free = TRUE AND`
+    }
+    if(filters.spigot === true){
+        queryText = queryText + ` "spigot" = TRUE AND`
+    }
+    if(filters.trail_access === true){
+        queryText = queryText + ` "trail_access" = TRUE AND`
+    }
+    if(filters.road_access === true){
+        queryText = queryText + ` "road_access" = TRUE AND`
+    }
+    if(filters.campground_access === true){
+        queryText = queryText + ` "campground_access" = TRUE AND`
+    }
+    if(filters.free_flowing === true){
+        queryText = queryText + ` "free_flowing" = TRUE AND`
+    }
+    if(filters.artesian_well === true){
+        queryText = queryText + ` "artesian_well" = TRUE AND`
+    }
+    if(filters.rv === true){
+        queryText = queryText + ` "RV" = TRUE `
+    }else{
+        queryText = queryText + ` "RV" = FALSE `
+
+    }
+
+    console.log('XXXXXXXXXXXXXXXXXX', queryText)
+
+    // "free" = $1 OR 
+    // "spigot" = $2 OR 
+    // "trail_access" = $3 OR 
+    // "road_access" = $4 OR 
+    // "campground_access" = $5 OR 
+    // "free_flowing" = $6 OR 
+    // "artesian_well" = $7 OR
+    // "RV" = $8;
+    
+    
+
+    pool.query(queryText)
+    .then((result) => {
+        console.log(result.rows)
+        res.send(result.rows);
+    }).catch((error) => {
+        console.log(error);
+        res.sendStatus(500);
+
+    })
+});
+
 router.get('/:id', (req, res) => {
     let queryText = `SELECT * FROM "locations" WHERE id=$1;`;
     pool.query(queryText, [req.params.id])
@@ -53,9 +123,7 @@ router.get('/:id', (req, res) => {
 //         })
 // });
 
-/**
- * POST route template
- */
+
 router.put('/location/:id', (req,res) =>{
         const location = req.body;
         const values =[
@@ -90,6 +158,8 @@ router.put('/location/:id', (req,res) =>{
             });
 
 });
+
+
 router.post('/', (req, res) => {
     const location = req.body;
     const values =[
