@@ -97,6 +97,19 @@ function* deleteLocation(action) {
   }
 }
 
+function* setFilters(action) {
+  try{
+    // const config = {
+    //   headers: { 'Content-Type': 'application/json' },
+    //   withCredentials: true,
+    // };    
+   const response = yield axios.post('/api/locations/filter', action.payload);
+    yield put({type: 'SET_LOCATIONS', payload: response.data});
+  }catch(error){
+    console.log(error)
+  }
+}
+
 
 function* locationsSaga() {
   yield takeLatest('FETCH_LOCATIONS', fetchLocations);
@@ -105,6 +118,7 @@ function* locationsSaga() {
   yield takeLatest('DELETE_LOCATION', deleteLocation);
   yield takeLatest('FETCH_SINGLE_LOCATION', fetchSingleLocation);
   yield takeLatest('UPDATE_LOCATION', updateSingleLocation);
+  yield takeLatest('SET_FILTERED_LOCATIONS', setFilters);
 }
 
 export default locationsSaga;

@@ -7,65 +7,68 @@ class SearchFilter extends Component {
     state = {
         locationFilters:
         {
-            free: null,
-            spigot: null,
-            trail_access: null,
-            road_access: null,
-            campground_access: null,
-            free_flowing: null,
-            artesian_well: null,
-            rv: null
-        },
-        locations:[]
+            free: false,
+            spigot: false,
+            trail_access: false,
+            road_access: false,
+            campground_access: false,
+            free_flowing: false,
+            artesian_well: false,
+            rv: false
+        }
+        // ,
+        // locations:[]
 
 
     }
     
     componentDidMount(){
+        this.props.dispatch({type:'ADD_TO_HISTORY', payload: this.props.history.location.pathname});
         this.props.dispatch({type:'FETCH_LOCATIONS'});
         console.log(this.props.history.location.pathname);
         // this.props.dispatch({type: 'ADD_TO_HISTORY', payload: this.props.history.location.pathname});
     }
 
-     setLocations = () =>{
-        let array = []
-        this.props.reduxStore.locationsReducer.map(location =>
-            {if(location.free === true && this.state.locationFilters.free === true){
-                array.push(location) 
-            }
-             else if(location.spigot === true && this.state.locationFilters.spigot === true){
-                array.push(location) 
-            }
-             else if(location.trail_access === true && this.state.locationFilters.trail_access === true){
-                array.push(location) 
-            }
-             else if(location.road_access === true && this.state.locationFilters.road_access === true){
-                array.push(location)
-            }
-             else if(location.campground_access === true && this.state.locationFilters.campground_access === true){
-                array.push(location) 
-            }
-             else if(location.free_flowing === true && this.state.locationFilters.free_flowing === true){
-                array.push(location) 
-            }
-             else if(location.artesian_well === true && this.state.locationFilters.artesian_well === true){
-                array.push(location) 
-            }
-             else if(location.rv === true && this.state.locationFilters.rv === true){
-                array.push(location) 
-            }}
-        )
-         this.setState({
-            ...this.state.locations,
-            locations: array
-        })
-        this.setFilters();       
-    }
+    //  setLocations = () =>{
+    //     let array = []
+    //     this.props.reduxStore.locationsReducer.map(location =>
+    //         {if(location.free === true && this.state.locationFilters.free === true){
+    //             array.push(location) 
+    //         }
+    //          else if(location.spigot === true && this.state.locationFilters.spigot === true){
+    //             array.push(location) 
+    //         }
+    //          else if(location.trail_access === true && this.state.locationFilters.trail_access === true){
+    //             array.push(location) 
+    //         }
+    //          else if(location.road_access === true && this.state.locationFilters.road_access === true){
+    //             array.push(location)
+    //         }
+    //          else if(location.campground_access === true && this.state.locationFilters.campground_access === true){
+    //             array.push(location) 
+    //         }
+    //          else if(location.free_flowing === true && this.state.locationFilters.free_flowing === true){
+    //             array.push(location) 
+    //         }
+    //          else if(location.artesian_well === true && this.state.locationFilters.artesian_well === true){
+    //             array.push(location) 
+    //         }
+    //          else if(location.rv === true && this.state.locationFilters.rv === true){
+    //             array.push(location) 
+    //         }}
+    //     )
+    //      this.setState({
+    //         ...this.state.locations,
+    //         locations: array
+    //     })
+    //     this.setFilters();       
+    // }
     
     setFilters = () =>{
-        console.log(this.state.locations)
-        this.props.dispatch({type: 'SET_LOCATIONS', payload: this.state.locations})
-        // this.props.history.push('/');
+        console.log(this.state.locationFilters)
+        this.props.dispatch({type: 'SET_FILTERS', payload: this.state.locationFilters})
+        // this.props.dispatch({type: 'SET_FILTERED_LOCATIONS', payload: this.state.locationFilters})
+        // this.props.history.push('/mapHome');
     }
     
 
@@ -80,7 +83,7 @@ class SearchFilter extends Component {
     }
     showMe() {
         console.log('local state filters', this.state.locationFilters);
-        console.log('local state locations', this.state.locations);
+        // console.log('local state locations', this.state.locations);
 
     }
 
@@ -126,9 +129,9 @@ class SearchFilter extends Component {
                     <button onClick={() => this.handleToggle("RV", true)}>True</button> : <button onClick={() => this.handleToggle("RV", false)}>False</button>
                 }
                 <br />
-                <br />
-                <button onClick={this.handleClear}>Clear</button>
-                <button onClick={this.setLocations}>Apply</button>
+                {/* <button onClick={this.handleClear}>Clear</button> */}
+                <button onClick={this.setFilters}>Apply</button>
+                <div className="navSpacer"></div>
             </div>
         )
     }
