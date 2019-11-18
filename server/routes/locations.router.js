@@ -110,18 +110,17 @@ router.get('/:id', (req, res) => {
 
 });
 
-// router.delete('/:id', rejectUnauthenticated, (req, res) => { 
-//     const location = req.body; 
-//     console.log('in delete', location) 
-//         const query = `DELETE FROM "locations" WHERE "id"=$1;`;
-//         pool.query(query, [req.params.id]).then(() => {
-//             res.sendStatus(200);
-//         }).catch((error) => {
-//             console.log('ERROR with DELETE ', error);
+router.delete('/location/:id', (req, res) => { 
+   
+        let queryText = `DELETE FROM "locations" WHERE "id"=$1;`;
+        pool.query(queryText, [req.params.id]).then(() => {
+            res.sendStatus(200);
+        }).catch((error) => {
+            console.log('ERROR with DELETE ', error);
 
-//             res.sendStatus(500);
-//         })
-// });
+            res.sendStatus(500);
+        })
+});
 
 
 router.put('/location/:id', (req,res) =>{
@@ -148,9 +147,9 @@ router.put('/location/:id', (req,res) =>{
         queryText = `UPDATE "locations" SET
         "name"=$1,"address"=$2,"latitude"=$3,"longitude"=$4,"created_by"=$5,"free"=$6,
             "spigot"=$7,"trail_access"=$8,"road_access"=$9,"campground_access"=$10,
-            "free_flowing"=$11,"artesian_well"=$12,"photo_primary"=$13,"description"=$14,"rv"=$15,"approve"=$16 WHERE "id"=$17`;
+            "free_flowing"=$11,"artesian_well"=$12,"photo_primary"=$13,"description"=$14,"RV"=$15,"approve"=$16 WHERE "id"=$17`;
         
-        pool.query(queryText, values)
+        pool.query(queryText,values)
             .then((result) => {
             console.log(result)
             }).catch((error) =>{
