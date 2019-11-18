@@ -37,6 +37,10 @@ class AddLocation extends Component {
     },
     step: 0
   }
+  componentDidMount(){
+    this.props.dispatch({type:'ADD_TO_HISTORY', payload: this.props.history.location.pathname})
+
+  }
 
   handleChange = (boolean, propertyName) => {
     this.setState({

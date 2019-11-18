@@ -2,6 +2,19 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { HashRouter as Router, withRouter } from 'react-router-dom';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+import Button from '@material-ui/core/Button';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { red, blue } from '@material-ui/core/colors';
+
+const theme = createMuiTheme({
+    palette: {
+        primary: blue,
+        secondary: red
+    },
+    typography: {
+        useNextVariants: true,
+    },
+});
 
 class ModerateLocation extends Component {
 
@@ -25,10 +38,12 @@ class ModerateLocation extends Component {
     render() {
         return (
             <Router>
+                                <MuiThemeProvider theme={theme}>
+
                 <div className="moderateLocation">
-                    <ArrowBackIosIcon onClick={this.handleBack}/>
-                    <h1>Moderate Locations:</h1>
-                    <p>Moderate locations based on community guidlines.</p>
+                    <div className="moderateLocationHeader">
+                    <h1><ArrowBackIosIcon onClick={this.handleBack}/><span>Moderate Locations:</span></h1>
+                    </div>
                     <table className="locationTable">
                         <thead className="locationTHead">
                             <tr>
@@ -41,12 +56,12 @@ class ModerateLocation extends Component {
                             this.props.reduxStore.locationsReducer.map(location => location.approve === true ? (
                                 <tr key={location.id}>
                                     <td>{location.name}</td>
-                                    <td><button onClick={()=> this.editLocation(location.id)}>Approved</button></td>
+                                    <td><Button onClick={()=> this.editLocation(location.id)} color="primary" variant="contained">Approved</Button></td>
                                 </tr>
                             ) : (
                                     <tr key={location.id}>
                                         <td>{location.name}</td>
-                                        <td><button onClick={()=> this.editLocation(location.id)}>Not Approved</button></td>
+                                        <td><Button onClick={()=> this.editLocation(location.id)} color="secondary" variant="contained">Pending</Button></td>
                                     </tr>
                                 )
                             )}
@@ -54,6 +69,8 @@ class ModerateLocation extends Component {
                     </table>
 
                 </div>
+                <div className="navSpacer"></div>
+                </MuiThemeProvider>
             </Router>
         )
     }

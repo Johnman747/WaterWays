@@ -160,8 +160,8 @@ class ModerateSingleLocation extends Component {
                             }
                             <br/>
                     <button onClick={this.handleSubmit}>Submit</button>
-                    <button>Delete</button>
-
+                    <button onClick={this.handleDelete}>Delete</button>
+                            <div className="navSpacer"></div>
                 </div>
             </Router>
         )

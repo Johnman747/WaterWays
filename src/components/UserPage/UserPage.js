@@ -9,7 +9,8 @@ import LogOutButton from '../LogOutButton/LogOutButton';
 class UserPage extends Component {
 
   componentDidMount() {
-    this.props.dispatch({ type: 'FETCH_USER' })
+    this.props.dispatch({type:'ADD_TO_HISTORY', payload: this.props.history.location.pathname})
+    this.props.dispatch({ type: 'FETCH_USER' });
   }
 
   render() {
@@ -25,12 +26,18 @@ class UserPage extends Component {
           <h3>Email: </h3>
           </div>
           <br />
+          {this.props.reduxStore.user.admin_level === 2 ? 
+          <Button  fullWidth="true" variant="contained" color="primary" onClick={()=>this.props.history.push('/ModerateLocation')}>Location Approval</Button>
+          :(null)       
+          }
+          {this.props.reduxStore.user.admin_level === 3 ?(
           <div className="userPageButtons">
           <Button  fullWidth="true" variant="contained" color="primary" onClick={()=>this.props.history.push('/ModerateLocation')}>Location Approval</Button>
           <br />
           <br />
           <Button  fullWidth="true" variant="contained" onClick={()=>this.props.history.push('/ModerateUser')}>Moderate Users</Button>
-          </div>
+          </div>)
+          :(null)}
           <br />
           <br />
           <LogOutButton className="log-in" />

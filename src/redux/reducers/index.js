@@ -11,6 +11,7 @@ import singleReport from './singleReportReducer';
 import singleReview from './singleReviewReducer';
 import PhotosReducer from './PhotosReducer';
 import filteredLocationsReducer from './filteredLocationsReducer';
+import historyReducer from './historyReducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -30,7 +31,8 @@ const rootReducer = combineReducers({
   singleReport,
   singleReview,// will have an id and username if someone is logged in
   PhotosReducer,
-  filteredLocationsReducer
+  filteredLocationsReducer,
+  historyReducer
 });
 
 export default rootReducer;

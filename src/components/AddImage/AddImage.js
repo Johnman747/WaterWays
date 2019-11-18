@@ -1,11 +1,16 @@
 import React, { Component } from 'react'
 import UploadImage from '../AddLocation/UploadImage'
 import { connect } from 'react-redux';
+import {withRouter} from 'react-router-dom';
 
 class AddImage extends Component{
   state={
       photo:'',
       id:this.props.locationId,
+  }
+  componentDidMount(){
+    this.props.dispatch({type:'ADD_TO_HISTORY', payload: this.props.history.location.pathname})
+
   }
   handleImage = (imageUrl) => {
     this.setState({
@@ -29,4 +34,4 @@ class AddImage extends Component{
 const mapStateToProps = (reduxStore) => ({
   reduxStore
 });
-export default connect(mapStateToProps)(AddImage);
+export default withRouter(connect(mapStateToProps)(AddImage));

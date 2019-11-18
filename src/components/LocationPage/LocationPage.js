@@ -61,6 +61,7 @@ class LocationPage extends Component {
     componentDidMount() {
         this.getInfo();
         this.getPhotos();
+        this.props.dispatch({type:'ADD_TO_HISTORY', payload: this.props.history.location.pathname})
         this.props.dispatch({ type: 'FETCH_REVIEWS', payload: this.props.match.params.id });
         this.props.dispatch({ type: 'FETCH_REPORTS', payload: this.props.match.params.id });
         this.props.dispatch({ type: 'FETCH_SINGLE_REPORT', payload: this.state.report_id });
@@ -196,9 +197,12 @@ class LocationPage extends Component {
                                     </div>
                                 }
                             </div>
+                             {this.props.reduxStore.user.id ?
                             <div className="modalButton" >
                                 <MenuModal locationInfo={location.id} modalChange={this.modalChange} />
                             </div>
+                             :(null)
+                            }  
                         </div>
                     </div>
                 )}
