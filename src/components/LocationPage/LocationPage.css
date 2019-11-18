@@ -16,40 +16,33 @@
 
 .DetailsDisplay{
     background-color: white;
-    position: fixed;
-    top:25vh;
     width: 100%;
     padding-left: 10px;
-    z-index: 1;
+    overflow: hidden;
 }
 
 .LocationPageTabs{
     width: 100%;
-    position: fixed;
-    bottom: 30%;
-    z-index: 0;
 }
 .LocationName{
     margin: -1% 0;
 }
 
 .BlueBarLocaionPage{
-    position: fixed;
     background-color: #3BA8FA;
-    height: 80px;
-    width: 100%;
-    top: 20%;
+    height: 40px;
+    width: 100vw;
 }
 
 .starRating{
 display: inline-block;
-margin-right: 5%;
 padding-top: 10px;
+width: 50vw;
 }
 
 .detailsHeader{
 display: inline-block;
-margin-right: 35% ;
+width: 50vw;
 }
 
 .DetailItem{
@@ -67,28 +60,85 @@ margin: 3px;
 }
 .modalButton{
     position: fixed;
-    bottom: 11%;
-    right: 3%;
+    bottom: 10.5%;
+    right: 9%;
     z-index: 10;
 }
 
 .TabPage{
-    position: fixed;
-    bottom: 11%;
     height: 19%;
-    width: 100%;
     overflow: auto;
     background-color: white;
-    z-index: -1;
 }
 
 .ReviewTabDisplay{
-    border: 1px solid black;
+    border-bottom: 3px solid lightgrey;
+    margin: 10% 0;
 }
 
-/* .navCover{
-    height: 100px;
-    position: relative;
-    background-color: #3BA8FA;
-    z-index: 10;
-} */
+.imageCut{
+    overflow: hidden;
+    height: 125px;
+}
+
+.LineSplitter{
+    display: inline-block;
+    height: 3px;
+    width: 80vw;
+    margin-left: 10vw;
+    margin-right: 10vw;
+    background-color: lightgray;
+}
+
+.ReviewName{
+    display: inline-block;
+    margin-top: 25px;
+}
+
+.RagingPageStars{
+    /* display: inline-block; */
+    float: right;
+    margin-top: 25px;
+    margin-right: 20vw;
+}
+
+.ReviewDiv{
+    text-align: center;
+}
+
+.ReviewComment{
+ margin-left: 10vw;
+}
+
+.ReportIssue{
+    display: inline-block;
+    text-align: left;
+    width: 60vw;
+
+}
+
+.reportNameDiv{
+    float: left;
+    width: 40vw;
+    height: 100%;
+}
+
+.ReportName{
+    margin-bottom: -20px;
+    padding-top: 10px;
+}
+
+.deleteReviewBtn{
+
+}
+
+.photoTabPics{
+    /* border: 2px solid black; */
+    width: 99vw;
+    display: inline-block;
+}
+
+.navSpacer{
+    width: 100vw;
+    height: 78px;
+}

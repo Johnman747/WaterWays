@@ -48,12 +48,26 @@ function* deleteReport(action){
     }
 }
 
+function* postReport(action){
+  try{
+    console.log("post report -------------------",action.payload)
+    yield axios.post('/api/reports', action.payload);
+    const thing = {payload: action.payload.location}
+    yield this.fetchReports(thing)
+
+  }catch(error){
+    console.log(error);
+    
+  }
+}
+
 
 
 function* reviewSaga(){
     yield takeLatest('FETCH_REPORTS', fetchReports);
     yield takeLatest('FETCH_SINGLE_REPORT', fetchSingleReport);
     yield takeLatest('DELETE_REPORT', deleteReport);
+    yield takeLatest('POST_REPORT', postReport)
 }
 
 export default reviewSaga;

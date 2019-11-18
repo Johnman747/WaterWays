@@ -2,43 +2,17 @@ import React, { Component } from 'react';
 import AddImage from '../AddImage/AddImage'
 import { withRouter } from 'react-router-dom';
 // ---- Material UI ---- //
+import Typography from '@material-ui/core/Typography';
 import Modal from '@material-ui/core/Modal';
-import { withStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import { withStyles, MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import Fab from '@material-ui/core/Fab';
 import ClearSharpIcon from '@material-ui/icons/ClearSharp';
 import RateReviewIcon from '@material-ui/icons/RateReview';
 import ReportProblemIcon from '@material-ui/icons/ReportProblem';
+import ImageIcon from '@material-ui/icons/Image';
 import AddIcon from '@material-ui/icons/Add';
 import './MenuModal.css'
-
-// function rand() {
-//     return Math.round(Math.random() * 20) - 10;
-// }
-
-function getModalStyle() {
-    const top = 50 
-    const left = 50
-
-    return {
-        top: `${top}%`,
-        left: `${left}%`,
-        transform: `translate(-${top}%, -${left}%)`,
-    };
-}
-
-const styles = theme => ({
-    paper: {
-        // background:'linear-gradient(45deg, #9898FA 30%, #98FAFA 90%)',
-        position: 'absolute',
-        width: theme.spacing.unit * 12,
-        height: theme.spacing.unit * 52,
-        boxShadow: theme.shadows[5],
-        padding: theme.spacing.unit * 20,
-        paddingLeft: theme.spacing.unit *20,
-        outline: 'none',
-    },
-});
-
 
 class MenuModal extends Component {
     state = {
@@ -51,11 +25,14 @@ class MenuModal extends Component {
         }));
         this.props.modalChange()
     }
-    handle_Resolve_Report = () =>{
+    handle_Resolve_Report = () => {
         this.props.history.push(`/addreport/${this.props.locationInfo}`)
     }
-    handle_Review = () =>{
+    handle_Review = () => {
         this.props.history.push(`/addreview/${this.props.locationInfo}`)
+    }
+    handle_Add_Image = ()=>{
+        this.props.history.push(`/addimage/${this.props.locationInfo}`)
     }
 
     render() {
@@ -68,30 +45,32 @@ class MenuModal extends Component {
                     open={this.state.isOpen}
                     onClose={this.handle_Modal}
                 >
-                    <div style={getModalStyle()} className={classes.paper}>
-                        {
-                            showContent === true &&
-                                <div className="modalWindow">
-                                    <h4>Report/</h4><h4>Resolve</h4>
-                                    <Fab onClick={this.handle_Resolve_Report} color="primary" aria-label="Report"><ReportProblemIcon/></Fab>
-                                    <br />
-                                    <br />
-                                    <h4>Review</h4>
-                                    <Fab onClick={this.handle_Review} color="primary" aria-label="Review"><RateReviewIcon/></Fab>
-                                    <br />
-                                    <br />
-                                    <h4>Image</h4>
-                                    <AddImage locationId={this.props.locationInfo} />
-                                    <br />
-                                    <Fab onClick={this.handle_Modal} color="primary" aria-label="Cancel" className={classes.fab}><ClearSharpIcon/></Fab>
+                    <div>
+                        {showContent === true &&
+                            <div className="modalWindow">
+                                <div className="ModalWindowFabDiv">
+                                    <h4 className="FabLabel">Report/Resolve</h4>
+                                    <Fab onClick={this.handle_Resolve_Report} color="primary" aria-label="Report"><ReportProblemIcon /></Fab>
                                 </div>
+                                <div className="ModalWindowFabDiv">
+                                    <h4 className="FabLabel">Review</h4>
+                                    <Fab onClick={this.handle_Review} color="primary" aria-label="Review"><RateReviewIcon /></Fab>
+                                </div>
+                                <div className="ModalWindowFabDiv">
+                                    <h4 className="FabLabel">Add Image</h4>
+                                    <Fab onClick={this.handle_Add_Image} color="primary" aria-label="AddImage"><ImageIcon/></Fab>
+                                </div>
+                                <Fab onClick={this.handle_Modal} color="primary" aria-label="Cancel"><ClearSharpIcon /></Fab>
+                            </div>
                         }
                     </div>
                 </Modal>
-                <Fab onClick={this.handle_Modal} color="primary" aria-label="Add" className="modalIcon"><AddIcon/></Fab>
+                {showContent === false &&
+                    <Fab onClick={this.handle_Modal} color="primary" aria-label="Add" className="modalIcon"><AddIcon /></Fab>
+                }
             </div>
         )
     }
 }
 
-export default withStyles(styles)(withRouter(MenuModal));
+export default withRouter(MenuModal);
