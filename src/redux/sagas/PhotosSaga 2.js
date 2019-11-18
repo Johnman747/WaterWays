@@ -9,7 +9,7 @@ function* fetchPhotos(action){
           };
 
           const response = yield axios.get(`/api/photo/${action.payload}`, config);
-          console.log('photos saga XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX', response.data)
+          // console.log('photos saga XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX', response.data)
           yield put({type:'SET_PHOTOS', payload: response.data})
     }catch(error){
         console.log(error);
@@ -21,7 +21,7 @@ function* fetchSinglePhoto(action) {
         headers: { 'Content-Type': 'application/json' },
         withCredentials: true,
       };
-      console.log(action.payload);
+      // console.log(action.payload);
       
       const response = yield axios.get(`/api/photos/photo/${action.payload}`, config);
   

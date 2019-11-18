@@ -1,12 +1,28 @@
 .ModalBackground{
-    /* height: 100%;
-    width: 100%; */
+    height: 100vh;
+    width: 100vw;
     filter: blur(5px);
     -webkit-filter: blur(5px);
 }
 
 .modalWindow {
     position: fixed;
-    left: 78%;
-    color: #3BA8FA;
+    right: 10vw;
+    bottom: 11%;
+    color: #00b9fc;
+    text-align: right;
+}
+
+.FabLabel{
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.ModalWindowFabDiv{
+    display: block;
+    margin: 10px;
+}
+
+.AddImageModalWindow{
+    display: inline-block;
 }

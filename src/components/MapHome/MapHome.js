@@ -92,7 +92,7 @@ class MapHome extends Component {
                     >
                     >
                         {this.props.reduxStore.locationsReducer.map(location =>
-                                <MapMarkers location={location} />
+                                <MapMarkers key={location.id} location={location} />
                         )}
                   <UserMapMarker initialCenter={userLocation}/>
                     </GoogleMap>
