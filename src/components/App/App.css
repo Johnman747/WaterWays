@@ -152,3 +152,21 @@ input {
     background-color: #3ba8fa;
     padding: 10px;
 }
+.moderateSingleLocation {
+    text-align: center;
+}
+.moderateSingleLocationHeader {
+    text-align: center;
+    text-align-last: center;
+    padding-bottom: 10px;
+    background-color: #3ba8fa;
+    padding: 10px;
+}
+.approveLocationButton {
+    padding: 10px;
+}
+.submitDeleteLocationButton {
+    display: inline-block;
+    padding-bottom: 15px;
+
+}

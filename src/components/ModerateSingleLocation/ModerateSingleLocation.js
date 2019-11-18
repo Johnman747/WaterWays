@@ -2,6 +2,49 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { HashRouter as Router, withRouter } from 'react-router-dom';
 import AddImage from '../AddImage/AddImage'
+// ---- LOOK AT ALL THESE ICONS ---- //
+import FreeIcon from '../Icons/FreeIcon.png';
+import PaidIcon from '../Icons/PaidIcon.png';
+import Spigot from '../Icons/SpigotIcon.png';
+import FreeFlow from '../Icons/FreeFlowingIcon.png';
+import RV from '../Icons/RvIcon.png';
+import Tent from '../Icons/TentIcon.png';
+import Well from '../Icons/ArtesianWellIcon.png';
+import Trail from '../Icons/TrailSource.png';
+import PavedRoad from '../Icons/PavedRoadIcon.png';
+import DirtRoad from '../Icons/DirtRoadIcon.png';
+import PavedTrail from '../Icons/PavedTrailIcon.png';
+import DirtTrail from '../Icons/DirtTrailIcon.png';
+// Acvtive Icons
+import FreeIconBlue from '../Icons/FreeIconBlue.png';
+import PaidIconBlue from '../Icons/PaidIconBlue.png';
+import SpigotBlue from '../Icons/SpigotIconBLue.png';
+import FreeFlowBlue from '../Icons/FreeFlowingIconBlue.png';
+import RVBlue from '../Icons/RvIconBlue.png';
+import TentBlue from '../Icons/TentIconBlue.png';
+import WellBlue from '../Icons/ArtesianWellIconBlue.png';
+import TrailBlue from '../Icons/TrailSourceBlue.png';
+import PavedRoadBlue from '../Icons/PavedRoadIconBlue.png';
+import DirtRoadBlue from '../Icons/DirtRoadIconBlue.png';
+import PavedTrailBlue from '../Icons/PavedTrailIconBlue.png';
+import DirtTrailBlue from '../Icons/DirtTrailIconBlue.png';
+// --- Material UI --- //
+import Button from '@material-ui/core/Button';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { red, blue } from '@material-ui/core/colors';
+import TextField from '@material-ui/core/TextField';
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+
+
+const theme = createMuiTheme({
+    palette: {
+        primary: blue,
+        secondary: red
+    },
+    typography: {
+        useNextVariants: true,
+    },
+});
 
 class ModerateSingleLocation extends Component {
 
@@ -13,7 +56,7 @@ class ModerateSingleLocation extends Component {
             latitude: '',
             longitude: '',
             free: '',
-            created_by:'',
+            created_by: '',
             spigot: '',
             trail_access: '',
             road_access: '',
@@ -73,9 +116,9 @@ class ModerateSingleLocation extends Component {
         })
     }
 
-    handleToggle = (propertyName, boolean) =>{
+    handleToggle = (propertyName, boolean) => {
         this.setState({
-            location:{
+            location: {
                 ...this.state.location,
                 [propertyName]: !boolean
             }
@@ -91,7 +134,7 @@ class ModerateSingleLocation extends Component {
         this.props.history.push('/');
     }
 
-    handleDelete = () =>{
+    handleDelete = () => {
         this.props.dispatch({ type: 'DELETE_LOCATION', payload: this.state.location.id });
         this.props.history.push('/');
     }
@@ -99,70 +142,319 @@ class ModerateSingleLocation extends Component {
     render() {
         return (
             <Router>
-                <div className="moderateSingleLocation">
-                    <button onClick={this.handleBack}>Back</button>
-                    <h1>Location Details:</h1>
-                            <input value={this.state.location.name} onChange={(event) => this.handleChange(event, 'name')} />
-                            <br/>
-                            <input value={this.state.location.description} onChange={(event) => this.handleChange(event, 'description')} />
-                            <br/>
-                            <input value={this.state.location.address} onChange={(event) => this.handleChange(event, 'address')} />
-                            <br/>
-                            {/* <input value={this.state.location.created_by} onChange={(event) => this.handleChange(event, 'created_by')} /> */}
-                            <br/>
-                            <input value={this.state.location.latitude} onChange={(event) => this.handleChange(event, 'latitude')} />
-                            <br/>
-                            <input value={this.state.location.longitude} onChange={(event) => this.handleChange(event, 'longitude')} />
-                            <br/>
-                            <p>free</p>
+                <MuiThemeProvider theme={theme}>
+
+                    <div className="moderateSingleLocation">
+                        <div className="moderateSingleLocationHeader">
+                            <h1><ArrowBackIosIcon onClick={this.handleBack} className="moderateUserArrow" fontSize="medium" /><span>Location Details:</span></h1>
+                        </div>
+
+                        <TextField
+                            label="Location Name"
+                            type="text"
+                            name="name"
+                            margin="normal"
+                            variant="outlined"
+                            value={this.state.location.name}
+                            onChange={(event) => this.handleChange(event, 'name')}
+                        />
+                        <br />
+                        <TextField
+                            label="Description"
+                            type="text"
+                            name="description"
+                            margin="normal"
+                            variant="outlined"
+                            fullWidth
+                            multiline
+                            rows="5"
+                            value={this.state.location.description}
+                            onChange={(event) => this.handleChange(event, 'description')} />
+                        <br />
+                        <TextField
+                            label="Address"
+                            type="text"
+                            name="address"
+                            margin="normal"
+                            variant="outlined"
+                            fullWidth
+                            value={this.state.location.address}
+                            onChange={(event) => this.handleChange(event, 'address')} />
+                        <br />
+                        {/* <input value={this.state.location.created_by} onChange={(event) => this.handleChange(event, 'created_by')} /> */}
+                        <br />
+                        <TextField
+                            label="Latitude"
+                            type="text"
+                            name="latitude"
+                            margin="normal"
+                            variant="outlined"
+                            value={this.state.location.latitude}
+                            onChange={(event) => this.handleChange(event, 'latitude')} />
+                        <TextField
+                            label="Longitude"
+                            type="text"
+                            name="longitude"
+                            margin="normal"
+                            variant="outlined"
+                            value={this.state.location.longitude}
+                            onChange={(event) => this.handleChange(event, 'longitude')} />
+                        <br />
+
+                        <h5>Tap all featues that apply</h5>
+                        <h3>Cost</h3>
+                        <div className="AddTagWholeIcon">
                             {this.state.location.free ?
-                                <button onClick={()=>this.handleToggle("free",true)}>True</button>:<button onClick={()=>this.handleToggle("free",false)}>False</button>
+                                <div>
+                                    <img src={FreeIconBlue} alt="Free Icon" className="AddLocationIcon" onClick={() => this.handleToggle("free", false)} />
+                                </div>
+                                :
+                                <div>
+                                    <img src={FreeIcon} alt="Free Icon" className="AddLocationIcon" onClick={() => this.handleToggle("free", false)} />
+                                </div>
                             }
-                            <p>spigot</p>
+                            <div className="AddTagDescription">
+                                <h5 className={this.state.location.free ? "ActiveDescription" : undefined}>Free</h5>
+                            </div>
+                        </div>
+                        <div className="AddTagWholeIcon">
+                            {this.state.location.free ?
+                                <div >
+                                    <img src={PaidIcon} alt="Free Icon" className="AddLocationIcon" onClick={() => this.handleToggle("free", true)} />
+                                </div>
+                                :
+                                <div>
+                                    <img src={PaidIconBlue} alt="Free Icon" className="AddLocationIcon" onClick={() => this.handleToggle("free", true)} />
+                                </div>
+                            }
+                            <div className="AddTagDescription">
+                                <h5 className={this.state.location.free ? undefined : "ActiveDescription"}>Paid</h5>
+                            </div>
+                        </div>
+
+                        {/* <p>free</p>
+                    {this.state.location.free ?
+                        <button onClick={() => this.handleToggle("free", true)}>True</button> : <button onClick={() => this.handleToggle("free", false)}>False</button>
+                    } */}
+
+                        <h3>Type</h3>
+                        <div className="AddTagWholeIcon">
                             {this.state.location.spigot ?
-                                <button onClick={()=>this.handleToggle("spigot",true)}>True</button>:<button onClick={()=>this.handleToggle("spigot",false)}>False</button>
+                                <div >
+                                    <img src={SpigotBlue} alt="Free Icon" className="AddLocationIcon" onClick={() => this.handleToggle("spigot", true)} />
+                                </div>
+                                :
+                                <div >
+                                    <img src={Spigot} alt="Free Icon" className="AddLocationIcon" onClick={() => this.handleToggle("spigot", false)} />
+                                </div>
                             }
-                            <p>trail_access</p>
-                            {this.state.location.trail_access ?
-                                <button onClick={()=>this.handleToggle("trail_access",true)}>True</button>:<button onClick={()=>this.handleToggle("trail_access",false)}>False</button>
-                            }
-                            <p>road_access</p>
-                            {this.state.location.road_access ?
-                                <button onClick={()=>this.handleToggle("road_access",true)}>True</button>:<button onClick={()=>this.handleToggle("road_access",false)}>False</button>
-                            }
-                            <p>campground_access</p>
-                            {this.state.location.campground_access ?
-                                <button onClick={()=>this.handleToggle("campground_access",true)}>True</button>:<button onClick={()=>this.handleToggle("campground_access",false)}>False</button>
-                            }
-                            <p>free_flowing</p>
+                            <div className="AddTagDescription">
+                                <h5 className={this.state.location.spigot ? "ActiveDescription" : undefined}>Spigot</h5>
+                            </div>
+                        </div>
+
+                        {/* <p>spigot</p>
+                    {this.state.location.spigot ?
+                        <button onClick={() => this.handleToggle("spigot", true)}>True</button> : <button onClick={() => this.handleToggle("spigot", false)}>False</button>
+                    } */}
+
+                        <div className="AddTagWholeIcon">
                             {this.state.location.free_flowing ?
-                                <button onClick={()=>this.handleToggle("free_flowing",true)}>True</button>:<button onClick={()=>this.handleToggle("free_flowing",false)}>False</button>
+                                <div>
+                                    <img src={FreeFlowBlue} alt="Free Icon" className="AddLocationIcon" onClick={() => this.handleToggle("free_flowing", true)} />
+                                </div>
+                                :
+                                <div >
+                                    <img src={FreeFlow} alt="Free Icon" className="AddLocationIcon" onClick={() => this.handleToggle("free_flowing", false)} />
+                                </div>
                             }
-                             <p>artesian_well</p>
-                            {this.state.location.artesian_well ?
-                                <button onClick={()=>this.handleToggle("artesian_well",true)}>True</button>:<button onClick={()=>this.handleToggle("artesian_well",false)}>False</button>
+                            <div className="AddTagDescription">
+                                <h5 className={this.state.location.free_flowing ? "ActiveDescription" : undefined}>Free Flowing</h5>
+                            </div>
+                        </div >
+
+                        {/* <p>free_flowing</p>
+                    {this.state.location.free_flowing ?
+                        <button onClick={() => this.handleToggle("free_flowing", true)}>True</button> : <button onClick={() => this.handleToggle("free_flowing", false)}>False</button>
+                    } */}
+
+                        <div className="AddTagWholeIcon">
+                            {this.state.location.trail_water_source ?
+                                <div>
+                                    <img src={TrailBlue} alt="Free Icon" className="AddLocationIcon" onClick={() => this.handleToggle("trail_water_source", true)} />
+                                </div>
+                                :
+                                <div >
+                                    <img src={Trail} alt="Free Icon" className="AddLocationIcon" onClick={() => this.handleToggle("trail_water_source", false)} />
+                                </div>
                             }
-                             <p>image</p>
-                            {/* {this.state.location.image?
-                                <button onClick={()=>this.handleToggle("image",true)}>True</button>:<button onClick={()=>this.handleToggle("image",false)}>False</button>
-                            } */}<AddImage />
-                             <p>description</p>
-                            {this.state.location.description?
-                                <button onClick={()=>this.handleToggle("description",true)}>True</button>:<button onClick={()=>this.handleToggle("description",false)}>False</button>
-                            }
-                             <p>RV</p>
+                            <div className="AddTagDescription">
+                                <h5 className={this.state.location.trail_water_source ? "ActiveDescription" : undefined}>Trail Water Source</h5>
+                            </div>
+                        </div >
+
+                        {/* <p>THERE CURRENTLY IS NO PUT FOR TRAIL WATER SOURCE</p> */}
+
+                        <div className="AddTagWholeIcon">
                             {this.state.location.RV ?
-                                <button onClick={()=>this.handleToggle("RV",true)}>True</button>:<button onClick={()=>this.handleToggle("RV",false)}>False</button>
+                                <div>
+                                    <img src={RVBlue} alt="Free Icon" className="AddLocationIcon" onClick={() => this.handleToggle("RV", true)} />
+                                </div>
+                                :
+                                <div >
+                                    <img src={RV} alt="Free Icon" className="AddLocationIcon" onClick={() => this.handleToggle("RV", false)} />
+                                </div>
                             }
-                             <p>Approve</p>
-                            {this.state.location.approve ?
-                                <button onClick={()=>this.handleToggle("approve",true)}>True</button>:<button onClick={()=>this.handleToggle("approve",false)}>False</button>
+                            <div className="AddTagDescription">
+                                <h5 className={this.state.location.rv ? "ActiveDescription" : undefined}>R.V. Station</h5>
+                            </div>
+                        </div >
+
+                        {/* <p>RV</p>
+                    {this.state.location.RV ?
+                        <button onClick={() => this.handleToggle("RV", true)}>True</button> : <button onClick={() => this.handleToggle("RV", false)}>False</button>
+                    } */}
+
+                        <div className="AddTagWholeIcon">
+                            {this.state.location.campground_access ?
+                                <div>
+                                    <img src={TentBlue} alt="Free Icon" className="AddLocationIcon" onClick={() => this.handleToggle("campground_access", true)} />
+                                </div>
+                                :
+                                <div >
+                                    <img src={Tent} alt="Free Icon" className="AddLocationIcon" onClick={() => this.handleToggle("campground_access", false)} />
+                                </div>
                             }
-                            <br/>
-                    <button onClick={this.handleSubmit}>Submit</button>
-                    <button>Delete</button>
-                            <div className="navSpacer"></div>
-                </div>
+                            <div className="AddTagDescription">
+                                <h5 className={this.state.location.campground_access ? "ActiveDescription" : undefined}>Campground</h5>
+                            </div>
+                        </div >
+
+                        {/* <p>campground_access</p>
+                    {this.state.location.campground_access ?
+                        <button onClick={() => this.handleToggle("campground_access", true)}>True</button> : <button onClick={() => this.handleToggle("campground_access", false)}>False</button>
+                    } */}
+
+                        <div className="AddTagWholeIcon">
+                            {this.state.location.artesian_well ?
+                                <div>
+                                    <img src={WellBlue} alt="Free Icon" className="AddLocationIcon" onClick={() => this.handleToggle("artesian_well", true)} />
+                                </div>
+                                :
+                                <div >
+                                    <img src={Well} alt="Free Icon" className="AddLocationIcon" onClick={() => this.handleToggle("artesian_well", false)} />
+                                </div>
+                            }
+                            <div className="AddTagDescription">
+                                <h5 className={this.state.location.artesian_well ? "ActiveDescription" : undefined}>Artesian Well</h5>
+                            </div>
+                        </div >
+
+                        {/* <p>artesian_well</p>
+                    {this.state.location.artesian_well ?
+                        <button onClick={() => this.handleToggle("artesian_well", true)}>True</button> : <button onClick={() => this.handleToggle("artesian_well", false)}>False</button>
+                    } */}
+
+                        <h3>Access</h3>
+                        <div className="AddTagWholeIcon">
+                            {this.state.location.road_access ?
+                                <div>
+                                    <img src={PavedRoadBlue} alt="Free Icon" className="AddLocationIcon" onClick={() => this.handleToggle("road_access", true)} />
+                                </div>
+                                :
+                                <div >
+                                    <img src={PavedRoad} alt="Free Icon" className="AddLocationIcon" onClick={() => this.handleToggle("road_access", false)} />
+                                </div>
+                            }
+                            <div className="AddTagDescription">
+                                <h5 className={this.state.location.road_access ? "ActiveDescription" : undefined}>Paved Road</h5>
+                            </div>
+                        </div >
+
+                        {/* <p>road_access</p>
+                    {this.state.location.road_access ?
+                        <button onClick={() => this.handleToggle("road_access", true)}>True</button> : <button onClick={() => this.handleToggle("road_access", false)}>False</button>
+                    } */}
+
+                        <div className="AddTagWholeIcon">
+                            {this.state.location.dirt_road_access ?
+                                <div>
+                                    <img src={DirtRoadBlue} alt="Free Icon" className="AddLocationIcon" onClick={() => this.handleToggle("dirt_road_access", true)} />
+                                </div>
+                                :
+                                <div >
+                                    <img src={DirtRoad} alt="Free Icon" className="AddLocationIcon" onClick={() => this.handleToggle("dirt_road_access", false)} />
+                                </div>
+                            }
+                            <div className="AddTagDescription">
+                                <h5 className={this.state.location.dirt_road_access ? "ActiveDescription" : undefined}>Dirt Road</h5>
+                            </div>
+                        </div >
+
+                        {/* <p>THERE IS CURRENTLY NO DIRT ROAD PUT==================</p> */}
+
+
+
+                        <div className="AddTagWholeIcon">
+                            {this.state.location.trail_access ?
+                                <div>
+                                    <img src={PavedTrailBlue} alt="Free Icon" className="AddLocationIcon" onClick={() => this.handleToggle("trail_access", true)} />
+                                </div>
+                                :
+                                <div >
+                                    <img src={PavedTrail} alt="Free Icon" className="AddLocationIcon" onClick={() => this.handleToggle("trail_access", false)} />
+                                </div>
+                            }
+                            <div className="AddTagDescription">
+                                <h5 className={this.state.location.trail_access ? "ActiveDescription" : undefined}>Paved Trail</h5>
+                            </div>
+                        </div >
+
+                        {/* <p>THERE IS CURRENTLY NO PAVED TRAIL PUT==================</p> */}
+
+
+                        <div className="AddTagWholeIcon">
+                            {this.state.location.dirt_trail_access ?
+                                <div>
+                                    <img src={DirtTrailBlue} alt="Free Icon" className="AddLocationIcon" onClick={() => this.handleToggle("dirt_trail_access", true)} />
+                                </div>
+                                :
+                                <div >
+                                    <img src={DirtTrail} alt="Free Icon" className="AddLocationIcon" onClick={() => this.handleToggle("dirt_trail_access", false)} />
+                                </div>
+                            }
+                            <div className="AddTagDescription">
+                                <h5 className={this.state.location.dirt_trail_access ? "ActiveDescription" : undefined}>Dirt Trail</h5>
+                            </div>
+                        </div>
+
+                        {/* <p>THERE IS CURRENTLY NO DIRT TRAIL PUT==================</p> */}
+
+                        {/* <p>trail_access</p>
+                    {this.state.location.trail_access ?
+                        <button onClick={() => this.handleToggle("trail_access", true)}>True</button> : <button onClick={() => this.handleToggle("trail_access", false)}>False</button>
+                    } */}
+
+                        <h3>Image</h3>
+                        <AddImage />
+                        <div className="approveLocationButton">
+                        <h3>Approve</h3>
+                        {this.state.location.approve ?
+                            <Button onClick={() => this.handleToggle("approve", true)} color="primary" variant="contained">True</Button> : <Button onClick={() => this.handleToggle("approve", false)} color="secondary" variant="contained">False</Button>
+                        }
+                        </div>
+                        <br />
+                        <div className="submitDeleteLocationButton">
+                        <Button onClick={this.handleSubmit} color="primary" variant="contained">Submit</Button>
+
+                        <Button color="secondary" variant="contained">Delete</Button>
+                        </div>
+
+                        <div className="navSpacer"></div>
+                    </div>
+                </MuiThemeProvider>
+
+
             </Router>
         )
     }
