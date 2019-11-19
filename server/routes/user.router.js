@@ -25,16 +25,29 @@ router.get('/all', rejectUnauthenticated, (req, res) => {
 router.put('/all/:id', rejectUnauthenticated, (req, res) => {
   let user = req.body;
   let status;
-  if(user.status == 'deleted'){
+  if(user.status == 'Inactive'){
     status = 'active';
   }
   if(user.status == 'active'){
-    status = 'deleted'
+    status = 'Inactive'
   }
   console.log('status',status);
   console.log(user);
   let queryText = `UPDATE "user" SET "status" = $1 WHERE "id"=$2;`;
   pool.query(queryText, [status, req.params.id])
+  .then( (result) => {
+    //console.log('Delete Success', result);
+    res.sendStatus(200);
+  }).catch( error => {
+    console.log('Error in DELETE user request', error);
+    res.sendStatus(500);
+  })
+})
+
+router.put('/admin_level/:id', rejectUnauthenticated, (req, res) => {
+  const user = req.body.admin_level;
+  let queryText = `UPDATE "user" SET "admin_level" = $1 WHERE "id"=$2;`;
+  pool.query(queryText, [user, req.params.id])
   .then( (result) => {
     //console.log('Delete Success', result);
     res.sendStatus(200);
