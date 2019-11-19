@@ -37,11 +37,29 @@ class AddLocation extends Component {
     },
     step: 0
   }
-  componentDidMount(){
-    this.props.dispatch({type:'ADD_TO_HISTORY', payload: this.props.history.location.pathname})
+  componentDidMount() {
+    this.props.dispatch({ type: 'ADD_TO_HISTORY', payload: this.props.history.location.pathname })
+    this.getGeoLocation();
 
   }
-
+  getGeoLocation = () => {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+            position => {
+                console.log(position.coords);
+                this.setState(prevState => ({
+                  locationToAdd: {
+                        ...prevState.userLocation,
+                        latitude: position.coords.latitude,
+                        longitude: position.coords.longitude,
+                    }
+                }))
+            }
+        )
+    } else {
+        console.log('error')
+    }
+}
   handleChange = (boolean, propertyName) => {
     this.setState({
       locationToAdd: {
@@ -92,51 +110,53 @@ class AddLocation extends Component {
     })
   }
 
-  setMarker = (e)=>{
+  setMarker = (e) => {
 
     this.setState({
-      locationToAdd:{
+      locationToAdd: {
         ...this.state.locationToAdd,
         latitude: e.lat,
         longitude: e.lng
       }
     })
   }
+
+
   render() {
     return (
       <div className="AddLocation">
         {this.state.step === 0 &&
           <>
-          <div className='addTitle'>
-            <h2 className='addh2'>Add a Water Source</h2>
-          </div>
-          <div className='addTextField'>
-          <h3 className='addh3'>Name the Water Source</h3>
-          <p>If the source doesn't have an official name, make the name clear and relevant to its location.</p>
-           
-            <TextField
-              id="filled-name"
-              label="Name"
-              value={this.state.name}
-              onChange={(event) => this.handleChangeInput(event, 'name')}
-              margin="normal"
-              variant="outlined"
-              fullWidth='true'
-            /><br />
-            
-            <h3 className='addh3'>Write a Description</h3>
-            <p>Tell other users about the water source: what it is, what to look for, etc.</p>
-            <TextField
-              id="filled-name"
-              label="Description"
-              value={this.state.name}
-              onChange={(event) => this.handleChangeInput(event, 'description')}
-              margin="normal"
-              variant="outlined"
-              fullWidth='true'
-              multiline='true'
-              rows='4'
-            /><br />
+            <div className='addTitle'>
+              <h2 className='addh2'>Add a Water Source</h2>
+            </div>
+            <div className='addTextField'>
+              <h3 className='addh3'>Name the Water Source</h3>
+              <p>If the source doesn't have an official name, make the name clear and relevant to its location.</p>
+
+              <TextField
+                id="filled-name"
+                label="Name"
+                value={this.state.name}
+                onChange={(event) => this.handleChangeInput(event, 'name')}
+                margin="normal"
+                variant="outlined"
+                fullWidth='true'
+              /><br />
+
+              <h3 className='addh3'>Write a Description</h3>
+              <p>Tell other users about the water source: what it is, what to look for, etc.</p>
+              <TextField
+                id="filled-name"
+                label="Description"
+                value={this.state.name}
+                onChange={(event) => this.handleChangeInput(event, 'description')}
+                margin="normal"
+                variant="outlined"
+                fullWidth='true'
+                multiline='true'
+                rows='4'
+              /><br />
             </div>
             <label>
               <UploadImage setImage={this.handleImage} />
@@ -144,16 +164,16 @@ class AddLocation extends Component {
           </>
         }
         {this.state.step === 1 &&
-          <Addtags locationToAdd={this.state.locationToAdd} handleChange={this.handleChange}/>
+          <Addtags locationToAdd={this.state.locationToAdd} handleChange={this.handleChange} />
         }
         {this.state.step === 2 &&
           <>
-          <div className='addAddressTitle'>
-            <h2 className='addh2'>Add Address</h2>
-          </div>
-          <div className="mapSpacer">
-            <h4>Tap map to drop a pin</h4>
-          </div>
+            <div className='addAddressTitle'>
+              <h2 className='addh2'>Add Location</h2>
+            </div>
+            <div className="mapSpacer">
+              <h4>Move and tap map to drop a pin</h4>
+            </div>
             <div className="mapAddComponet">
               <LoadScript
                 id="script-loader"
@@ -167,11 +187,10 @@ class AddLocation extends Component {
                   }}
                   zoom={15}
                   center={{
-                    lat: 44.9746234,
-                    lng: -93.2685388,
+                    lat: this.state.locationToAdd.latitude,
+                    lng: this.state.locationToAdd.longitude,
                   }}
-                  onClick={(e)=> this.setMarker(e.latLng.toJSON())}
-                  mapTypeId="hybrid"
+                  onClick={(e) => this.setMarker(e.latLng.toJSON())}
                   options={{
                     "zoomControl": true,
                     "mapTypeControl": false,
@@ -179,15 +198,16 @@ class AddLocation extends Component {
                     "streetViewControl": false,
                     "rotateControl": false,
                     "fullscreenControl": false,
-                    styles: mapStyles}}
+                    styles: mapStyles
+                  }}
                   >
-                  <Marker
-                  draggable
-                    position={{
-                      lat:this.state.locationToAdd.latitude,
-                      lng:this.state.locationToAdd.longitude
-                    }}
-                    onDragEnd={(e)=> this.setMarker(e.latLng.toJSON())}
+                    <Marker
+                      draggable
+                      position={{
+                        lat: this.state.locationToAdd.latitude,
+                        lng: this.state.locationToAdd.longitude
+                      }}
+                      onDragEnd={(e) => this.setMarker(e.latLng.toJSON())}
                     />
                 </GoogleMap>
               </LoadScript>
