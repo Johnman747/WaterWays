@@ -1,8 +1,23 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import Button from '@material-ui/core/Button';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { red, blue } from '@material-ui/core/colors';
+
+const theme = createMuiTheme({
+  palette: {
+      primary: blue,
+      secondary: red
+  },
+  typography: {
+      useNextVariants: true,
+  },
+});
 
 const LogOutButton = props => (
-  <button
+  <MuiThemeProvider theme={theme}>
+  <Button
+    variant="contained" color="primary"
     // This button shows up in multiple locations and is styled differently
     // because it's styled differently depending on where it is used, the className
     // is passed to it from it's parents through React props
@@ -10,7 +25,8 @@ const LogOutButton = props => (
     onClick={() => props.dispatch({ type: 'LOGOUT' })}
   >
     Log Out
-  </button>
+  </Button>
+  </MuiThemeProvider>
 );
 
 // This component doesn't need 'mapStateToProps'

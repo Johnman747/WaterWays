@@ -137,9 +137,15 @@ input {
     margin-bottom: 50px;
 }
 .userTitle{
-    margin: 40px;
-    padding: 20px;
-    margin-top: 15px;
+    /* margin: 40px;
+    padding: 20px; */
+    /* margin-top: 15px; */
+    /* background-color: #3ba8fa; */
+    text-align: center;
+    text-align-last: center;
+    padding-bottom: 10px;
+    background-color: #3ba8fa;
+    padding: 20px;    
 }
 .userPageButtons{
     margin-left: 55px;
@@ -166,7 +172,7 @@ input {
     padding: 10px;
 }
 .submitDeleteLocationButton {
-    display: inline-block;
-    padding-bottom: 15px;
-
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+    display: inline-flex;
 }

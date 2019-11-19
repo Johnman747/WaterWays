@@ -47,8 +47,6 @@ class SearchFilter extends Component {
             dirt_road_access: false,
             dirt_trail_access: false
         }
-        // ,
-        // locations:[]
 
 
     }
@@ -60,42 +58,9 @@ class SearchFilter extends Component {
         // this.props.dispatch({type: 'ADD_TO_HISTORY', payload: this.props.history.location.pathname});
     }
 
-    //  setLocations = () =>{
-    //     let array = []
-    //     this.props.reduxStore.locationsReducer.map(location =>
-    //         {if(location.free === true && this.state.locationFilters.free === true){
-    //             array.push(location) 
-    //         }
-    //          else if(location.spigot === true && this.state.locationFilters.spigot === true){
-    //             array.push(location) 
-    //         }
-    //          else if(location.trail_access === true && this.state.locationFilters.trail_access === true){
-    //             array.push(location) 
-    //         }
-    //          else if(location.road_access === true && this.state.locationFilters.road_access === true){
-    //             array.push(location)
-    //         }
-    //          else if(location.campground_access === true && this.state.locationFilters.campground_access === true){
-    //             array.push(location) 
-    //         }
-    //          else if(location.free_flowing === true && this.state.locationFilters.free_flowing === true){
-    //             array.push(location) 
-    //         }
-    //          else if(location.artesian_well === true && this.state.locationFilters.artesian_well === true){
-    //             array.push(location) 
-    //         }
-    //          else if(location.rv === true && this.state.locationFilters.rv === true){
-    //             array.push(location) 
-    //         }}
-    //     )
-    //      this.setState({
-    //         ...this.state.locations,
-    //         locations: array
-    //     })
-    //     this.setFilters();       
-    // }
-
-    setFilters = () => {
+    
+    
+    setFilters = () =>{
         console.log(this.state.locationFilters)
         this.props.dispatch({ type: 'SET_FILTERS', payload: this.state.locationFilters })
         // this.props.dispatch({type: 'SET_FILTERED_LOCATIONS', payload: this.state.locationFilters})
