@@ -5,6 +5,7 @@ import Button from '@material-ui/core/Button';
 import Logo from '../Icons/waterwaysLogo.png'
 import blue from '@material-ui/core/colors/blue';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import swal from 'sweetalert';
 
 
 const theme = createMuiTheme({
@@ -28,8 +29,14 @@ class RegisterPage extends Component {
 
   registerUser = (event) => {
     event.preventDefault();
-
+ 
     if (this.state.username && this.state.password) {
+      swal({
+        title: "Is your information correct?",
+        text: "You will not be able to change this later",
+        buttons: true,
+      }).then((willRegister)=> {
+        if(willRegister){
       this.props.dispatch({
         type: 'REGISTER',
         payload: {
@@ -39,11 +46,14 @@ class RegisterPage extends Component {
           last: this.state.last,
           admin: 3
         },
-      });
+      })
     } else {
       this.props.dispatch({ type: 'REGISTRATION_INPUT_ERROR' });
+        }
+      })
     }
-  } // end registerUser
+  }
+   // end registerUser
 
   handleInputChangeFor = propertyName => (event) => {
     this.setState({

@@ -6,6 +6,8 @@ import NativeSelect from '@material-ui/core/NativeSelect';
 import { withRouter } from 'react-router-dom';
 import './AddReport.css'
 import BackButton from '../Icons/backArrowWhite.png'
+import swal from 'sweetalert';
+
 
 class AddReport extends Component {
 
@@ -29,9 +31,13 @@ class AddReport extends Component {
 
     addNewReport = event => {
         event.preventDefault();
-        // console.log(this.state.reportToAdd)
+        swal({
+            title: "Thanks for your report!",
+            text: "We appreciate your contribution to keeping the water sources safe and up to date.",
+          }).then(()=>{
         this.props.dispatch({ type: 'POST_REPORT', payload: this.state.reportToAdd });
         this.props.history.push(`/location/${this.props.match.params.id}`)
+          })
     } // end addNewReport
 
     BackButton = () =>{
