@@ -39,11 +39,20 @@ function* getAllUser() {
 // Delete users for the moderate user page. 
 function* deleteUser (action) {
   try {
+    yield console.log(action.payload);
       yield axios.put(`/api/user/all/${action.payload.id}`, action.payload );
-      yield console.log(action.payload);
       yield getAllUser();
   } catch (error) {
       console.log('error in DELETE User saga', error);
+  }
+} // end deleteLocation
+function* updateAdminLevel(action) {
+  try {
+    yield console.log(action.payload);
+      yield axios.put(`/api/user/admin_level/${action.payload.id}`, action.payload );
+      yield getAllUser();
+  } catch (error) {
+      console.log('error in update admin level User saga', error);
   }
 } // end deleteLocation
 
@@ -51,7 +60,8 @@ function* deleteUser (action) {
 function* userSaga() {
   yield takeLatest('FETCH_USER', fetchUser);
   yield takeLatest('FETCH_ALL_USER', getAllUser);
-  yield takeLatest('DELETE_USER', deleteUser)
+  yield takeLatest('DELETE_USER', deleteUser);
+  yield takeLatest('CHANGE_ADMIN_LEVEL', updateAdminLevel);
 }
 
 export default userSaga;
