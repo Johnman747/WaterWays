@@ -5,6 +5,8 @@ import { withRouter } from 'react-router-dom';
 import { Button, TextField } from '@material-ui/core'
 import './AddReview.css';
 import BackIcon from '../Icons/backArrowWhite.png'
+import swal from 'sweetalert';
+
 
 class AddReviewPage extends Component {
     state = {
@@ -30,8 +32,13 @@ class AddReviewPage extends Component {
     }
 
     handelSubmit = () => {
+        swal({
+            title: "Thanks for your review!",
+            text: "We appreciate your feedback.",
+          }).then(()=>{
         this.props.dispatch({ type: 'ADD_REVIEW', payload: this.state })
         this.props.history.push(`/location/${this.props.match.params.id}`)
+        })
     }
 
     backButton = ()=>{
