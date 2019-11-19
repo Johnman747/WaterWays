@@ -29,6 +29,19 @@ import DirtRoadBlue from '../Icons/DirtRoadIconBlue.png';
 import PavedTrailBlue from '../Icons/PavedTrailIconBlue.png';
 import DirtTrailBlue from '../Icons/DirtTrailIconBlue.png';
 import "./SearchFilter.css"
+// Material UI
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { red, blue } from '@material-ui/core/colors';
+
+const theme = createMuiTheme({
+    palette: {
+        primary: blue,
+        secondary: red
+    },
+    typography: {
+        useNextVariants: true,
+    },
+});
 
 class SearchFilter extends Component {
 
@@ -91,6 +104,7 @@ class SearchFilter extends Component {
 
     render() {
         return (
+            <MuiThemeProvider theme={theme}>
             <div className="FilterPage">
                 <div className='selectTitle'>
                     <h2 class='addh2'>Select Filters</h2>
@@ -273,6 +287,7 @@ class SearchFilter extends Component {
                 </div>
                 <div className="navSpacer"></div>
             </div>
+            </MuiThemeProvider>
         )
     }
 }

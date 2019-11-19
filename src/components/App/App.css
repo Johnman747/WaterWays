@@ -4,7 +4,13 @@ body {
     background-color:white;
     height: 100%;
 }
-
+.btnDivFilters {
+    padding-top: 30px;
+    padding-bottom: 20px;
+    display: inline-flex;
+    margin-left:20px;
+    margin-right: 20px;
+}
 .alert {
     background-color: #ff4545;
     margin: 0px;
@@ -137,15 +143,11 @@ input {
     margin-bottom: 50px;
 }
 .userTitle{
-    /* margin: 40px;
-    padding: 20px; */
-    /* margin-top: 15px; */
-    /* background-color: #3ba8fa; */
     text-align: center;
     text-align-last: center;
-    padding-bottom: 10px;
     background-color: #3ba8fa;
-    padding: 20px;    
+    padding: 30px;  
+    margin: 0px;  
 }
 .userPageButtons{
     margin-left: 55px;
