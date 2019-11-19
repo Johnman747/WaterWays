@@ -11,34 +11,33 @@ import {
 import mapStyles from './MapStyles'
 import Search from '../SearchBar/SearchBar';
 
-class MapHome extends Component {
+class MapHome extends Component { 
     state = { 
         userLocation: { latitude: 0, longitude: 0 },
          loading: true
         };
-
-    // componentDidMount(props) {
-    //     navigator.geolocation.getCurrentPosition(
-    //         position => {
-    //           const { latitude, longitude } = position.coords;
-      
-    //           this.setState({
-    //             userLocation: { latitude: latitude, longitude: longitude },
-    //             loading: false
-    //           });
-    //         },
-    //         () => {
-    //           this.setState({ loading: false });              
-    //         }
-    //       );
-    //   this.getLocations();
-    //   console.log('###################',this.state.userLocation, this.state.loading);
-      
+   
     componentDidMount() {
     //    this.props.dispatch({type:'ADD_TO_HISTORY', payload: this.props.history.location.pathname})
         let lastURL = this.props.reduxStore.historyReducer.pop();
+        
         console.log(lastURL)
-        if(lastURL === '/searchFilter'){
+       
+        if(this.props.reduxStore.filteredLocationsReducer.free === false && 
+            this.props.reduxStore.filteredLocationsReducer.spigot === false && 
+            this.props.reduxStore.filteredLocationsReducer.trail_access === false && 
+            this.props.reduxStore.filteredLocationsReducer.road_access === false && 
+            this.props.reduxStore.filteredLocationsReducer.campground_access === false && 
+            this.props.reduxStore.filteredLocationsReducer.free_flowing === false && 
+            this.props.reduxStore.filteredLocationsReducer.artesian_well === false &&
+            this.props.reduxStore.filteredLocationsReducer.rv === false &&
+            this.props.reduxStore.filteredLocationsReducer.trail_water_source === false &&
+            this.props.reduxStore.filteredLocationsReducer.dirt_road_access === false &&
+            this.props.reduxStore.filteredLocationsReducer.dirt_trail_access === false
+            ){
+                this.getLocations();
+
+        }else if(lastURL === '/searchFilter'){
             this.props.dispatch({type: 'SET_FILTERED_LOCATIONS', payload: this.props.reduxStore.filteredLocationsReducer})
         }else{
             this.getLocations();

@@ -67,22 +67,19 @@ const filters = req.body;
         queryText = queryText + ` "artesian_well" = TRUE AND`
     }
     if(filters.rv === true){
-        queryText = queryText + ` "RV" = TRUE `
+        queryText = queryText + ` "rv" = TRUE `
+    }if(filters.trail_water_source === true){
+        queryText = queryText + ` "trail_water_source" = TRUE AND`
+    }if(filters.dirt_road_access === true){
+        queryText = queryText + ` "dirt_road_access" = TRUE AND`
+    }if(filters.dirt_trail_access === true){
+        queryText = queryText + ` "dirt_trail_access" = TRUE `
     }else{
-        queryText = queryText + ` "RV" = FALSE `
+        queryText = queryText + ` "dirt_trail_access" = FALSE `
 
     }
 
     console.log('XXXXXXXXXXXXXXXXXX', queryText)
-
-    // "free" = $1 OR 
-    // "spigot" = $2 OR 
-    // "trail_access" = $3 OR 
-    // "road_access" = $4 OR 
-    // "campground_access" = $5 OR 
-    // "free_flowing" = $6 OR 
-    // "artesian_well" = $7 OR
-    // "RV" = $8;
     
     
 
