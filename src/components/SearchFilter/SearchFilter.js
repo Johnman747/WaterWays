@@ -14,10 +14,11 @@ class SearchFilter extends Component {
             campground_access: false,
             free_flowing: false,
             artesian_well: false,
-            rv: false
+            rv: false,
+            trail_water_source: false,
+            dirt_road_access: false,
+            dirt_trail_access: false
         }
-        // ,
-        // locations:[]
 
 
     }
@@ -29,40 +30,7 @@ class SearchFilter extends Component {
         // this.props.dispatch({type: 'ADD_TO_HISTORY', payload: this.props.history.location.pathname});
     }
 
-    //  setLocations = () =>{
-    //     let array = []
-    //     this.props.reduxStore.locationsReducer.map(location =>
-    //         {if(location.free === true && this.state.locationFilters.free === true){
-    //             array.push(location) 
-    //         }
-    //          else if(location.spigot === true && this.state.locationFilters.spigot === true){
-    //             array.push(location) 
-    //         }
-    //          else if(location.trail_access === true && this.state.locationFilters.trail_access === true){
-    //             array.push(location) 
-    //         }
-    //          else if(location.road_access === true && this.state.locationFilters.road_access === true){
-    //             array.push(location)
-    //         }
-    //          else if(location.campground_access === true && this.state.locationFilters.campground_access === true){
-    //             array.push(location) 
-    //         }
-    //          else if(location.free_flowing === true && this.state.locationFilters.free_flowing === true){
-    //             array.push(location) 
-    //         }
-    //          else if(location.artesian_well === true && this.state.locationFilters.artesian_well === true){
-    //             array.push(location) 
-    //         }
-    //          else if(location.rv === true && this.state.locationFilters.rv === true){
-    //             array.push(location) 
-    //         }}
-    //     )
-    //      this.setState({
-    //         ...this.state.locations,
-    //         locations: array
-    //     })
-    //     this.setFilters();       
-    // }
+    
     
     setFilters = () =>{
         console.log(this.state.locationFilters)
@@ -126,7 +94,19 @@ class SearchFilter extends Component {
                 }
                 <p>RV</p>
                 {this.state.locationFilters.RV ?
-                    <button onClick={() => this.handleToggle("RV", true)}>True</button> : <button onClick={() => this.handleToggle("RV", false)}>False</button>
+                    <button onClick={() => this.handleToggle("rv", true)}>True</button> : <button onClick={() => this.handleToggle("rv", false)}>False</button>
+                }
+                <p>Trail Water Source</p>
+                {this.state.locationFilters.trail_water_source ?
+                    <button onClick={() => this.handleToggle("trail_water_source", true)}>True</button> : <button onClick={() => this.handleToggle("trail_water_source", false)}>False</button>
+                }
+                <p>Dirt Road Access</p>
+                {this.state.locationFilters.dirt_road_access ?
+                    <button onClick={() => this.handleToggle("dirt_road_access", true)}>True</button> : <button onClick={() => this.handleToggle("dirt_road_access", false)}>False</button>
+                }
+                <p>Dirt Trail Access</p>
+                {this.state.locationFilters.dirt_trail_access ?
+                    <button onClick={() => this.handleToggle("dirt_trail_access", true)}>True</button> : <button onClick={() => this.handleToggle("dirt_trail_access", false)}>False</button>
                 }
                 <br />
                 {/* <button onClick={this.handleClear}>Clear</button> */}
