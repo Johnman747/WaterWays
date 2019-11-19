@@ -68,14 +68,17 @@ const filters = req.body;
     }
     if(filters.rv === true){
         queryText = queryText + ` "rv" = TRUE `
-    }if(filters.trail_water_source === true){
+    }
+    if(filters.trail_water_source === true){
         queryText = queryText + ` "trail_water_source" = TRUE AND`
-    }if(filters.dirt_road_access === true){
+    }
+    if(filters.dirt_road_access === true){
         queryText = queryText + ` "dirt_road_access" = TRUE AND`
-    }if(filters.dirt_trail_access === true){
+    }
+    if(filters.dirt_trail_access === true){
         queryText = queryText + ` "dirt_trail_access" = TRUE `
     }else{
-        queryText = queryText + ` "dirt_trail_access" = FALSE `
+        queryText = queryText + ` "free" = FALSE `
 
     }
 
@@ -139,12 +142,17 @@ router.put('/location/:id', (req,res) =>{
                         location.description,
                         location.RV,
                         location.approve,
+                        location.trail_water_source,
+                        location.dirt_road_access,
+                        location.dirt_trail_access,
                         req.params.id
                     ]
         queryText = `UPDATE "locations" SET
         "name"=$1,"address"=$2,"latitude"=$3,"longitude"=$4,"created_by"=$5,"free"=$6,
             "spigot"=$7,"trail_access"=$8,"road_access"=$9,"campground_access"=$10,
-            "free_flowing"=$11,"artesian_well"=$12,"photo_primary"=$13,"description"=$14,"RV"=$15,"approve"=$16 WHERE "id"=$17`;
+            "free_flowing"=$11,"artesian_well"=$12,"photo_primary"=$13,"description"=$14,
+            "rv"=$15,"approve"=$16,"trail_water_source"=$17,"dirt_road_access"=$18,
+            "dirt_trail_access"=$19  WHERE "id"=$20`;
         
         pool.query(queryText,values)
             .then((result) => {
