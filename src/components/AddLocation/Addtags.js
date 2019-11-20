@@ -110,17 +110,17 @@ class AddLocationTags extends Component {
                         </div>
                     </div >
                     <div className="AddTagWholeIcon">
-                        {addLocation.RV ?
+                        {addLocation.rv ?
                             <div>
-                                <img src={RVBlue} alt="Free Icon" className="AddLocationIcon" onClick={() => this.props.handleChange(true, "RV")} />
+                                <img src={RVBlue} alt="Free Icon" className="AddLocationIcon" onClick={() => this.props.handleChange(true, "rv")} />
                             </div>
                             :
                             <div >
-                                <img src={RV} alt="Free Icon" className="AddLocationIcon" onClick={() => this.props.handleChange(false, "RV")} />
+                                <img src={RV} alt="Free Icon" className="AddLocationIcon" onClick={() => this.props.handleChange(false, "rv")} />
                             </div>
                         }
                         <div className="AddTagDescription">
-                            <h5 className={addLocation.RV ? "ActiveDescription" : undefined}>R.V. Station</h5>
+                            <h5 className={addLocation.rv ? "ActiveDescription" : undefined}>R.V. Station</h5>
                         </div>
                     </div >
                     <div className="AddTagWholeIcon">

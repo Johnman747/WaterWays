@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import {withRouter} from 'react-router-dom'
 import UploadImage from './UploadImage';
 import Stepper from './Stepper';
 import TextField from '@material-ui/core/TextField/TextField';
@@ -27,7 +28,7 @@ class AddLocation extends Component {
       campground_access: false,
       free_flowing: false,
       artesian_well: false,
-      RV: false,
+      rv: false,
       photo: '',
       description: '',
       trail_water_source: false,
@@ -76,7 +77,7 @@ class AddLocation extends Component {
         [propertyName]: e.target.value,
       }
     });
-    console.log(this.state)
+    // console.log(this.state)
   } // end handleChange
 
   handleImage = (imageUrl) => {
@@ -89,8 +90,9 @@ class AddLocation extends Component {
   }
 
   addNewLocation = () => {
-    console.log('booyah')
+    // console.log('booyah')
     this.props.dispatch({ type: 'POST_LOCATIONS', payload: this.state.locationToAdd })
+    this.props.history.push('/MapHome')
   } // end addNewLocation
 
   handleNext = () => {
@@ -227,4 +229,4 @@ class AddLocation extends Component {
 const mapStateToProps = reduxStore => ({
   reduxStore
 });
-export default connect(mapStateToProps)(AddLocation);
+export default withRouter(connect(mapStateToProps)(AddLocation));

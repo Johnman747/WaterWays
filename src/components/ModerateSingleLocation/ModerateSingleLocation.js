@@ -61,7 +61,7 @@ class ModerateSingleLocation extends Component {
             spigot: '',
             free_flowing: '',
             trail_water_source: '',
-            RV: '',
+            rv: '',
             campground_access: '',
             artesian_well: '',
             road_access: '',
@@ -98,7 +98,7 @@ class ModerateSingleLocation extends Component {
                         spigot: location.spigot,
                         free_flowing: location.free_flowing,
                         trail_water_source: location.trail_water_source,
-                        RV: location.RV,
+                        rv: location.rv,
                         campground_access: location.campground_access,
                         artesian_well: location.artesian_well,
                         road_access: location.road_access,
@@ -302,13 +302,13 @@ class ModerateSingleLocation extends Component {
                         {/* <p>THERE CURRENTLY IS NO PUT FOR TRAIL WATER SOURCE</p> */}
 
                         <div className="AddTagWholeIcon">
-                            {this.state.location.RV ?
+                            {this.state.location.rv ?
                                 <div>
-                                    <img src={RVBlue} alt="Free Icon" className="AddLocationIcon" onClick={() => this.handleToggle("RV", true)} />
+                                    <img src={RVBlue} alt="Free Icon" className="AddLocationIcon" onClick={() => this.handleToggle("rv", true)} />
                                 </div>
                                 :
                                 <div >
-                                    <img src={RV} alt="Free Icon" className="AddLocationIcon" onClick={() => this.handleToggle("RV", false)} />
+                                    <img src={RV} alt="Free Icon" className="AddLocationIcon" onClick={() => this.handleToggle("rv", false)} />
                                 </div>
                             }
                             <div className="AddTagDescription">

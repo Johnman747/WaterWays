@@ -140,7 +140,7 @@ router.put('/location/:id', (req,res) =>{
                         location.artesian_well,
                         location.photo_primary,
                         location.description,
-                        location.RV,
+                        location.rv,
                         location.approve,
                         location.trail_water_source,
                         location.dirt_road_access,
@@ -182,7 +182,7 @@ router.post('/', (req, res) => {
                     location.artesian_well,
                     location.photo.image,
                     location.description,
-                    location.RV,
+                    location.rv,
                     location.approve,
                     location.trail_water_source,
                     location.dirt_road_access,
@@ -191,7 +191,7 @@ router.post('/', (req, res) => {
     queryText = `INSERT INTO "locations"
     (name,address,latitude,longitude,created_by,free,
         spigot,trail_access,road_access,campground_access,
-        free_flowing,artesian_well,photo_primary,description,RV,approve,trail_water_source,dirt_road_access,dirt_trail_access)
+        free_flowing,artesian_well,photo_primary,description,rv,approve,trail_water_source,dirt_road_access,dirt_trail_access)
     VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19)`;
     
     pool.query(queryText,values)
