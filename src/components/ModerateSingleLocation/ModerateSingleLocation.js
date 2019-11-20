@@ -145,6 +145,29 @@ class ModerateSingleLocation extends Component {
         this.props.history.push('/');
     }
 
+    onchange = (event) =>{
+        let image = event.target.files;
+        let reader = new FileReader();
+    
+        reader.readAsDataURL(image[0]);
+        reader.onload = (event) =>{
+          const formData = event.target.result
+          this.setImage(formData);
+        }
+      }
+
+      setImage = (formData) =>{
+          this.setState({
+              location:{
+                  ...this.state.location,
+                  photo_primary: formData
+              }
+          })
+      }
+      handle_AddImage = () =>{
+        
+    }
+
     render() {
         return (
             <Router>
@@ -442,18 +465,23 @@ class ModerateSingleLocation extends Component {
                     } */}
 
                         <h3>Image</h3>
-                        <AddImage />
+                        <div>
+                            <input type="file" name="image" onChange={(event) => this.onchange(event)} />
+                        </div>
+                        <div>
+                            <img className="ImagePreview" src={this.state.location.photo_primary} alt="Image Preview" />
+                        </div>
                         <div className="approveLocationButton">
-                        <h3>Approve</h3>
-                        {this.state.location.approve ?
-                            <Button onClick={() => this.handleToggle("approve", true)} color="primary" variant="contained">True</Button> : <Button onClick={() => this.handleToggle("approve", false)} color="secondary" variant="contained">False</Button>
-                        }
+                            <h3>Approve</h3>
+                            {this.state.location.approve ?
+                                <Button onClick={() => this.handleToggle("approve", true)} color="primary" variant="contained">True</Button> : <Button onClick={() => this.handleToggle("approve", false)} color="secondary" variant="contained">False</Button>
+                            }
                         </div>
                         <br />
                         <div className="submitDeleteLocationButton">
-                        <Button onClick={this.handleSubmit} color="primary" variant="contained" className="submitDeleteLocationButtonGrid" className="submitDeleteLocationButtonSingle">Submit</Button>
-                        <p></p>
-                        <Button onClick={this.handleDelete} color="secondary" variant="contained" className="submitDeleteLocationButtonGrid">Delete</Button>
+                            <Button onClick={this.handleSubmit} color="primary" variant="contained" className="submitDeleteLocationButtonGrid" className="submitDeleteLocationButtonSingle">Submit</Button>
+                            <p></p>
+                            <Button onClick={this.handleDelete} color="secondary" variant="contained" className="submitDeleteLocationButtonGrid">Delete</Button>
                         </div>
 
                         <div className="navSpacer"></div>
