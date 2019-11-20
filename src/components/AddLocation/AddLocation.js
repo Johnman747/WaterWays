@@ -28,7 +28,7 @@ class AddLocation extends Component {
       campground_access: false,
       free_flowing: false,
       artesian_well: false,
-      RV: false,
+      rv: false,
       photo: '',
       description: '',
       trail_water_source: false,

@@ -52,20 +52,23 @@ class ModerateSingleLocation extends Component {
         location: {
             id: '',
             name: '',
+            description: '',
             address: '',
             latitude: '',
             longitude: '',
             free: '',
             created_by: '',
             spigot: '',
-            trail_access: '',
-            road_access: '',
-            campground_access: '',
             free_flowing: '',
+            trail_water_source: '',
+            rv: '',
+            campground_access: '',
             artesian_well: '',
+            road_access: '',
+            dirt_road_access: '',
+            trail_access: '',
+            dirt_trail_access: '',
             photo_primary: '',
-            description: '',
-            RV: '',
             approve: ''
         }
     }
@@ -86,20 +89,23 @@ class ModerateSingleLocation extends Component {
                     location: {
                         id: location.id,
                         name: location.name,
+                        description: location.description,
                         address: location.address,
                         latitude: location.latitude,
                         longitude: location.longitude,
                         free: location.free,
                         created_by: location.created_by,
                         spigot: location.spigot,
-                        trail_access: location.trail_access,
-                        road_access: location.road_access,
-                        campground_access: location.campground_access,
                         free_flowing: location.free_flowing,
+                        trail_water_source: location.trail_water_source,
+                        rv: location.rv,
+                        campground_access: location.campground_access,
                         artesian_well: location.artesian_well,
+                        road_access: location.road_access,
+                        dirt_road_access: location.dirt_road_access,
+                        trail_access: location.trail_access,
+                        dirt_trail_access: location.dirt_trail_access,
                         photo_primary: location.photo_primary,
-                        description: location.description,
-                        RV: location.RV,
                         approve: location.approve
                     }
                 });
@@ -296,13 +302,13 @@ class ModerateSingleLocation extends Component {
                         {/* <p>THERE CURRENTLY IS NO PUT FOR TRAIL WATER SOURCE</p> */}
 
                         <div className="AddTagWholeIcon">
-                            {this.state.location.RV ?
+                            {this.state.location.rv ?
                                 <div>
-                                    <img src={RVBlue} alt="Free Icon" className="AddLocationIcon" onClick={() => this.handleToggle("RV", true)} />
+                                    <img src={RVBlue} alt="Free Icon" className="AddLocationIcon" onClick={() => this.handleToggle("rv", true)} />
                                 </div>
                                 :
                                 <div >
-                                    <img src={RV} alt="Free Icon" className="AddLocationIcon" onClick={() => this.handleToggle("RV", false)} />
+                                    <img src={RV} alt="Free Icon" className="AddLocationIcon" onClick={() => this.handleToggle("rv", false)} />
                                 </div>
                             }
                             <div className="AddTagDescription">

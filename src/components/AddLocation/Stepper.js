@@ -7,6 +7,8 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { MobileStepper } from '@material-ui/core';
 import swal from 'sweetalert';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { red, blue } from '@material-ui/core/colors';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -42,6 +44,15 @@ function getStepContent(stepIndex) {
     }
 }
 
+const theme = createMuiTheme({
+    palette: {
+        primary: blue,
+        secondary: red
+    },
+    typography: {
+        useNextVariants: true,
+    },
+});
 
 
 export default function HorizontalLabelPositionBelowStepper(props) {
@@ -71,6 +82,7 @@ export default function HorizontalLabelPositionBelowStepper(props) {
     };
 
     return (
+        <MuiThemeProvider theme={theme}>
         <div className={classes.root} className="Stepper">
             <div className="StepDots">
                 <MobileStepper
@@ -105,5 +117,6 @@ export default function HorizontalLabelPositionBelowStepper(props) {
                 </div>
             </div>
         </div>
+        </MuiThemeProvider>
     );
 }
