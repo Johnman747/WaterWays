@@ -123,7 +123,23 @@ class AddLocation extends Component {
     })
   }
 
-
+  addName = ()=>{
+    this.setState({
+      locationToAdd:{
+        ...this.state.locationToAdd,
+        name: 'Tower Hill Park Well',
+        description: "This well is near the the entrance of the park. It is clean and very accessible to all that need it!"
+      }
+    })
+  }
+  addAddress = ()=>{
+    this.setState({
+      locationToAdd:{
+        ...this.state.locationToAdd,
+        address: "55 Malcolm Ave SE, Minneapolis, MN 55414"
+      }
+    })
+  }
   render() {
     return (
       <div className="AddLocation">
@@ -133,13 +149,15 @@ class AddLocation extends Component {
               <h2 className='addh2'>Add a Water Source</h2>
             </div>
             <div className='addTextField'>
-              <h3 className='addh3'>Name the Water Source</h3>
+              <h3 className='addh3'><span onClick={this.addName}>Name</span> the Water Source</h3>
               <p>If the source doesn't have an official name, make the name clear and relevant to its location.</p>
 
               <TextField
                 id="filled-name"
+                // className="TextInput"
                 label="Name"
-                value={this.state.name}
+                // placeholder="Name"
+                value={this.state.locationToAdd.name}
                 onChange={(event) => this.handleChangeInput(event, 'name')}
                 margin="normal"
                 variant="outlined"
@@ -151,13 +169,15 @@ class AddLocation extends Component {
               <TextField
                 id="filled-name"
                 label="Description"
-                value={this.state.name}
+                // placeholder="Description"
+                // className="TextInput"
+                value={this.state.locationToAdd.description}
                 onChange={(event) => this.handleChangeInput(event, 'description')}
                 margin="normal"
                 variant="outlined"
                 fullWidth='true'
                 multiline='true'
-                rows='4'
+                rows='5'
               /><br />
             </div>
             <label>
@@ -194,7 +214,7 @@ class AddLocation extends Component {
                   }}
                   onClick={(e) => this.setMarker(e.latLng.toJSON())}
                   options={{
-                    "zoomControl": true,
+                    "zoomControl": false,
                     "mapTypeControl": false,
                     "scaleControl": false,
                     "streetViewControl": false,
@@ -215,8 +235,20 @@ class AddLocation extends Component {
               </LoadScript>
             </div>
             <div className="mapSpacer"></div>
-            {/* <label>Address</label><br />
-            <input onChange={(event) => this.handleChange(event, 'address')}></input><br /> */}
+            <h5>Add the nearest <span onClick={this.addAddress}>Address</span></h5><br />
+            <div className='addTextField'>
+            <TextField
+                id="filled-name"
+                // label="Address"
+                // placeholder="Address"
+                // className="TextInput"
+                value={this.state.locationToAdd.address}
+                onChange={(event) => this.handleChangeInput(event, 'address')}
+                margin="normal"
+                variant="outlined"
+                fullWidth='true'
+              /><br />
+              </div>
           </>
         }
         <Stepper handleNext={this.handleNext} handleBack={this.handleBack} handleReset={this.handleReset} handleSubmit={this.addNewLocation} />

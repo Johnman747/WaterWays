@@ -95,7 +95,7 @@ class MapHome extends Component {
                         }}
                         options={{
                             "mapTypeId": 'terrain',
-                            "zoomControl": true,
+                            "zoomControl": false,
                             "mapTypeControl": false,
                             "scaleControl": false,
                             "streetViewControl": false,

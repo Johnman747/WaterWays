@@ -7,12 +7,22 @@ const rejectUnauthenticated = require('../modules/authentication-middleware')
  * GET route template
  */
 router.get('/', (req, res) => {
-    queryText = `SELECT * FROM "locations" ORDER BY "approve" ASC;`;
+    queryText = `SELECT * FROM "locations" WHERE "approve" = TRUE`;
     pool.query(queryText).then((result)=>{
         // console.log(result.rows);
         res.send(result.rows);
     }).catch((error)=>{
-        console.log(error);
+        console.log( "select ADD", error);
+    })
+});
+
+router.get('/moderateLocation', (req, res) => {
+    queryText = `SELECT * FROM "locations" ORDER BY "approve" DESC;`;
+    pool.query(queryText).then((result)=>{
+        // console.log(result.rows);
+        res.send(result.rows);
+    }).catch((error)=>{
+        console.log("moderator", error);
     })
 });
 
@@ -111,6 +121,7 @@ router.get('/:id', (req, res) => {
 });
 
 router.delete('/location/:id', (req, res) => { 
+    // let queryText = `DELETE FROM "activity_log" WHERE "id"`
    
         let queryText = `DELETE FROM "locations" WHERE "id"=$1;`;
         pool.query(queryText, [req.params.id]).then(() => {
@@ -180,7 +191,7 @@ router.post('/', (req, res) => {
                     location.campground_access,
                     location.free_flowing,
                     location.artesian_well,
-                    location.photo.image,
+                    location.photo,
                     location.description,
                     location.rv,
                     location.approve,

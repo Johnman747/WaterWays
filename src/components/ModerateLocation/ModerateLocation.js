@@ -25,7 +25,7 @@ class ModerateLocation extends Component {
 
     // Calls locations to be passed down to MapMarkers component
     getLocations = () => {
-        this.props.dispatch({ type: 'FETCH_LOCATIONS' })
+        this.props.dispatch({ type: 'FETCH_LOCATIONS_MODERATE' })
     } // end getLocations
 
     editLocation = (id) => {

@@ -73,7 +73,7 @@ export default function HorizontalLabelPositionBelowStepper(props) {
     const handleSubmit = () => {
         swal({
             title: 'Thank you!',
-            text: 'This locaion will be sent to a moderator for approval.'
+            text: 'This location will be sent to a moderator for approval.'
         }).then(() => {
             setActiveStep(0);
             props.handleSubmit();

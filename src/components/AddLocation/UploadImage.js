@@ -9,7 +9,7 @@ class UploadImage extends Component{
     
         reader.readAsDataURL(image[0]);
         reader.onload = (event) =>{
-          const formData = {image: event.target.result}
+          const formData = event.target.result
           this.props.setImage(formData);
         }
       }
