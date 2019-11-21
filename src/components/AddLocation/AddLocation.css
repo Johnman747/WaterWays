@@ -45,3 +45,9 @@ p{
     width: 100vw;
     height: 60px;
 }
+
+.TextInput{
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    width: 100%;
+}

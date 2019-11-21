@@ -110,6 +110,24 @@ function* setFilters(action) {
   }
 }
 
+function* fetchLocationsModerate(action){
+  try {
+    const config = {
+      headers: { 'Content-Type': 'application/json' },
+      withCredentials: true,
+    };
+    const response = yield axios.get('/api/locations/moderateLocation', config);
+    console.log(response.data)
+    yield put({ type: 'SET_LOCATIONS', payload: response.data });
+    // the config includes credentials which
+    // allow the server session to recognize the user
+    // when the server recognizes the user session
+    // it will end the session
+
+  } catch (error) {
+    console.log('Error with Get locations:', error);
+  }
+}
 
 function* locationsSaga() {
   yield takeLatest('FETCH_LOCATIONS', fetchLocations);
@@ -119,6 +137,7 @@ function* locationsSaga() {
   yield takeLatest('FETCH_SINGLE_LOCATION', fetchSingleLocation);
   yield takeLatest('UPDATE_LOCATION', updateSingleLocation);
   yield takeLatest('SET_FILTERED_LOCATIONS', setFilters);
+  yield takeLatest('FETCH_LOCATIONS_MODERATE', fetchLocationsModerate)
 }
 
 export default locationsSaga;

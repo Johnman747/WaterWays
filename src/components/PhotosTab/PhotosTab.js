@@ -7,7 +7,7 @@ class PhotosTab extends Component {
 
 
     componentDidMount() {
-        this.props.dispatch({ type: 'DELETE_IMAGE', payload: this.props.reduxStore.user.id});
+        // this.props.dispatch({ type: 'DELETE_IMAGE', payload: this.props.reduxStore.user.id});
         this.props.dispatch({ type: 'FETCH_PHOTOS', payload: this.props.match.params.id });
     }
     

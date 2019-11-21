@@ -44,6 +44,13 @@ class AddReviewPage extends Component {
     backButton = ()=>{
         this.props.history.push(`/location/${this.props.match.params.id}`)
     }
+
+    handelReview = ()=>{
+        this.setState({
+            comment: "This spring water is great and you should totaly try it!"
+        })
+    }
+
     render() {
         return (
             <div className="AddReviewPage">
@@ -60,7 +67,7 @@ class AddReviewPage extends Component {
                     size="large"
                      />
                 </div>
-                <h4 className="AddReviewPageLabels"> Please leave a review:</h4>
+                <h4 className="AddReviewPageLabels"> Please leave a <span onClick={this.handelReview}>review:</span></h4>
                 <div className="AddReviewPageTextField">
                     <TextField
                         onChange={(e) => this.handelChange(e, "comment")}
@@ -69,6 +76,7 @@ class AddReviewPage extends Component {
                         rows={5}
                         margin="normal"
                         variant="outlined"
+                        value={this.state.comment}
                         fullWidth
                     /></div>
                     <div className="AddReviewBtn" >

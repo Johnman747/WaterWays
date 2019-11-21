@@ -145,7 +145,7 @@ class LocationPage extends Component {
                                 {location.free_flowing &&
                                     <div className="DetailItem">
                                         <img className="icon" src={FreeFlow} alt="Free Flow Icon" />
-                                        <h5 className="tagDescription">Free FLowing</h5>
+                                        <h5 className="tagDescription">Free Flowing</h5>
                                     </div>
                                 }
                                 {location.trail_water_source &&
@@ -169,7 +169,7 @@ class LocationPage extends Component {
                                 {location.artesian_well &&
                                     <div className="DetailItem">
                                         <img className="icon" src={Well} alt="Artesian Well Icon" />
-                                        <h5 className="tagDescription">Atresian Well</h5>
+                                        <h5 className="tagDescription">Artesian Well</h5>
                                     </div>
                                 }
                                 {location.dirt_road_access &&
