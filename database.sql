@@ -33,7 +33,7 @@ CREATE TABLE "locations" (
 CREATE Table "activity_log" (
   "id" SERIAL PRIMARY KEY,
   "user_id" INT references "user",
-  "location_id" INT references "locations",
+  "location_id" INT references "locations" ON DELETE CASCADE,
   "issue_comment" varchar(120),
   "issue_type" varchar
 );
@@ -41,14 +41,14 @@ CREATE Table "activity_log" (
 CREATE Table "Photos" (
   "id" SERIAL PRIMARY KEY,
   "user_id" INT references "user",
-  "location_id" INT references "locations",
+  "location_id" INT references "locations" ON DELETE CASCADE,
   "photo_img_string" varchar
 );
 
 CREATE Table "reviews" (
   "id" SERIAL PRIMARY KEY,
   "user_id" INT references "user",
-  "location_id" INT references "locations",
+  "location_id" INT references "locations" ON DELETE CASCADE,
   "comment" varchar,
   "review_score_of_five" INT
 );
