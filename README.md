@@ -1,8 +1,13 @@
 #  WaterWays
 
-One Paragraph of project description goes here. Link to the live version of the app if it's hosted on Heroku.
+WaterWays is a mobile-first web application used for tracking natural springs, seeps, and artesian well water sources. Using Google API, community users are able to find, locate, and contribute new locations to the map. Additionally, WaterWays allows users to be able to leave reviews and comments about the location. Since many water resources are changing due to weather, activity, or maintenance, users can also flag locations for issues. WaterWays administrators are able to review locations for further accuracy and community integrity. Additionally, they also are able to moderate community contributions by reviewing and removing harmful accounts, posts, and locations based on community guidelines. 
+WaterWays has been built to bring a caring, active, eco-conscious community together.
+
+Sharing Knowledge. Preserving Resources.
 
 ## Built With
+
+WaterWays was built using the following frameworks and materials.
 -    "@material-ui/core": "^4.6.1",
 -    "@material-ui/icons": "^4.5.1",
 -    "@material-ui/lab": "^4.0.0-alpha.32",
