@@ -22,7 +22,7 @@ class MapHome extends Component {
         let lastURL = this.props.reduxStore.historyReducer.pop();
         
         console.log(lastURL)
-       
+        this.getGeoLocation();
         if(this.props.reduxStore.filteredLocationsReducer.free === false && 
             this.props.reduxStore.filteredLocationsReducer.spigot === false && 
             this.props.reduxStore.filteredLocationsReducer.trail_access === false && 
@@ -42,7 +42,7 @@ class MapHome extends Component {
         }else{
             this.getLocations();
         }
-      this.getGeoLocation();
+      
     }
 
     //function get current location

@@ -99,7 +99,7 @@ class SearchFilter extends Component {
 
 
     handleClear = () => {
-        console.log('Clear');
+        this.props.dispatch({type:'CLEAR_FILTERS'});
     }
 
     render() {
