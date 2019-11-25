@@ -24,7 +24,7 @@ class PhotosTab extends Component {
                     console.log(this.props.reduxStore.PhotosReducer)
                     return(
                         <div key={photos.id}>
-                     <img className="photoTabPics" src={photos.photo_img_string} />
+                     <img className="photoTabPics" alt="Preview" src={photos.photo_img_string} />
                      {this.props.reduxStore.user.admin_level === 3 &&
                         <Button className="deleteReviewBtn" onClick={() => this.handleDelete(photos.id)}>Delete</Button>
                     }

@@ -36,7 +36,23 @@ copy and paste the `database.sql` file
 
 ## Screen Shot
 
-Include one or two screen shots of your project here (optional). Remove if unused.
+### Home Page
+
+On the home page users can see all the locations near them. They can click on the icons and be brought to the locations details page. 
+
+![Home-Page](ScreenShots/homePage.png?raw=true)
+
+Here users can see the details of the location. You can see name, location, description, rating, tags, reviews, activity, and photos.
+
+![Location-Details](ScreenShots/LocationDetails.png?raw=true)
+
+On the add location page you can submit a new location to the moderators for approval. You can give the location a name, description, add a picture, give it tags, a location and address.
+
+![Add-Location](ScreenShots/AddLocation.png?raw=true)
+
+Here users that have been set to moderator status can either approve and deny new user added locations. 
+
+![Manage-Locations](ScreenShots/ManageLocations.png?raw=true)
 
 ## Documentation
 
@@ -61,9 +77,13 @@ Add additional notes about how to deploy this on a live system
 
 ## Authors
 
-* Name of author(s)
-
+* Misky Abshir
+* Marty Lestock
+* Kienan Lundstrum
+* Johnathan Moes
+* Nathan Voigt
 
 ## Acknowledgments
 
-* Hat tip to anyone who's code was used
+* Noble Falconer
+* Prime Digital Academy

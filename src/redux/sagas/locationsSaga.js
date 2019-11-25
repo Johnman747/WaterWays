@@ -58,10 +58,6 @@ function* fetchSingleLocation(action) {
 
 function* addLocation(action) {
   try {
-    const config = {
-      headers: { 'Content-Type': 'application/json' },
-      withCredentials: true,
-    };
     const response = yield axios.post('/api/locations', action.payload);
     console.log(response);
     this.fetchLocations();

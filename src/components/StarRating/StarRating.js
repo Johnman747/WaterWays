@@ -9,7 +9,7 @@ class StarRating extends Component {
     }
 
     componentDidUpdate(){
-        if(this.state.rating === null || this.state.rating === NaN){
+        if(this.state.rating === null || isNaN(this.state.rating)){
             this.getRating()
         }
     }

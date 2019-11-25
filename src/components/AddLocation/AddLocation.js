@@ -123,23 +123,6 @@ class AddLocation extends Component {
     })
   }
 
-  addName = ()=>{
-    this.setState({
-      locationToAdd:{
-        ...this.state.locationToAdd,
-        name: 'Tower Hill Park Well',
-        description: "This well is near the the entrance of the park. It is clean and very accessible to all that need it!"
-      }
-    })
-  }
-  addAddress = ()=>{
-    this.setState({
-      locationToAdd:{
-        ...this.state.locationToAdd,
-        address: "55 Malcolm Ave SE, Minneapolis, MN 55414"
-      }
-    })
-  }
   render() {
     return (
       <div className="AddLocation">
@@ -149,7 +132,7 @@ class AddLocation extends Component {
               <h2 className='addh2'>Add a Water Source</h2>
             </div>
             <div className='addTextField'>
-              <h3 className='addh3'><span onClick={this.addName}>Name</span> the Water Source</h3>
+              <h3 className='addh3'>the Water Source</h3>
               <p>If the source doesn't have an official name, make the name clear and relevant to its location.</p>
 
               <TextField
@@ -235,7 +218,7 @@ class AddLocation extends Component {
               </LoadScript>
             </div>
             <div className="mapSpacer"></div>
-            <h5>Add the nearest <span onClick={this.addAddress}>Address</span></h5><br />
+            <h5>Add the nearest Address</h5><br />
             <div className='addTextField'>
             <TextField
                 id="filled-name"

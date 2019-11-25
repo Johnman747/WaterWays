@@ -66,14 +66,14 @@ class SearchBar extends Component {
             <div className="SearchBar" >
                 {this.state.backIcon && <img className="SearchBackBtn" src={BackIcon} alt="Back Button" onClick={this.backButton} />}
                 <input className="Search" placeholder="Search Bar" onClick={this.setLocations} onChange={(e) => this.searchBar(e)} />
-                <img src={FilterIcon} className="filter" onClick={() => this.props.history.push('/searchFilter')}/>
+                <img src={FilterIcon} className="filter" alt="Filter Icon" onClick={() => this.props.history.push('/searchFilter')}/>
             </div>
                 <div className="Results">
                     {filteredLocation.map(location => {
                         return (
                             <div className="SearchLocationShow" key={location.id} onClick={() => this.handleClick(location.id)}>
                                 <div className="ImgDivSearch">
-                                    <img className="SearchImg" src={location.photo_primary} alt="Location Photo" />
+                                    <img className="SearchImg" src={location.photo_primary} alt="Location" />
                                 </div>
                                 <div className="displayInfoSearch">
                                     <h3 className="SearchLocationName" >{location.name}</h3>

@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
-import AddImage from '../AddImage/AddImage'
 import { withRouter } from 'react-router-dom';
 // ---- Material UI ---- //
-import Typography from '@material-ui/core/Typography';
 import Modal from '@material-ui/core/Modal';
-import Button from '@material-ui/core/Button';
-import { withStyles, MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import Fab from '@material-ui/core/Fab';
 import ClearSharpIcon from '@material-ui/icons/ClearSharp';
 import RateReviewIcon from '@material-ui/icons/RateReview';
@@ -36,7 +32,6 @@ class MenuModal extends Component {
     }
 
     render() {
-        const { classes } = this.props;
         const showContent = this.state.isOpen;
 
         return (
