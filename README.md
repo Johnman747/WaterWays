@@ -8,15 +8,6 @@ Sharing Knowledge. Preserving Resources.
 ## Built With
 
 WaterWays was built using the following frameworks and materials.
-- Reactjs
-- Nodejs
-- Redux
-- Redux Saga
-- Google Maps API
-- Google GeoLocation API
-- Passport Authentication 
-- SQL database
-- Material UI
 
 ## Getting Started
 
