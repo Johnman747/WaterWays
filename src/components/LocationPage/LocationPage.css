@@ -37,12 +37,13 @@
 .starRating{
 display: inline-block;
 padding-top: 10px;
-width: 50vw;
+/* width: 45vw; */
+float: right
 }
 
 .detailsHeader{
 display: inline-block;
-width: 50vw;
+/* width: 45vw; */
 }
 
 .DetailItem{
