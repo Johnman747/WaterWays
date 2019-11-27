@@ -103,7 +103,6 @@ class LocationPage extends Component {
 
     render() {
         const { value } = this.state;
-        const { classes } = this.props;
 
         return (
             <div className={this.state.modal ? "ModalBackground" : undefined}>
@@ -111,7 +110,7 @@ class LocationPage extends Component {
                     <div key={location.id}>
                         <img onClick={this.BackButton} className="backIcon" src={BackIcon} alt="Back Icon" />
                         <div className="imageCut">
-                            <img src={location.photo_primary} className="LocationImage" alt="Location Photo" />
+                            <img src={location.photo_primary} className="LocationImage" alt="Location" />
                         </div>
                         <div className="BlueBarLocaionPage"></div>
                         <div className="DetailsDisplay">

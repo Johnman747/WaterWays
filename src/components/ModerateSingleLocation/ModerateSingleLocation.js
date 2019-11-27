@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { HashRouter as Router, withRouter } from 'react-router-dom';
-import AddImage from '../AddImage/AddImage'
 // ---- LOOK AT ALL THESE ICONS ---- //
 import FreeIcon from '../Icons/FreeIcon.png';
 import PaidIcon from '../Icons/PaidIcon.png';
@@ -469,7 +468,7 @@ class ModerateSingleLocation extends Component {
                             <input type="file" name="image" onChange={(event) => this.onchange(event)} />
                         </div>
                         <div>
-                            <img className="ImagePreview" src={this.state.location.photo_primary} alt="Image Preview" />
+                            <img className="ImagePreview" src={this.state.location.photo_primary} alt="Preview" />
                         </div>
                         <div className="approveLocationButton">
                             <h3>Approve</h3>
@@ -479,7 +478,7 @@ class ModerateSingleLocation extends Component {
                         </div>
                         <br />
                         <div className="submitDeleteLocationButton">
-                            <Button onClick={this.handleSubmit} color="primary" variant="contained" className="submitDeleteLocationButtonGrid" className="submitDeleteLocationButtonSingle">Submit</Button>
+                            <Button onClick={this.handleSubmit} color="primary" variant="contained" className="submitDeleteLocationButtonGrid submitDeleteLocationButtonSingle">Submit</Button>
                             <p></p>
                             <Button onClick={this.handleDelete} color="secondary" variant="contained" className="submitDeleteLocationButtonGrid">Delete</Button>
                         </div>

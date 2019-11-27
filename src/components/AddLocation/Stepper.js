@@ -1,8 +1,5 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Stepper from '@material-ui/core/Stepper';
-import Step from '@material-ui/core/Step';
-import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { MobileStepper } from '@material-ui/core';
@@ -83,40 +80,42 @@ export default function HorizontalLabelPositionBelowStepper(props) {
 
     return (
         <MuiThemeProvider theme={theme}>
-        <div className={classes.root} className="Stepper">
-            <div className="StepDots">
-                <MobileStepper
-                    variant="dots"
-                    steps={3}
-                    position="static"
-                    activeStep={activeStep}
-                    className={classes.Dots}
-                />
-            </div>
-            <div>
+            <div  className="Stepper">
+                <div className={classes.root}>
+                    <div className="StepDots">
+                        <MobileStepper
+                            variant="dots"
+                            steps={3}
+                            position="static"
+                            activeStep={activeStep}
+                            className={classes.Dots}
+                        />
+                    </div>
+                </div>
                 <div>
-                    <Typography className={classes.instructions}>{getStepContent(activeStep)}</Typography>
                     <div>
-                        <Button
-                            disabled={activeStep === 0}
-                            onClick={handleBack}
-                            className={classes.backButton}
-                        >
-                            Back
+                        <Typography className={classes.instructions}>{getStepContent(activeStep)}</Typography>
+                        <div>
+                            <Button
+                                disabled={activeStep === 0}
+                                onClick={handleBack}
+                                className={classes.backButton}
+                            >
+                                Back
                                 </Button>
-                        {activeStep === steps.length - 1 ?
-                            <Button variant="contained" color="primary" onClick={handleSubmit}>
-                                Finish
+                            {activeStep === steps.length - 1 ?
+                                <Button variant="contained" color="primary" onClick={handleSubmit}>
+                                    Finish
                             </Button>
-                            :
-                            <Button variant="contained" color="primary" onClick={handleNext}>
-                                Next
+                                :
+                                <Button variant="contained" color="primary" onClick={handleNext}>
+                                    Next
                             </Button>
-                        }
+                            }
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
         </MuiThemeProvider>
     );
 }

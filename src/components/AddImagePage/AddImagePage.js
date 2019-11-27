@@ -58,7 +58,7 @@ class AddImagePage extends Component {
                     {this.state.photo === "" ?
                         "Image Preview"
                         :
-                        <img className="ImagePreview" src={this.state.photo} alt="Image Preview" />
+                        <img className="ImagePreview" src={this.state.photo} alt="Preview" />
                     }
                 </div>
                 <div className="AddImageButton">
