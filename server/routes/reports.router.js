@@ -3,6 +3,7 @@ const pool = require('../modules/pool');
 const router = express.Router();
 const rejectUnauthenticated = require('../modules/authentication-middleware')
 
+//get all reports for a single location by location id
 router.get('/:id', (req, res) => {
     
     let queryText = `SELECT "activity_log".id, "activity_log".issue_type, "activity_log".issue_comment, "activity_log".location_id, "user".first_name, "user".last_name FROM "activity_log" JOIN "user" ON "activity_log".user_id = "user".id WHERE "location_id" = $1 ORDER BY "activity_log".id DESC;`;
@@ -19,7 +20,7 @@ router.get('/:id', (req, res) => {
     });
 
 });
-
+//get single report by report id
 router.get('/report/:id', (req,res) =>{
     let queryText = `SELECT * FROM "activity_log" WHERE "id"=$1;`;
     pool.query(queryText, [req.params.id])
@@ -31,6 +32,7 @@ router.get('/report/:id', (req,res) =>{
         res.sendStatus(500);
     })
 });
+//post new report to activity log table related to location id
 router.post('/', (req,res) =>{
     let report = req.body;
     let queryText = `
@@ -50,7 +52,7 @@ router.post('/', (req,res) =>{
         console.log(error);
     })
 })
-
+//delete report from activity log based on report id
 router.delete('/report/:id', (req,res) =>{
     let queryText = `DELETE FROM "activity_log" WHERE "id" = $1;`;
     // console.log(req.params.id);
@@ -63,16 +65,5 @@ router.delete('/report/:id', (req,res) =>{
     })
 })
 
-// router.delete('/:id', (req,res) =>{
-//     let queryText = `DELETE FROM "reports" WHERE "id"=$1;`;
-//     console.log(req.params.id);
-//     pool.query(queryText, [])
-//     .then(() =>{
-//         res.sendStatus(200)
-//     }).catch((error) =>{
-//         console.log(error);
-//         res.sendStatus(500);
-//     })
-// })
 
 module.exports = router;
