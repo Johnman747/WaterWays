@@ -39,8 +39,7 @@ router.get('/search', (req, res) => {
 
 router.post('/filter', (req,res) =>{
 //THIS POST IS ACTUALLY A GET REQUEST BUT NEEDED TO 
-//BE ABLE TO PASS A REQUEST BODY DO NOT CHANGE THIS
-    
+//BE ABLE TO PASS A REQUEST BODY DO NOT CHANGE THIS   
 const filters = req.body;
     const values = [
         filters.free,
@@ -106,7 +105,7 @@ const filters = req.body;
 
     })
 });
-
+//gets singl location by id
 router.get('/:id', (req, res) => {
     let queryText = `SELECT * FROM "locations" WHERE id=$1;`;
     pool.query(queryText, [req.params.id])
@@ -119,7 +118,7 @@ router.get('/:id', (req, res) => {
         });
 
 });
-
+//deletes location by id
 router.delete('/location/:id', (req, res) => { 
     // let queryText = `DELETE FROM "activity_log" WHERE "id"`
    
@@ -133,7 +132,7 @@ router.delete('/location/:id', (req, res) => {
         })
 });
 
-
+//updates location by id
 router.put('/location/:id', (req,res) =>{
         const location = req.body;
         const values =[
@@ -175,7 +174,7 @@ router.put('/location/:id', (req,res) =>{
 
 });
 
-
+//adds single location to database
 router.post('/', (req, res) => {
     const location = req.body;
     const values =[

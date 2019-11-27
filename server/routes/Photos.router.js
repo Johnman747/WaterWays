@@ -4,7 +4,7 @@ const router = express.Router();
 const rejectUnauthenticated = require('../modules/authentication-middleware')
 
 /**
- * GET route template
+ * GET all photos related to a particular location id
  */
 router.get('/:id',(req, res) => {
     queryText = `SELECT * FROM "Photos" WHERE "location_id" = $1;`;
@@ -29,7 +29,7 @@ router.delete('/:id', (req, res) => {
 });
 
 /**
- * POST route template
+ * POST photo to photos table
  */
 router.post('/',(req, res) => {
     const photo = req.body;
